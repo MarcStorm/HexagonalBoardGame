@@ -12,7 +12,7 @@ public class Main {
 	// write your code here
         initialiseField();
         Hexgame.doMain();
-        /* scan = new Scanner(System.in);
+         scan = new Scanner(System.in);
         if(startingPositionIsGivenAsTextInput){
             String blueStart = scan.nextLine();
             String goldStart = scan.nextLine();
@@ -23,17 +23,27 @@ public class Main {
         while(numTurns > 0){
 
             numTurns--;
-        }*/
+        }
     }
 
-    private static PlayerType p1 = PlayerType.HUMAN;
-    //Not yet toggleable Coming very soon (It is already written)
     /*Section 1: stuff teammates should be aware they can toggle*/
 
     static PlayerType p2 = PlayerType.COMPUTER;
     private static Integer numTurns = 300;
     private static final boolean startBoardRandomPositions = false;
+
+    private static Computer computerGenerator() {
+        return new Gideon // <- you might change which Computer (Anu, Marc, etc). No constructor signature standard, whatever params you need!
+                (board,numTurns,
+                (currentTurn == BoardPiece.BLUE)? BoardPiece.BLUE: BoardPiece.GOLD,
+                (currentTurn == BoardPiece.BLUE)? BoardPiece.GOLD: BoardPiece.BLUE);
+    }
     /*End Section 1*/
+      /*Section 2: soon to be toggleable*/
+    private static PlayerType p1 = PlayerType.HUMAN;
+    private static final boolean readInInput = false; //
+    /*End Section 2*/
+
 
     private static final int numberOfMarkers = 4;
     private static int playerToMakeMove;
@@ -96,15 +106,8 @@ public class Main {
      */
 
     private static void readInput() throws IOException {
-        // BufferedReader bufferedReader = new BufferedReader(new FileInputStream("turns.txt"));
-        scan = new Scanner(new File("turns.txt"));
-        BoardPiece turn = BoardPiece.BLUE;
-        for(int i = 0; i < numTurns * 2; i++) {
-            Integer from = scan.nextInt();
-            Integer to = scan.nextInt();
-            takeTurn(turn, from, to);
-            turn = (turn == BoardPiece.BLUE)? BoardPiece.GOLD: BoardPiece.BLUE;
-        }
+      //Look in this file's history for an early implementation.
+        //Deleted until it will be useful
     }
 
 
@@ -122,7 +125,10 @@ public class Main {
         return false;
 
     }
-
+    /*
+    * Called by mouse listener as a response to human player
+    * called by computer player
+    * */
     public static Computer click(Integer integer) {
 
 
@@ -133,7 +139,7 @@ public class Main {
                 from = integer;
             }
         } else if (from == integer){
-            from = null; //double click the same tyle to deselect
+            from = null; //double click the same tile to deselect
         }else if (board[integer] == BoardPiece.EMPTY) {
             if(withinRange(from, integer)){
                 board[integer] = board[from];
@@ -150,36 +156,10 @@ public class Main {
         return null;
 
     }
-    private static Computer computerGenerator() {
-        // TODO Auto-generated method stub
-        return new Gideon(board,numTurns,
-                (currentTurn == BoardPiece.BLUE)? BoardPiece.BLUE: BoardPiece.GOLD,
-                (currentTurn == BoardPiece.BLUE)? BoardPiece.GOLD: BoardPiece.BLUE);
-    }
+
     private void printInput(){
-        ArrayList<Integer> gold = new ArrayList<Integer>(),  blue = new ArrayList<Integer>();
-        for(int i = 0; i <= 109; i++){
-            if(board[i] == BoardPiece.GOLD){
-                gold.add(i);
-            } else if (board[i] == BoardPiece.BLUE){
-                blue.add(i);
-            }
-
-        }
-        for(Integer each: blue){
-            System.out.print(each + " ");
-        }
-        System.out.println();
-        for(Integer each: gold){
-            System.out.print(each + " ");
-        }
-        System.out.println();
-        if(currentTurn == BoardPiece.BLUE){
-            System.out.print("0");
-        } else {
-            System.out.print("1");
-        }
-
+        //Look in this file's history for an early implementation.
+        //Deleted until it will be useful
     }
     private static boolean withinRange(Integer from, Integer to) {
         if(to == from + 1 || to == from + 2 || to == from - 1 || to == from - 2 ) {
@@ -196,26 +176,8 @@ public class Main {
     }
 
     private static void readPlayerPositions(BufferedReader bufferedReader) throws IOException {
-        String line;
-        int counter = 0;
-        // There are two players, so need to read two lines of input of the position of the players positions.
-        while (counter < 2) {
-            while (true) {
-                line = bufferedReader.readLine();
-                // The line.replace(...) can possibly be removed if we are sure that input is not given with more than
-                // one space in between the positions.
-                line = line.replace(" ", ",");
-                StringTokenizer st = new StringTokenizer(line, ",");
-                if (st.countTokens() == numberOfMarkers) {
-                    while (st.hasMoreTokens()) {
-                        /*
-                        Insert code to store the position in the appropriate data structure.
-                         */
-                    }
-                    break;
-                }
-            }
-        }
+        //Look in this file's history for an early implementation.
+        //Deleted until it will be useful
     }
     public static void isItAComputersTurn() {
 		/*

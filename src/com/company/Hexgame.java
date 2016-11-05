@@ -62,7 +62,7 @@ public class Hexgame {
 
 
         //JFrame.setDefaultLookAndFeelDecorated(true);
-        JFrame frame = new JFrame("Hex Testing 4");
+        JFrame frame = new JFrame("Four in a Row Game!");
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         Container content = frame.getContentPane();
         content.add(panel);
