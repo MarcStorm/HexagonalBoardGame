@@ -1,10 +1,8 @@
 package com.company;
 
 import java.awt.*;
-
-        import javax.swing.*;
-
-        import java.awt.event.*;
+import javax.swing.*;
+import java.awt.event.*;
 /**
  * Created by gideonpotok on 11/5/16.
  */
