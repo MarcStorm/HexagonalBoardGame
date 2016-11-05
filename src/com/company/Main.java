@@ -25,18 +25,22 @@ public class Main {
             numTurns--;
         }*/
     }
-    private static Integer from = null;
+    /*Section 1: tuff teammates should be aware they can toggle*/
     private static PlayerType p1 = PlayerType.HUMAN;
-    private static PlayerType p2 = PlayerType.HUMAN;
+    private static PlayerType p2 = PlayerType.COMPUTER;
+    private static Integer numTurns = 300;
+    private static final boolean startBoardRandomPositions = false;
+    /*End Section 1*/
+
     private static final int numberOfMarkers = 4;
     private static int playerToMakeMove;
     protected static BoardPiece[] board;
     protected static BoardPiece currentTurn = BoardPiece.BLUE;
     private static Scanner scan;
-    private static Integer numTurns = 300;
     private static Computer computer1 = null , computer2;
-    //more then 110 numbers here. I didn't feel like counting.
     private static boolean  startingPositionIsGivenAsTextInput = false;
+    private static Integer from = null;
+
 
     private static void initialiseField() {
         board = new BoardPiece[110];
@@ -44,27 +48,43 @@ public class Main {
             board[i] = BoardPiece.EMPTY;
         }
         Random r = new Random();
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-        int x = 0;
-        for(int i = 0; i < 4; i++){
-            x = r.nextInt(109);
-            while(arr.contains(x)){
+        placeTokens();
+
+
+
+
+    }
+
+    private static void placeTokens() {
+        if(startBoardRandomPositions) {
+            ArrayList<Integer> arr = new ArrayList<Integer>();
+            int x = 0;
+            for (int i = 0; i < 4; i++) {
                 x = r.nextInt(109);
+                while (arr.contains(x)) {
+                    x = r.nextInt(109);
+                }
+                arr.add(x);
+                board[x] = BoardPiece.GOLD;
             }
-            arr.add(x);
-            board[x] = BoardPiece.GOLD;
-        }
-        for(int i = 0; i < 4; i++){
-            x = r.nextInt(109);
-            while(arr.contains(x)){
+            for (int i = 0; i < 4; i++) {
                 x = r.nextInt(109);
+                while (arr.contains(x)) {
+                    x = r.nextInt(109);
+                }
+                arr.add(x);
+                board[x] = BoardPiece.BLUE;
             }
-            arr.add(x);
-            board[x] = BoardPiece.BLUE;
+        } else {
+            board[0] = BoardPiece.GOLD;
+            board[9] = BoardPiece.GOLD;
+            board[103] = BoardPiece.GOLD;
+            board[106] = BoardPiece.GOLD;
+            board[100] = BoardPiece.BLUE;
+            board[109] = BoardPiece.BLUE;
+            board[3] = BoardPiece.BLUE;
+            board[6] = BoardPiece.BLUE;
         }
-
-
-
     }
 
     /*
