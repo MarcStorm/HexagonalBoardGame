@@ -95,5 +95,17 @@ public abstract class Computer {
         return false;
     }
 
+    public boolean between(Integer theirPiece) {
+        //eventually we can just ask if it is between the most extreme of computers pieces
+        for(int i = 0; i < 4; i++){
+            for(int j = i+1; j < 4; j++){
+                if(between(this.computer.get(i), theirPiece, this.computer.get(j))){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }
 
