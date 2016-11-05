@@ -27,30 +27,43 @@ public class Main {
     }
     private static Integer from = null;
     private static PlayerType p1 = PlayerType.HUMAN;
-    static PlayerType p2 = PlayerType.COMPUTER;
+    private static PlayerType p2 = PlayerType.HUMAN;
     private static final int numberOfMarkers = 4;
     private static int playerToMakeMove;
     protected static BoardPiece[] board;
     protected static BoardPiece currentTurn = BoardPiece.BLUE;
     private static Scanner scan;
-    private static Integer numTurns = 200;
+    private static Integer numTurns = 300;
+    private static Computer computer1 = null , computer2;
     //more then 110 numbers here. I didn't feel like counting.
     private static boolean  startingPositionIsGivenAsTextInput = false;
 
-   
     private static void initialiseField() {
         board = new BoardPiece[110];
         for(int i = 0; i < board.length; i++){
             board[i] = BoardPiece.EMPTY;
         }
-        board[0] = BoardPiece.GOLD;
-        board[9] = BoardPiece.GOLD;
-        board[103] = BoardPiece.GOLD;
-        board[106] = BoardPiece.GOLD;
-        board[100] = BoardPiece.BLUE;
-        board[109] = BoardPiece.BLUE;
-        board[3] = BoardPiece.BLUE;
-        board[6] = BoardPiece.BLUE;
+        Random r = new Random();
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        int x = 0;
+        for(int i = 0; i < 4; i++){
+            x = r.nextInt(109);
+            while(arr.contains(x)){
+                x = r.nextInt(109);
+            }
+            arr.add(x);
+            board[x] = BoardPiece.GOLD;
+        }
+        for(int i = 0; i < 4; i++){
+            x = r.nextInt(109);
+            while(arr.contains(x)){
+                x = r.nextInt(109);
+            }
+            arr.add(x);
+            board[x] = BoardPiece.BLUE;
+        }
+
+
 
     }
 
@@ -86,9 +99,12 @@ public class Main {
 
     }
 
-    @SuppressWarnings("static-access")
     public static Computer click(Integer integer) {
+
+
+        //return null;
         if(from == null ){
+
             if(board[integer] == currentTurn){
                 from = integer;
             }
@@ -112,7 +128,9 @@ public class Main {
     }
     private static Computer computerGenerator() {
         // TODO Auto-generated method stub
-        return new Gideon(board,numTurns,BoardPiece.GOLD, BoardPiece.BLUE );
+        return new Gideon(board,numTurns,
+                (currentTurn == BoardPiece.BLUE)? BoardPiece.BLUE: BoardPiece.GOLD,
+                (currentTurn == BoardPiece.BLUE)? BoardPiece.GOLD: BoardPiece.BLUE);
     }
     private void printInput(){
         ArrayList<Integer> gold = new ArrayList<Integer>(),  blue = new ArrayList<Integer>();
@@ -175,7 +193,54 @@ public class Main {
             }
         }
     }
+    public static void isItAComputersTurn() {
+		/*
+		 if(FourInARow.p2 == PlayerType.COMPUTER && p2 != null){
+						Integer[]  latestTurn = new Integer[2];
+						final long start = System.nanoTime();
+						do {
+
+							latestTurn = p2.getTurn();
 
 
+						} while (System.nanoTime()-start < 1L*1000L*1000L*1000L);
+					FourInARow.click(latestTurn[0]);
+					p2 = FourInARow.click(latestTurn[1]);
+					FourInARow.currentTurn = BoardPiece.BLUE;
+		 */
+		/*if(p1 == PlayerType.COMPUTER && currentTurn == BoardPiece.BLUE){
+			computer1 = computerGenerator();
 
+			Integer[]  latestTurn = null;
+			final long start = System.nanoTime();
+			do {
+				latestTurn = computer1.getTurn();
+
+			} while (System.nanoTime()-start < 5L*1000L*1000L*1000L);
+			if(latestTurn != null) {
+				click(latestTurn[0]);
+				click(latestTurn[1]);
+			}
+    		numTurns--;
+
+		}*/
+        if(p2 == PlayerType.COMPUTER  && currentTurn == BoardPiece.GOLD){
+            computer2 = computerGenerator();
+
+            Integer[]  latestTurn = null;
+            final long start = System.nanoTime();
+            do {
+                latestTurn = computer2.getTurn();
+
+            } while (System.nanoTime()-start < 2L*1000L*1000L*1000L);
+            if(latestTurn != null) {
+                click(latestTurn[0]);
+                click(latestTurn[1]);
+            }
+
+            numTurns--;
+
+        }
+
+    }
 }
