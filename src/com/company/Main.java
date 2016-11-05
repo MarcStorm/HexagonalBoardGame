@@ -47,7 +47,7 @@ public class Main {
         for(int i = 0; i < board.length; i++){
             board[i] = BoardPiece.EMPTY;
         }
-        Random r = new Random();
+
         placeTokens();
 
 
@@ -57,6 +57,7 @@ public class Main {
 
     private static void placeTokens() {
         if(startBoardRandomPositions) {
+            Random r = new Random();
             ArrayList<Integer> arr = new ArrayList<Integer>();
             int x = 0;
             for (int i = 0; i < 4; i++) {
