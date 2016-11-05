@@ -28,9 +28,9 @@ public class Main {
 
     private static PlayerType p1 = PlayerType.HUMAN;
     //Not yet toggleable Coming very soon (It is already written)
-    /*Section 1: tuff teammates should be aware they can toggle*/
+    /*Section 1: stuff teammates should be aware they can toggle*/
 
-    private static PlayerType p2 = PlayerType.COMPUTER;
+    static PlayerType p2 = PlayerType.COMPUTER;
     private static Integer numTurns = 300;
     private static final boolean startBoardRandomPositions = false;
     /*End Section 1*/
