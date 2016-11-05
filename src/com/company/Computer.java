@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-//import Game.BoardPiece;
-//import Game.FourInARow;
 /**
  * Created by gideonpotok on 11/5/16.
  */
