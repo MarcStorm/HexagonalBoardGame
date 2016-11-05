@@ -94,7 +94,8 @@ public abstract class Computer {
         }
         return false;
     }
-
+    /* Is their piece blocking my 4 in a row? */
+    /*TO DO: this is a very temporary implementation change soon*/
     public boolean between(Integer theirPiece) {
         //eventually we can just ask if it is between the most extreme of computers pieces
         for(int i = 0; i < 4; i++){
