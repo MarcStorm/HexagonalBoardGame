@@ -39,11 +39,11 @@ public class Main {
                 (currentTurn == BoardPiece.BLUE)? BoardPiece.GOLD: BoardPiece.BLUE);
     }
     /*End Section 1*/
-      /*Section 2: soon to be toggleable*/
+
+    /*Section 2: soon to be toggleable*/
     private static PlayerType p1 = PlayerType.HUMAN;
     private static final boolean readInInput = false; //
     /*End Section 2*/
-
 
     private static final int numberOfMarkers = 4;
     private static int playerToMakeMove;

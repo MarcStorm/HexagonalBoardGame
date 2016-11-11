@@ -9,30 +9,36 @@ import java.util.ArrayList;
 public class Node {
 
     // Fields
-    int value;
-    int alpha;
-    int beta;
+    private int value;
+//    int alpha;
+//    int beta;
     Node parent;
     int position;
     ArrayList<Integer> placesToGo;
+    private boolean maxNode;
 
     // Constructor if node is defined without parent.
-    public Node(int value, int alpha, int beta, int position) {
-        this.value = value;
-        this.alpha = alpha;
-        this.beta = beta;
+//    public Node(int value, int alpha, int beta, int position) {
+    public Node(int position) {
+        this.value = 0;
+//        this.alpha = alpha;
+//        this.beta = beta;
         this.position = position;
         this.placesToGo = getPlacesToGo(position);
+        this.parent = null;
+        this.maxNode = true;
     }
 
     // Constructor if node is defined with parent.
-    public Node(int value, int alpha, int beta, int position, Node parent) {
-        this.value = value;
-        this.alpha = alpha;
-        this.beta = beta;
+//    public Node(int value, int alpha, int beta, int position, Node parent) {
+    public Node(int position, Node parent) {
+        this.value = 0;
+//        this.alpha = alpha;
+//        this.beta = beta;
         this.position = position;
         this.placesToGo = getPlacesToGo(position);
         this.parent = parent;
+        this.maxNode = !parent.isMaxNode();
     }
 
     private ArrayList getPlacesToGo(int position) {
@@ -105,5 +111,13 @@ public class Node {
 
     public int getValue() {
         return value;
+    }
+
+    public boolean isMaxNode() {
+        return maxNode;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }
