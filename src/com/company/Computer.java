@@ -1,13 +1,8 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.Random;
 
-//import Game.BoardPiece;
-//import Game.FourInARow;
 /**
  * Created by gideonpotok on 11/5/16.
  */
@@ -33,6 +28,7 @@ public abstract class Computer {
     }
 
     abstract boolean decideTurn();
+
     public Integer[] getTurn() {
         decideTurn();
         Integer[] nextTurn = new Integer[2];

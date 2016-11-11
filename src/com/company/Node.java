@@ -50,7 +50,7 @@ public class Node {
         for (int i = -2; i <= 2; i++) {
             if (i != 0) {
                 possiblePlaceToGo = position + i;
-                if (possiblePlaceToGo >= rangeLower && possiblePlaceToGo <= rangeUpper) {
+                if (withinRange(rangeLower, rangeUpper, possiblePlaceToGo)) {
                     placesToGo.add(possiblePlaceToGo);
                 }
             }
@@ -61,23 +61,26 @@ public class Node {
         rangeUpper = 109;
         for (int i = -20; i <= 20; i += 10) {
             possiblePlaceToGo = position + i;
-            if (possiblePlaceToGo >= rangeLower && possiblePlaceToGo <= rangeUpper) {
+            if (withinRange(rangeLower, rangeUpper, possiblePlaceToGo)) {
                 placesToGo.add(possiblePlaceToGo);
             }
         }
 
         // Determine places to go for the vertical line.
-
         rangeLower = findRangeLower(position);
         rangeUpper = findRangeUpper(position);
         for (int i = 0; i < 10; i++) {
             possiblePlaceToGo = position;
-            if (possiblePlaceToGo >= rangeLower && possiblePlaceToGo <= rangeUpper) {
+            if (withinRange(rangeLower, rangeUpper, possiblePlaceToGo)) {
                 placesToGo.add(possiblePlaceToGo);
             }
         }
 
         return placesToGo;
+    }
+
+    private boolean withinRange(int rangeLower, int rangeUpper, int possiblePlaceToGo) {
+        return possiblePlaceToGo >= rangeLower && possiblePlaceToGo <= rangeUpper;
     }
 
     private int findRangeUpper(int position) {
@@ -94,5 +97,13 @@ public class Node {
             positionTemp -= 9;
         }
         return positionTemp;
+    }
+
+    public boolean isTerminalNode() {
+        return false;
+    }
+
+    public int getValue() {
+        return value;
     }
 }
