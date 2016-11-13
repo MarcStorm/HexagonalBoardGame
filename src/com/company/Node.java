@@ -3,7 +3,12 @@ package com.company;
 import java.util.ArrayList;
 
 /**
- * Created by Marc on 04/11/16.
+ * @Author Anu Challa (achalla@terpmail.umd.edu)
+ * @Author Gideon Potok (gideon.potok@gmail.com)
+ * @Author Marc Storm Larsen (mslarsen1992@gmail.com)
+ *
+ * I pledge on my honor that I have not given or received any unauthorized
+ * assistance on this project.
  */
 
 public class Node {
