@@ -1,11 +1,17 @@
 package com.company;
 
-import java.util.HashMap;
-import java.util.Stack;
+import java.util.LinkedList;
+
+/**
+ * @Author Anu Challa (achalla@terpmail.umd.edu)
+ * @Author Gideon Potok (gideon.potok@gmail.com)
+ * @Author Marc Storm Larsen (mslarsen1992@gmail.com)
+ *
+ * I pledge on my honor that I have not given or received any unauthorized
+ * assistance on this project.
+ */
 
 public class Marc extends Computer {
-
-
 
     public Marc(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
         super(board, numTurns, me, adversery);
@@ -13,9 +19,6 @@ public class Marc extends Computer {
 
     @Override
     boolean decideTurn() {
-        for (int i = 0; i < computer.size(); i++) {
-            System.out.println("Brick is placed at: " + computer.get(i));
-        }
 
         //The only thing you have to do
         //is set this.from and this.to how you like,
@@ -51,50 +54,51 @@ public class Marc extends Computer {
 			return utilityProfile(node);
 		} else if (depth == 0) {
 			return evaluationFunction(node);
-		} else if (node.isMaxNode()) {
-			node.setValue(Integer.MIN_VALUE);
-
-			for (int i = 0; i < node.placesToGo.size(); i++) {
-				int move = node.placesToGo.get(i);
-				// Make a check to see if there are any other bricks at the move position,
-				// either own or opponent's bricks.
-				if (brickAt(move)) {
-					continue;
-				}
-				Node childNode = produceChildNodeOf(node, move);
-				node.setValue(Math.max(node.getValue(), alphaBetaPruning(childNode, depth-1, alpha, beta)));
-				if (node.getValue() >= beta) {
-					// Beta cutoff.
-					return node.getValue();
-				} else {
-					alpha = Math.max(alpha, node.getValue());
+		} else {
+			if (node.isMaxNode()) {
+				node.setValue(Integer.MIN_VALUE);
+				LinkedList<Node> children = produceChildrenOf(node);
+				nodeOrdering(children);
+				for (Node child : children) {
+					node.setValue(Math.max(node.getValue(), alphaBetaPruning(child, depth - 1, alpha, beta)));
+					if (node.getValue() >= beta) {
+						// Beta cutoff.
+						return node.getValue();
+					} else {
+						alpha = Math.max(alpha, node.getValue());
+					}
 				}
 				return node.getValue();
-			}
-		} else {
-			node.setValue(Integer.MAX_VALUE);
-			for (int i = 0; i < node.placesToGo.size(); i++) {
-				int move = node.placesToGo.get(i);
-				// Make a check to see if there are any other bricks at the move position,
-				// either own or opponent's bricks.
-				if (brickAt(move)) {
-					continue;
-				}
-				Node childNode = produceChildNodeOf(node, move);
-				node.setValue(Math.min(node.getValue(), alphaBetaPruning(childNode, depth-1, alpha, beta)));
-				if (node.getValue() <= alpha) {
-					// Alpha cutoff.
-					return node.getValue();
-				} else {
-					beta = Math.max(alpha, node.getValue());
+			} else {
+				node.setValue(Integer.MAX_VALUE);
+				LinkedList<Node> children = produceChildrenOf(node);
+				for (Node child : children) {
+					node.setValue(Math.min(node.getValue(), alphaBetaPruning(child, depth - 1, alpha, beta)));
+					if (node.getValue() <= alpha) {
+						// Alpha cutoff.
+						return node.getValue();
+					} else {
+						beta = Math.min(alpha, node.getValue());
+					}
 				}
 				return node.getValue();
 			}
 		}
+	}
 
-
-		// This return statement is probably not correct.
-		return 0;
+	private LinkedList<Node> produceChildrenOf(Node node) {
+		LinkedList<Node> children = new LinkedList<>();
+		for (int i = 0; i < node.placesToGo.size(); i++) {
+			int newPosition = node.placesToGo.get(i);
+			// Make a check to see if there are any other bricks at the move position,
+			// either own or opponent's bricks.
+			if (brickAt(newPosition)) {
+				continue;
+			}
+			Node child = produceChildNodeOf(node, newPosition);
+			children.addLast(child);
+		}
+		return children;
 	}
 
 	// METHOD NOT COMPLETE.
@@ -115,24 +119,16 @@ public class Marc extends Computer {
 		return 0;
 	}
 
-	private void nodeOrdering() {
+
+	private void nodeOrdering(LinkedList<Node> children) {
 
 	}
 
-	/*public static boolean iterativeDeepening(int maxDepth, HashMap<String, Integer> problems){
-		int currentMaxDepth = 1;
-		long startTime = System.currentTimeMillis();
-
-		Stack<Reaction> reactionStack = new Stack<>();
-
-		while(maxDepth > currentMaxDepth){
-			if(depthFirstSearch(currentMaxDepth, 0, problems, reactionStack, startTime)){
-				return true;
-			}
-			//System.out.println(stateCount);
-			//stateCount = 0;
-			currentMaxDepth++;
-		}
+	/* Method is used for the following:
+	 * - Check if all of the players 4 bricks are on a row.
+	 * - Check that the opponent isn't blocking the line.
+	 * - Check that none of the bricks are in one of the starting positions. */
+	private boolean goalTest() {
 		return false;
-	}*/
+	}
 }
