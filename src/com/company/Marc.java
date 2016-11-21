@@ -14,7 +14,6 @@ import java.util.LinkedList;
 
 public class Marc extends Computer {
 
-	// BoardPiece[] board = Linear representation of the entire game board.
     public Marc(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
         super(board, numTurns, me, adversery);
     }

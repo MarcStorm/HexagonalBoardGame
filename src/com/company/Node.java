@@ -21,7 +21,7 @@ public class Node {
     ArrayList<Integer> positionsAdversery;
     private boolean maxNode;
     HashMap<Integer, ArrayList<Integer>> placesToGo;
-    // These two variables decribe what moved were made in other to reach the node's position.
+    // These two variables describe what moved were made in other to reach the node's position.
     int fromPosition;
     int toPosition;
 
