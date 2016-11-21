@@ -1,6 +1,9 @@
 package com.company;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @Author Anu Challa (achalla@terpmail.umd.edu)
@@ -12,42 +15,27 @@ import java.util.LinkedList;
  */
 
 public class Marc extends Computer {
+	private Queue<Integer> pretendConsole = new LinkedList<Integer>();
 
     public Marc(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
         super(board, numTurns, me, adversery);
+		//super.createTree();
     }
 
-    @Override
+
+
+	@Override
     boolean decideTurn() {
 
         //The only thing you have to do
         //is set this.from and this.to how you like,
         //Use Computer's helper methods and helper members if you like!
 
-        return false;
-        //return value doesnt matter
 
-        //Make it so that calling this method twice in a row
-        //this.decideTurn()
-        //this.decideTurn()
-        //sets from and to
-        //iteratively deeper each time
+        return false;
+
     }
 
-	/* The iterative deepening method must call the alpha-beta pruning method.
-	 * The alpha-beta pruning method will implement a sort of limited depth first search (LDFS).
-	 * So far LDFS should definitely pass on the depth to the alpha-beta pruning method as that
-	 * will decide how far the method search.
-	 */
-
-
-/*	private void iterativeDeepening() {
-		int currentMaxDepth = 0;
-		while (true) {
-			alphaBetaPruning(currentMaxDepth);
-			currentMaxDepth++;
-		}
-	}*/
 
 	private int alphaBetaPruning(Node node, int depth, int alpha, int beta) {
 		if (node.isTerminalNode()) {
@@ -112,11 +100,11 @@ public class Marc extends Computer {
 	}
 
 	private int utilityProfile(Node node) {
-		return 0;
+		return 0; //return super.utilityProfile(node);
 	}
 
 	private int evaluationFunction(Node node) {
-		return 0;
+		return 0;//super.evaluationFunction(node);
 	}
 
 

@@ -1,6 +1,7 @@
 package com.company;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.*;
 /**
  * Created by gideonpotok on 11/5/16.
  */
@@ -9,6 +10,7 @@ public class Gideon extends Computer {
 
     public Gideon(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
         super(board,numTurns,me,adversery);
+
     }
 
     boolean decideTurn(){
