@@ -10,14 +10,7 @@ public class Main {
 	// write your code here
         initialiseField();
         Hexgame.doMain();
-         scan = new Scanner(System.in);
-        if(startingPositionIsGivenAsTextInput){
-            String blueStart = scan.nextLine();
-            String goldStart = scan.nextLine();
-            String whoStarts = scan.nextLine();
-        } else {
 
-        }
         while(numTurns > 0){
 
             numTurns--;
@@ -26,9 +19,10 @@ public class Main {
 
     /*Section 1: stuff teammates should be aware they can toggle*/
 
-    static PlayerType p2 = PlayerType.COMPUTER;
+    static PlayerType p2 = PlayerType.HUMAN;
     private static Integer numTurns = 300;
     private static final boolean startBoardRandomPositions = false;
+
 
     private static Computer computerGenerator() {
         return new Gideon // <- you might change which Computer (Anu, Marc, etc). No constructor signature standard, whatever params you need!
@@ -38,18 +32,25 @@ public class Main {
     }
     /*End Section 1*/
 
+
+    /*Section 2: Should work, not yet tested*/
+    private static boolean  startingPositionIsGivenAsTextInput = false;
+    /*End section 2*/
     /*Section 2: soon to be toggleable*/
+
+
+    /*Section 3: soon to be toggleable*/
     private static PlayerType p1 = PlayerType.HUMAN;
     private static final boolean readInInput = false; //
-    /*End Section 2*/
+    /*End Section 3*/
 
     private static final int numberOfMarkers = 4;
     private static int playerToMakeMove;
-    protected static BoardPiece[] board;
-    protected static BoardPiece currentTurn = BoardPiece.BLUE;
+    private static BoardPiece[] board;
+    private static BoardPiece currentTurn = BoardPiece.BLUE;
     private static Scanner scan;
     private static Computer computer1 = null , computer2;
-    private static boolean  startingPositionIsGivenAsTextInput = false;
+
     private static Integer from = null;
 
 
@@ -67,7 +68,20 @@ public class Main {
     }
 
     private static void placeTokens() {
-        if(startBoardRandomPositions) {
+
+        if(startingPositionIsGivenAsTextInput){
+            scan = new Scanner(System.in);
+            String blueStart = scan.nextLine();
+            String goldStart = scan.nextLine();
+            currentTurn = scan.nextInt() == 0 ? BoardPiece.BLUE: BoardPiece.GOLD;
+            for(String each: blueStart.split(" ")){
+                board[Integer.parseInt(each)] = BoardPiece.BLUE;
+            }
+            for(String each: goldStart.split(" ")){
+                board[Integer.parseInt(each)] = BoardPiece.GOLD;
+            }
+        }
+        else if(startBoardRandomPositions) {
             Random r = new Random();
             ArrayList<Integer> arr = new ArrayList<Integer>();
             int x = 0;
@@ -127,7 +141,7 @@ public class Main {
     * Called by mouse listener as a response to human player
     * called by computer player
     * */
-    public static Computer click(Integer integer) {
+    private static Computer click(Integer integer) {
 
 
         //return null;
