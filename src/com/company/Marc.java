@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -13,12 +14,22 @@ import java.util.LinkedList;
 
 public class Marc extends Computer {
 
+	// BoardPiece[] board = Linear representation of the entire game board.
     public Marc(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
         super(board, numTurns, me, adversery);
     }
 
     @Override
     boolean decideTurn() {
+
+		// Find locations of me and adversery to start the search.
+		ArrayList<Integer> currentPositionsMe = new ArrayList<>();
+		ArrayList<Integer> currentPositionsAdversery = new ArrayList<>();
+		for (int i = 0; i < board.length; i++) {
+
+		}
+
+		//iterativeDeepening();
 
         //The only thing you have to do
         //is set this.from and this.to how you like,
@@ -41,13 +52,21 @@ public class Marc extends Computer {
 	 */
 
 
-/*	private void iterativeDeepening() {
-		int currentMaxDepth = 0;
+
+	private void iterativeDeepening(ArrayList<Integer> currentPositionsMe, ArrayList<Integer> currentPositionsAdversery) {
+		Node node = new Node(currentPositionsMe, currentPositionsAdversery);
+		int currentMaxDepth = 1;
 		while (true) {
-			alphaBetaPruning(currentMaxDepth);
+			alphaBetaPruning(node, currentMaxDepth, Integer.MIN_VALUE, Integer.MAX_VALUE);
+			returnSolution();
 			currentMaxDepth++;
 		}
-	}*/
+	}
+
+	// WRITE METHOD THAT RETURNS THE SOLUTION.
+	private void returnSolution() {
+
+	}
 
 	private int alphaBetaPruning(Node node, int depth, int alpha, int beta) {
 		if (node.isTerminalNode()) {
@@ -72,6 +91,7 @@ public class Marc extends Computer {
 			} else {
 				node.setValue(Integer.MAX_VALUE);
 				LinkedList<Node> children = produceChildrenOf(node);
+				nodeOrdering(children);
 				for (Node child : children) {
 					node.setValue(Math.min(node.getValue(), alphaBetaPruning(child, depth - 1, alpha, beta)));
 					if (node.getValue() <= alpha) {
@@ -87,28 +107,47 @@ public class Marc extends Computer {
 	}
 
 	private LinkedList<Node> produceChildrenOf(Node node) {
+		ArrayList<Integer> positions = node.getPositions();
+		// Create a queue for all the children.
 		LinkedList<Node> children = new LinkedList<>();
-		for (int i = 0; i < node.placesToGo.size(); i++) {
-			int newPosition = node.placesToGo.get(i);
-			// Make a check to see if there are any other bricks at the move position,
-			// either own or opponent's bricks.
-			if (brickAt(newPosition)) {
-				continue;
+		for (int i = 0; i < positions.size(); i++) {
+
+			int position = positions.get(i);
+
+			ArrayList<Integer> partOfPositionsToGo = node.placesToGo.get(position);
+			// Get the old positions for the node itself and the positions of the adversery to create a new node.
+			ArrayList<Integer> oldPositions = node.getPositions();
+			ArrayList<Integer> adverseryPositions = node.getPositionsAdversery();
+
+			// For loop that will create a child node for every possible position that the can be reached from the
+			// current position.
+			for (int j = 0; j < partOfPositionsToGo.size(); j++) {
+				// Make a copy of the old positions and change the one position that have changed.
+				ArrayList<Integer> newPositions = oldPositions;
+				int newPosition = partOfPositionsToGo.get(i);
+				newPositions.set(i, newPosition);
+
+				// Make a check to see if there are any other bricks at the move position,
+				// either own or opponent's bricks.
+				if (brickAt(newPosition)) {
+					continue;
+				}
+
+				// Create the child node and add it to the list.
+				Node child = new Node(newPositions, adverseryPositions, node, position, newPosition);
+				children.addLast(child);
 			}
-			Node child = produceChildNodeOf(node, newPosition);
-			children.addLast(child);
 		}
 		return children;
 	}
 
-	// METHOD NOT COMPLETE.
+	// Method to tell if there's a brick at the position you try to move to.
 	private boolean brickAt(int move) {
-		return false;
-	}
-
-	private Node produceChildNodeOf(Node node, int move) {
-		Node child = new Node(move, node);
-		return child;
+		if (board[move] == BoardPiece.EMPTY) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private int utilityProfile(Node node) {
