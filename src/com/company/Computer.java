@@ -1,20 +1,25 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
- * Created by gideonpotok on 11/5/16.
+ * @Author Anu Challa (achalla@terpmail.umd.edu)
+ * @Author Gideon Potok (gideon.potok@gmail.com)
+ * @Author Marc Storm Larsen (mslarsen1992@gmail.com)
+ *
+ * I pledge on my honor that I have not given or received any unauthorized
+ * assistance on this project.
  */
+
 public abstract class Computer {
     int from = 0, to = 0, numTurns = 0;
     BoardPiece[] board;
     Random r ;
     ArrayList<Integer> computer = new ArrayList<Integer>(),  human = new ArrayList<Integer>();
     ArrayList<ArrayList<Integer>> placesToGo;
+
+
     public Computer(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
         this.board = board;
         this.numTurns=numTurns;
@@ -31,6 +36,7 @@ public abstract class Computer {
     }
 
     abstract boolean decideTurn();
+
     public Integer[] getTurn() {
         decideTurn();
         Integer[] nextTurn = new Integer[2];

@@ -1,11 +1,9 @@
 package com.company;
-import java.awt.Point;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
@@ -33,14 +31,18 @@ public class Main {
                 (currentTurn == BoardPiece.BLUE)? BoardPiece.GOLD: BoardPiece.BLUE);
     }
     /*End Section 1*/
+
+
     /*Section 2: Should work, not yet tested*/
     private static boolean  startingPositionIsGivenAsTextInput = false;
     /*End section 2*/
+    /*Section 2: soon to be toggleable*/
+
+
     /*Section 3: soon to be toggleable*/
     private static PlayerType p1 = PlayerType.HUMAN;
     private static final boolean readInInput = false; //
     /*End Section 3*/
-
 
     private static final int numberOfMarkers = 4;
     private static int playerToMakeMove;
