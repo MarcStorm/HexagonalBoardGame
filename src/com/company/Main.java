@@ -21,7 +21,7 @@ public class Main {
 
     /*Section 1: stuff teammates should be aware they can toggle*/
 
-    static PlayerType p2 = PlayerType.COMPUTER;
+    static PlayerType p2 = PlayerType.HUMAN;
     private static Integer numTurns = 300;
     private static final boolean startBoardRandomPositions = false;
 
@@ -44,8 +44,8 @@ public class Main {
 
     private static final int numberOfMarkers = 4;
     private static int playerToMakeMove;
-    protected static BoardPiece[] board;
-    protected static BoardPiece currentTurn = BoardPiece.BLUE;
+    private static BoardPiece[] board;
+    private static BoardPiece currentTurn = BoardPiece.BLUE;
     private static Scanner scan;
     private static Computer computer1 = null , computer2;
 
@@ -139,7 +139,7 @@ public class Main {
     * Called by mouse listener as a response to human player
     * called by computer player
     * */
-    public static Computer click(Integer integer) {
+    private static Computer click(Integer integer) {
 
 
         //return null;
