@@ -9,7 +9,7 @@ package com.company;
 
 public class Louis extends Computer {
     /*OPTION*/
-    private final boolean considerOpponentsChoices =false;
+    private final int noLongerConsiderAllOpponentsChoices = 4;
     //TIPS
         //if making depth greater, comment out most directions in getPlacesToGo
     /*
@@ -25,11 +25,11 @@ public class Louis extends Computer {
         children = new ArrayList<Computer>();
         this.originalChange=null;
         getPlacesToGo(computer); // POSSIBLE MOVES I MIGHT MAKE
-        makeTree(3);//has to be ODD//System.out.println("\nTREE: " + this.toString());
+        makeTree(5);//has to be ODD//System.out.println("\nTREE: " + this.toString());
 
     }
     boolean decideTurn() {
-        this.alphaBetaPruning(6,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
+        this.alphaBetaPruning(10,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
         /*while(!changeStatic.isEmpty()) {
             fromto = changeStatic.poll();
             //System.out.println("Call to 7b: " + fromto);
@@ -115,6 +115,9 @@ public class Louis extends Computer {
 
                 } else {
                     children.add(l);
+                }
+                if(level <= noLongerConsiderAllOpponentsChoices && level %2 == 0) {
+                    break;
                 }
 
             }

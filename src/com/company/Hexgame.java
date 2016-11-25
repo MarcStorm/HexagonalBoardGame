@@ -144,6 +144,7 @@ class DrawingPanel extends JPanel
             //What do you want to do when a hexagon is clicked?
             Computer p2 = null;
 
+
             p2 = Main.click(Hexmech.zeroTo110.get(p));
 
             repaint();
