@@ -29,6 +29,9 @@ public class Louis extends Computer {
 
     }
     boolean decideTurn() {
+        //NOTE DO NOT CHANGE LEVEL from 10 unless makeTree increases in which case increase 10, too
+        //It does not correspond to level exactly. And it gets negative if you have it the
+        //the same number of levels as the tree.
         this.alphaBetaPruning(10,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
         /*while(!changeStatic.isEmpty()) {
             fromto = changeStatic.poll();
