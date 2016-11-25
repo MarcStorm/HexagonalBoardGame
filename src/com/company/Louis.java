@@ -8,6 +8,8 @@ package com.company;
 
 
 public class Louis extends Computer {
+    /*OPTION*/
+    private final boolean considerOpponentsChoices =false;
     //TIPS
         //if making depth greater, comment out most directions in getPlacesToGo
     /*
@@ -97,15 +99,24 @@ public class Louis extends Computer {
         //System.out.println("mypiece is " + me);
         AbstractMap.SimpleEntry<Integer, Integer> heritage = this.originalChange;
         if (level > 0) {
+
             for (AbstractMap.SimpleEntry<Integer, Integer> each : this.destinations) {
                 //After roots turn, EACH change is made to the real computer
 
                 if(this.originalChange == null){
                     heritage=each;
                 }
+
                 //System.out.println("Call to 5: louis(..." + heritage);
-                Louis l = new Louis(adversery ,me , each, human, computer, heritage); //notice THE SWITCH
-                children.add(l);
+                Computer l = new Louis(adversery ,me , each, human, computer, heritage); //notice THE SWITCH
+                if((level%2 == 0) && l.wins()){
+                    l = new Gideon(adversery,me,each,human,computer,heritage);
+                    children.add(l);
+
+                } else {
+                    children.add(l);
+                }
+
             }
 
         } else {

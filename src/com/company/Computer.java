@@ -105,6 +105,24 @@ public abstract class Computer {
                     destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 2));
             }
 
+
+
+            temp=atNow - 10;
+            if (atNow - 10 >= 0 && temp <= 109 && temp >=0&& available(atNow - 10)) {
+                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 10));
+            }temp=atNow + 10;
+            if (atNow + 10 <= 109 && temp <= 109 && temp >=0 && available(atNow + 10)) {
+                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 10));
+            }
+            temp=atNow - 20;
+            if (atNow - 20 >= 0 && temp <= 109 && temp >=0&& available(atNow - 20)) {
+                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 20));
+            }
+
+            temp=atNow + 20;
+            if (atNow + 20 <= 109 && temp <= 109 && temp >=0 && available(atNow + 20)) {
+                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 20));
+            }
             temp = atNow - 9;
             if ( temp >= 0 && temp <= 109 && temp >=0&& available(atNow - 9)) {
 
@@ -119,26 +137,10 @@ public abstract class Computer {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 9));
             }
             temp=atNow + 18;
-            if (atNow + 18 <= 109&& temp <= 109 && temp >=0 && available(atNow + 18)) {
+            if (atNow + 18 <= 109 && temp <= 109 && temp >=0 && available(atNow + 18)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 18));
             }
 
-            temp=atNow - 10;
-            if (atNow - 10 >= 0 && temp <= 109 && temp >=0&& available(atNow - 10)) {
-                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 10));
-            }
-           /* temp=atNow - 20;
-            if (atNow - 20 >= 0 && temp <= 109 && temp >=0&& available(atNow - 20)) {
-                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 20));
-            }
-            temp=atNow + 10;
-            if (atNow + 10 <= 109 && temp <= 109 && temp >=0 && available(atNow + 10)) {
-                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 10));
-            }
-            temp=atNow + 20;
-            if (atNow + 20 <= 109 && temp <= 109 && temp >=0 && available(atNow + 20)) {
-                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 20));
-            }*/
 
         }
         //System.out.println();
@@ -263,7 +265,7 @@ public abstract class Computer {
     }
     int alphaBetaPruning(int depth, int alpha, int beta, boolean maximizing) {
         //System.out.println("Call to 24");//System.out.println("My piece is " + me);
-        System.out.println(this.toString());
+        //System.out.println(this.toString());
         if (this.isTerminalNode()) {
             return this.utilityProfile(depth);
         } else {
@@ -294,6 +296,9 @@ public abstract class Computer {
                 return this.utilityProfile(depth);
             } else {
                 this.util=Integer.MAX_VALUE;
+                /*if(this.opponentWon()){
+                    return 1000*depth+1;
+                }*/
                 for (Computer child : children) {
 
                     this.util = (Math.min(this.utilityProfile(depth), child.alphaBetaPruning( depth - 1, alpha, beta, !maximizing)));
@@ -311,6 +316,10 @@ public abstract class Computer {
                 return this.utilityProfile(depth);
             }
         }
+    }
+    boolean opponentWon(){
+        Computer opponent = new Gideon(adversery,me,new AbstractMap.SimpleEntry<Integer, Integer>(human.get(0),human.get(0)),human,computer,originalChange);
+        return opponent.wins();
     }
     boolean wins(){
 
@@ -332,13 +341,17 @@ public abstract class Computer {
 
         boolean aligned = false;
         aligned = (count==3) ;
-        boolean blocked = false;
-        for(Integer theirPiece : this.human){
-            if(this.between(theirPiece)){
-                blocked = true;
+        if(count==3){
+            boolean blocked = false;
+            for(Integer theirPiece : this.human){
+                if(this.between(theirPiece)){
+                    return false;
+                }
             }
+            return true;
         }
-        return aligned && !blocked;
+
+        return false;
     }
 
     private boolean formsDLine(int dimension, Integer integer, Integer integer1) {

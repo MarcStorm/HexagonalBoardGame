@@ -35,6 +35,7 @@ public class Gideon extends Computer {
         //System.out.println("VS");
         //System.out.println("1"+human);
         //System.out.println("("+change + ")");
+
         this.human.remove(change.getKey()); //THIS IS CORRECT
         //System.out.println("2"+human);
         this.human.add(positionsMe.size() - 1, change.getValue()); //THIS IS CORRECT
@@ -56,11 +57,19 @@ public class Gideon extends Computer {
             //System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();
         } else {
             util = Main.counter;
-            Main.counter *=-1;
-            Main.counter += Main.counter > 0? 1: -1;
+
+            Main.counter++;
+            if(Main.counter == 999){
+                Main.counter=1;
+                System.out.println("counter is 999, calling computer was " + this.toString());
+            }
 
         }
+        System.out.println("counter is " + Main.counter + ", utility is  " + util);
+        if(Main.counter %39 == 0) {
 
+            System.out.println("calling computer was " + this.toString());
+        }
         return util;
     }
     boolean decideTurn(){
