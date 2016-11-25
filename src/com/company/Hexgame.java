@@ -142,7 +142,7 @@ class DrawingPanel extends JPanel
             if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE) return;
 
             //What do you want to do when a hexagon is clicked?
-            com.company.Computer p2 = null;
+            Computer p2 = null;
 
             p2 = Main.click(Hexmech.zeroTo110.get(p));
 
@@ -150,12 +150,12 @@ class DrawingPanel extends JPanel
             if(Main.p2 == PlayerType.COMPUTER && p2 != null){
                 Integer[]  latestTurn = new Integer[2];
                 final long start = System.nanoTime();
-                do {
+                //do {
                     Main.currentTurn = BoardPiece.GOLD;
                     latestTurn = p2.getTurn();
 
 
-                } while (System.nanoTime()-start < 1L*1000L*1000L*1000L);
+                //} while (System.nanoTime()-start < 5L*1000L*1000L*1000L);
                 Main.click(latestTurn[0]);
                 p2 = Main.click(latestTurn[1]);
             }

@@ -1,7 +1,7 @@
 package com.company;
 
 import java.util.*;
-import java.util;
+
 
 /**
  * @Author Anu Challa (achalla@terpmail.umd.edu)
@@ -14,17 +14,48 @@ import java.util;
 
 public abstract class Computer {
     int from = 0, to = 0, numTurns = 0;
-    BoardPiece[] board;
+    Integer util = 0;
+    AbstractMap.SimpleEntry<Integer, Integer> originalChange = null;
     Random r ;
     ArrayList<Integer> computer = new ArrayList<Integer>(),  human = new ArrayList<Integer>();
-    ArrayList<ArrayList<Integer>> placesToGo;
+    BoardPiece me,  adversery;
+    List<Computer> children ;
+    static ArrayDeque<AbstractMap.SimpleEntry<Integer, Integer>> changeStatic = null;
+    static Queue<AbstractMap.SimpleEntry<Integer, Integer>> BetterAndBetterOptions
+            = new ArrayDeque<AbstractMap.SimpleEntry<Integer, Integer>>();
+    static BoardPiece actualMe;
+    Set<AbstractMap.SimpleEntry<Integer, Integer>> destinations;
 
-
+    public Computer(){children = new ArrayList<Computer>();//System.out.println("Call to 17");//System.out.println("My piece is " + me)
+        }
+    public String toString(){
+        String s =  "from,to,numTurns,util,me,adversery:" + from +", "+to+", "+numTurns+", "+util+", "+me+", "+adversery
+                + " originalChange: " + originalChange
+                +", changeStatic:  "+changeStatic +
+                "computer + human " ;
+        for(Integer i : computer) {
+            s =s + i + "," ;
+        }
+        s=s+"\n";
+        for(Integer i : human) {
+            s =s + i + ",";
+        }
+             s=s   + " children: \n" ;
+        for(Computer child: children) {
+            s = s +  "   " + child.toString() + " \n" ;
+        }
+        return s;
+    }
     public Computer(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
-        this.board = board;
+        //System.out.println("Call to 18");//System.out.println("My piece is " + me);
+        children = new ArrayList<Computer>();
+        if(changeStatic == null)
+            changeStatic= new ArrayDeque<AbstractMap.SimpleEntry<Integer, Integer>>();
         this.numTurns=numTurns;
         this.r = new Random();
-
+        this.me=me;
+        actualMe= BoardPiece.GOLD;
+        this.adversery=adversery;
 
         for(int i = 0; i <= 109; i++){
             if(board[i] == me){
@@ -33,17 +64,101 @@ public abstract class Computer {
                 human.add(i);
             }
         }
-        createDestinations();
+
+    }
+    private boolean available(int location) {
+        ////System.out.print("Call to 19, ");//System.out.println("My piece is " + me);
+        for (Integer them : human) {
+            if (them == location)
+                return false;
+        }
+        return true;
     }
 
+    public void getPlacesToGo(ArrayList<Integer> whichPlayer) { //always should be computer passed in
+        //System.out.println("Call to 20");//System.out.println("My piece is " + me);
+        destinations = new HashSet<AbstractMap.SimpleEntry<Integer, Integer>>();
+        for (Integer atNow : whichPlayer) {
+            AbstractMap.SimpleEntry<Integer, Integer> pair;
+        int temp = 0;
+
+
+
+            temp = atNow - 9;
+            if ( temp >= 0 && temp <= 109 && temp >=0&& available(atNow - 9)) {
+
+                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 9));
+            }
+            temp=atNow - 18;
+            if (temp >= 0 && temp <= 109 && temp >=0 && available(atNow - 18)) {
+                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 18));
+            }
+            temp= atNow + 9;
+            if (atNow + 9 <= 109&& temp <= 109 && temp >=0 && available(atNow + 9)) {
+                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 9));
+            }
+            temp=atNow + 18;
+            if (atNow + 18 <= 109&& temp <= 109 && temp >=0 && available(atNow + 18)) {
+                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 18));
+            }
+            temp= atNow + 1;
+            if (atNow + 1 % 10 > 0&& temp <= 109 && temp >=0 && available(atNow + 1)) {
+                if(temp/10 == atNow /10)
+                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 1));
+            }
+            temp=atNow - 1;
+            if (atNow - 1 % 10 < 9 && temp <= 109 && temp >=0&& available(atNow - 1)) {
+                if(temp/10 == atNow /10)
+                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 1));
+            }
+            temp=atNow + 2;
+            if (atNow + 2 % 10 > 1 && temp <= 109 && temp >=0&& available(atNow + 2)) {
+                if(temp/10 == atNow /10)
+                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 2));
+            }
+            temp=atNow - 2;
+            if ((atNow - 2) % 10 < 8 && temp <= 109 && temp >=0 && available(atNow - 2)) {
+                if(temp/10 == atNow /10)
+                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 2));
+            }/*
+            temp=atNow - 10;
+            if (atNow - 10 >= 0 && temp <= 109 && temp >=0&& available(atNow - 10)) {
+                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 10));
+            }
+            temp=atNow - 20;
+            if (atNow - 20 >= 0 && temp <= 109 && temp >=0&& available(atNow - 20)) {
+                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 20));
+            }
+            temp=atNow + 10;
+            if (atNow + 10 <= 109 && temp <= 109 && temp >=0 && available(atNow + 10)) {
+                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 10));
+            }
+            temp=atNow + 20;
+            if (atNow + 20 <= 109 && temp <= 109 && temp >=0 && available(atNow + 20)) {
+                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 20));
+            }
+            */
+        }
+        //System.out.println();
+
+    }
+    abstract void makeTree(int level);
     abstract boolean decideTurn();
 
     public Integer[] getTurn() {
-        decideTurn();
+
+        //System.out.println  ("Call to 22"); //System.out.println("My piece is " + me);
         Integer[] nextTurn = new Integer[2];
+
+        decideTurn();
+        //System.out.println("Call to 22B   ");
+        //System.out.print  ("from: " + from + ", to: " + to);
+
+
         nextTurn[0] = from;
         nextTurn[1] = to;
-        System.out.println(nextTurn[0] + " " +nextTurn[1]);
+
+
         return nextTurn;
     }
     boolean formsZLine(Integer one, Integer other) {
@@ -70,16 +185,16 @@ public abstract class Computer {
     }
     boolean formsLine(Integer one, Integer other) {
         if(one % 10 == other % 10){
-            //System.out.println("In forms line: one is " + one + ", other is " + other);
-            //System.out.println("mod ten the same");
+            ////System.out.println("In forms line: one is " + one + ", other is " + other);
+            ////System.out.println("mod ten the same");
             return true;
         } else if (one/10 == other/10){
-            //System.out.println("In forms line: one is " + one + ", other is " + other);
-            //System.out.println("10 times same x plus single dig num the same");
+            ////System.out.println("In forms line: one is " + one + ", other is " + other);
+            ////System.out.println("10 times same x plus single dig num the same");
             return true;
         } else if (one%9 == other%9 && one != 0 && other != 0){
-            //System.out.println("In forms line: one is " + one + ", other is " + other);
-            //System.out.println("mod nine the same");
+            ////System.out.println("In forms line: one is " + one + ", other is " + other);
+            ////System.out.println("mod nine the same");
             return true;
         }
         return false;
@@ -105,143 +220,94 @@ public abstract class Computer {
         //eventually we can just ask if it is between the most extreme of computers pieces
         for(int i = 0; i < 4; i++){
             for(int j = i+1; j < 4; j++){
-                if(between(this.computer.get(i), theirPiece, this.computer.get(j))){
-                    return true;
+                if(between(this.computer.get(i), theirPiece, this.computer.get(j))) {
+                    if (formsXLine(this.computer.get(i), theirPiece) && formsXLine(theirPiece, this.computer.get(j)))
+                        return true;
+                    if (formsYLine(this.computer.get(i), theirPiece) && formsYLine(theirPiece, this.computer.get(j)))
+                        return true;
+                    if(formsZLine(this.computer.get(i), theirPiece) && formsZLine(theirPiece, this.computer.get(j)))
+                        return true;
                 }
+
             }
         }
         return false;
     }
 
-    private boolean available(int location){
-        for(Integer them: human){
-            if(them == location)
-                return false;
+
+    /*
+    private boolean wins(BoardPiece[] possBoard) {
+        // TODO Auto-generated method stub
+        //System.out.println("My piece is " + me);
+        boolean wins = false;
+        Computer c = new Louis(possBoard, 1000, me, adversery);
+
+        return c.wins();
+
+    }*/
+
+    public abstract boolean isTerminalNode();
+
+    public abstract int utilityProfile();
+    public boolean isMaxNode(boolean maximizing){
+
+        //System.out.println("Call to 23");//System.out.println("My piece is " + me);
+        if(maximizing == (me == actualMe)){
+            return maximizing;
         }
-        return true;
+        //System.out.print("ERROR in isMaxNode, ");
+        //System.out.println("me is " + me+ ", p2 aka actualME is " + actualMe + ", maximizing is " + maximizing);
+        return maximizing;
     }
-    private void createDestinations() {
-        Set<AbstractMap.SimpleEntry<Integer,Integer>> destinations = new HashSet<AbstractMap.SimpleEntry<Integer,Integer>>();
-        for(Integer atNow : computer){
-            AbstractMap.SimpleEntry<Integer,Integer> pair;
-
-            if(atNow -9 >= 0 && available(atNow -9)){
-                destinations.add(new AbstractMap.SimpleEntry<Integer,Integer>(atNow,atNow -9 ));
-            }
-            if(atNow -18 >= 0 && available(atNow -18)){
-                destinations.add(new AbstractMap.SimpleEntry<Integer,Integer>(atNow,atNow -18 ));
-            }
-            if(atNow +9 <= 109 && available(atNow +9)){
-                destinations.add(new AbstractMap.SimpleEntry<Integer,Integer>(atNow,atNow +9 ));
-            }
-            if(atNow +18 <= 109 && available(atNow +18)){
-                destinations.add(new AbstractMap.SimpleEntry<Integer,Integer>(atNow,atNow +18 ));
-            }
-            if(atNow +1 %10 > 0 && available(atNow +1)){
-                destinations.add(new AbstractMap.SimpleEntry<Integer,Integer>(atNow,atNow +1 ));
-            }
-            if(atNow -1 %10 <9  && available(atNow -1)){
-                destinations.add(new AbstractMap.SimpleEntry<Integer,Integer>(atNow,atNow -1 ));
-            }
-            if(atNow +2 %10 > 0  && available(atNow +2)){
-                destinations.add(new AbstractMap.SimpleEntry<Integer,Integer>(atNow,atNow +2 ));
-            }
-            if(atNow -2 %10 <9 && available(atNow -2)){
-                destinations.add(new AbstractMap.SimpleEntry<Integer,Integer>(atNow,atNow -2 ));
-            }
-            if(atNow -10 >= 0 && available(atNow -10)){
-                destinations.add(new AbstractMap.SimpleEntry<Integer,Integer>(atNow,atNow -10 ));
-            }
-            if(atNow -20 >= 0 && available(atNow -20)){
-                destinations.add(new AbstractMap.SimpleEntry<Integer,Integer>(atNow,atNow -20 ));
-            }
-            if(atNow +10 <= 109 && available(atNow +10)){
-                destinations.add(new AbstractMap.SimpleEntry<Integer,Integer>(atNow,atNow +10 ));
-            }
-            if(atNow +20 <= 109 && available(atNow +20)) {
-                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 20));
-            }
-        }
-        for (AbstractMap.SimpleEntry<Integer,Integer> each : destinations ){
-            System.out.println(each);
-        }
-
-    }
-
-    private int alphaBetaPruning(Node node, int depth, int alpha, int beta) {
-        if (node.isTerminalNode()) {
-            return utilityProfile(node);
-        } else if (depth == 0) {
-            return evaluationFunction(node);
+    int alphaBetaPruning(int depth, int alpha, int beta, boolean maximizing) {
+        //System.out.println("Call to 24");//System.out.println("My piece is " + me);
+        System.out.println(this.toString());
+        if (this.isTerminalNode()) {
+            return this.utilityProfile();
         } else {
-            if (node.isMaxNode()) {
-                node.setValue(Integer.MIN_VALUE);
-                LinkedList<Node> children = produceChildrenOf(node);
-                nodeOrdering(children);
-                for (Node child : children) {
-                    node.setValue(Math.max(node.getValue(), alphaBetaPruning(child, depth - 1, alpha, beta)));
-                    if (node.getValue() >= beta) {
+            if (this.isMaxNode(maximizing)) {
+                this.util = Integer.MIN_VALUE;
+                for (Computer child : children) {
+                    int temp =alpha;
+                    int minValOfThisChoice = child.alphaBetaPruning(depth - 1, alpha, beta,!maximizing);
+                    this.util = (Math.max(this.utilityProfile(), minValOfThisChoice));
+                    alpha = Math.max(alpha, this.utilityProfile());//in no other branch where min can choose lower then this is it worth it for min to keep looking around--ill never pick this choice/child
+                    //System.out.println("Call to 24b: this.util = " + this.utilityProfile() + ", alpha is + "+ alpha );
+                    if (alpha >= beta) {
                         // Beta cutoff.
-                        return node.getValue();
-                    } else {
-                        alpha = Math.max(alpha, node.getValue());
+                        break;
                     }
+                    if(alpha > temp) {
+                        //we can now unambiguously choose a child that will maximize payoff no matter
+                        //what min does. This is a choice with a higher payoff then we previously saw was available to us
+                        this.originalChange = child.originalChange;
+                    }
+                    //System.out.println("Computer.changeStatic.offer(child.originalChange); " + child.originalChange);
+                    //Computer.changeStatic.offer(child.originalChange);
+
                 }
-                return node.getValue();
+                return this.utilityProfile();
             } else {
-                node.setValue(Integer.MAX_VALUE);
-                LinkedList<Node> children = produceChildrenOf(node);
-                for (Node child : children) {
-                    node.setValue(Math.min(node.getValue(), alphaBetaPruning(child, depth - 1, alpha, beta)));
-                    if (node.getValue() <= alpha) {
+                this.util=Integer.MAX_VALUE;
+                for (Computer child : children) {
+                    int temp = beta;
+                    this.util = (Math.min(this.utilityProfile(), child.alphaBetaPruning( depth - 1, alpha, beta, !maximizing)));
+                    beta = Math.min(alpha, this.utilityProfile());
+                    //System.out.println("Call to 24c: this.util = " + this.utilityProfile() + ", beta is + "+ beta );
+                    if (beta <= alpha) {
                         // Alpha cutoff.
-                        return node.getValue();
-                    } else {
-                        beta = Math.min(alpha, node.getValue());
+                        break;
                     }
+                    if(beta < temp) {
+
+                    }
+                    //System.out.println("Computer.changeStatic. does not offer(child.originalChange); " + child.originalChange);
+
+
                 }
-                return node.getValue();
+                return this.utilityProfile();
             }
         }
     }
-
-    private LinkedList<Node> produceChildrenOf(Node node) {
-        LinkedList<Node> children = new LinkedList<>();
-        for (int i = 0; i < node.placesToGo.size(); i++) {
-            int newPosition = node.placesToGo.get(i);
-            // Make a check to see if there are any other bricks at the move position,
-            // either own or opponent's bricks.
-            if (brickAt(newPosition)) {
-                continue;
-            }
-            Node child = produceChildNodeOf(node, newPosition);
-            children.addLast(child);
-        }
-        return children;
-    }
-
-    // METHOD NOT COMPLETE.
-    private boolean brickAt(int move) {
-        return false;
-    }
-
-    private Node produceChildNodeOf(Node node, int move) {
-        Node child = new Node(move, node);
-        return child;
-    }
-
-    private int utilityProfile(Node node) {
-        return 0; //return super.utilityProfile(node);
-    }
-
-    private int evaluationFunction(Node node) {
-        return 0;//super.evaluationFunction(node);
-    }
-
-
-    private void nodeOrdering(LinkedList<Node> children) {
-
-    }
-
 }
 

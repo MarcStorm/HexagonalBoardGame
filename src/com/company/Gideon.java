@@ -5,16 +5,67 @@ import java.util.*;
 /**
  * Created by gideonpotok on 11/5/16.
  */
-
+//to do make sure this is max player
 public class Gideon extends Computer {
-
+    BoardPiece[] board;
+    public  boolean isTerminalNode(){
+        //System.out.println("Call to 9");
+        //System.out.println("my piece is " + me);
+        return true;
+    }
     public Gideon(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
         super(board,numTurns,me,adversery);
+        this.board = board;
+        //System.out.println("Call to 10");
+        //System.out.println("my piece is " + me);
 
     }
+    public Gideon(BoardPiece me, BoardPiece adversery,
+                  AbstractMap.SimpleEntry<Integer, Integer> change,
+                  ArrayList<Integer> positionsMe, ArrayList<Integer> positionsAdversery, AbstractMap.SimpleEntry<Integer, Integer> heritage) {
+        //System.out.println("my piece is " + me);
+        this.me=me;
+        this.adversery=adversery;
+        //System.out.print("Call to 11: ");
+        //children = new ArrayList<Computer>();
+        this.computer = new ArrayList<Integer>(positionsMe);//(level %2 == 0)? positionsMe:positionsAdversery;
+        this.human = new ArrayList<Integer>(positionsAdversery);
+        //System.out.println("Gideon");
+        //System.out.println(computer);
+        //System.out.println("VS");
+        //System.out.println("1"+human);
+        //System.out.println("("+change + ")");
+        this.human.remove(change.getKey()); //THIS IS CORRECT
+        //System.out.println("2"+human);
+        this.human.add(positionsMe.size() - 1, change.getValue()); //THIS IS CORRECT
+        //System.out.println("3"+human);
+        //System.out.println();
+        //getPlacesToGo(computer);
+        this.originalChange = heritage;
+        //System.out.println("heritage = " + heritage);
+    }
+    public int utilityProfile(){
+        //System.out.println("my piece is " + me);
+        //System.out.println("Call to 13");
+        util = this.originalChange.getKey() + this.originalChange.getValue();
+        //System.out.println("this.originalChange.getKey() is" + this.originalChange.getKey());
+        //System.out.println("this.originalChange.getValue() = " + this.originalChange.getValue());
+        if(this.wins()) {
+            util = 10000;
+            //System.out.println("WE WIN" + this.toString());
+            //System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();
+        } else {
+            util = Main.counter;
+            Main.counter *=-1;
+            Main.counter += Main.counter > 0? 1: -1;
+        }
 
+        return util;
+    }
     boolean decideTurn(){
-        placesToGo = new ArrayList<ArrayList<Integer>>();
+        //System.out.println("my piece is " + me);
+        //System.out.println("Call to 14");
+        ArrayList<ArrayList<Integer>> placesToGo = new ArrayList<ArrayList<Integer>>();
         for(int i = 0; i< 4; i++){
             //ArrayList<Integer> choices = new ArrayList<Integer>();
             //placesToGo.add(choices);
@@ -115,7 +166,7 @@ public class Gideon extends Computer {
         return false;
     }
     Boolean inRangeOfImportantStuff(Integer location){
-        System.out.println("calling  menthod inRangeOfImportantStuff. location is " + location.toString());
+        //System.out.println("calling  menthod inRangeOfImportantStuff. location is " + location.toString());
         return withinRange(33,location)
                 || withinRange(37, location)
                 || withinRange(73, location)
@@ -125,7 +176,7 @@ public class Gideon extends Computer {
 
     }
     Boolean inRangeOfNotImportantStuff(Integer location){
-        System.out.println("calling  menthod inRangeOfNotImportantStuff. location is " + location.toString());
+        //System.out.println("calling  menthod inRangeOfNotImportantStuff. location is " + location.toString());
         return withinRange(90,location)
                 || withinRange(91, location)
                 || withinRange(101, location)
@@ -144,10 +195,12 @@ public class Gideon extends Computer {
 
     }
     boolean maybeUseHelper(Integer from, Integer to){
+        //System.out.println("Call to 14");
         int useThisOne = 800;
         Boolean useOrNo = false;
         useOrNo = r.nextInt(useThisOne) %9 == 0;
         if(useOrNo){
+
             this.from=from;
             this.to=to;
             return true;
@@ -252,13 +305,51 @@ public class Gideon extends Computer {
             max = countWithChangeZ;
 
         if(max <= countWithoutChangeX || max <= countWithoutChangeY || max <= countWithoutChangeZ ){
-            System.out.println("No gain from switching in terms of num of computer tokens in a line (max was " + max + ").");
+            //System.out.println("No gain from switching in terms of num of computer tokens in a line (max was " + max + ").");
             return false;
         } else if (max < 1){
             return false;
         }
-        System.out.println("MOVING SO MORE IN SAME ROW from is " + from2 + ", to is " + to2 +". max was " + max);
+        //System.out.println("MOVING SO MORE IN SAME ROW from is " + from2 + ", to is " + to2 +". max was " + max);
         return true;
     }
+    public void makeTree(int level) {
+        //System.out.println("my piece is " + me);
+        //System.out.println("Call to 16");
+
+    }
+    boolean wins(){
+        //System.out.println("My piece is " + me);
+        ArrayList<Integer> three = this.computer;
+        int countWithoutChangeX = 0;
+        int countWithoutChangeY = 0;
+        int countWithoutChangeZ = 0;
+
+        for(int i = 0; i < 1; i++){
+            for(int j = i+1; j < 4; j++){
+                if(formsXLine(three.get(i),three.get(j) )){
+                    countWithoutChangeX++;
+                }else if(formsYLine(three.get(i),three.get(j) )){
+                    countWithoutChangeY++;
+                }else if(formsZLine(three.get(i),three.get(j) )){
+                    countWithoutChangeZ++;
+                }
+            }
+        }
+        boolean aligned = false;
+        if(countWithoutChangeX == 3 || countWithoutChangeY == 3|| countWithoutChangeZ == 3
+                ) {
+            aligned = true;
+
+        }
+        boolean blocked = false;
+        for(Integer theirPiece : this.human){
+            if(this.between(theirPiece)){
+                blocked = true;
+            }
+        }
+        return aligned && !blocked;
+    }
+
 }
 

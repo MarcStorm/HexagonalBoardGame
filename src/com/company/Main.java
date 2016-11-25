@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 public class Main {
-
+    static int counter = 1;
     public static void main(String[] args) {
 	// write your code here
         initialiseField();
         Hexgame.doMain();
 
-        while(numTurns > 0){
+        /*while(numTurns > 0){
 
             numTurns--;
-        }
+        }*/
     }
 
     /*Section 1: stuff teammates should be aware they can toggle*/
@@ -25,7 +25,8 @@ public class Main {
 
 
     private static Computer computerGenerator() {
-        return new Gideon // <- you might change which Computer (Anu, Marc, etc). No constructor signature standard, whatever params you need!
+        System.out.println("Call to Generator current turn is " + currentTurn);
+        return new Louis // <- you might change which Computer (Anu, Marc, etc). No constructor signature standard, whatever params you need!
                 (board,numTurns,
                 (currentTurn == BoardPiece.BLUE)? BoardPiece.BLUE: BoardPiece.GOLD,
                 (currentTurn == BoardPiece.BLUE)? BoardPiece.GOLD: BoardPiece.BLUE);
@@ -69,6 +70,7 @@ public class Main {
 
     private static void placeTokens() {
 
+        boolean twoAwayStartBoard = true;
         if(startingPositionIsGivenAsTextInput){
             scan = new Scanner(System.in);
             String blueStart = scan.nextLine();
@@ -101,11 +103,23 @@ public class Main {
                 arr.add(x);
                 board[x] = BoardPiece.BLUE;
             }
-        } else {
+        } else if(twoAwayStartBoard) {
+            board[100] = BoardPiece.BLUE;
+            board[109] = BoardPiece.BLUE;
+            board[0] = BoardPiece.BLUE;
+            board[30] = BoardPiece.BLUE;
+
+            board[15] = BoardPiece.GOLD;
+            board[25] = BoardPiece.GOLD;
+            board[35] = BoardPiece.GOLD;
+            //board[43] = BoardPiece.GOLD;
+            board[67] = BoardPiece.GOLD;
+        }else{
             board[0] = BoardPiece.GOLD;
             board[9] = BoardPiece.GOLD;
             board[103] = BoardPiece.GOLD;
             board[106] = BoardPiece.GOLD;
+
             board[100] = BoardPiece.BLUE;
             board[109] = BoardPiece.BLUE;
             board[3] = BoardPiece.BLUE;
@@ -227,10 +241,12 @@ public class Main {
 
             Integer[]  latestTurn = null;
             final long start = System.nanoTime();
+            latestTurn = computer2.getTurn();
+            /*
             do {
                 latestTurn = computer2.getTurn();
 
-            } while (System.nanoTime()-start < 2L*1000L*1000L*1000L);
+            } while (System.nanoTime()-start < 5L*1000L*1000L*1000L);*/
             if(latestTurn != null) {
                 click(latestTurn[0]);
                 click(latestTurn[1]);
