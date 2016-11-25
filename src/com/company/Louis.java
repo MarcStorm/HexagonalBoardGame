@@ -9,7 +9,7 @@ package com.company;
 
 public class Louis extends Computer {
     /*OPTION*/
-    private final int noLongerConsiderAllOpponentsChoices = 4;
+    private final int noLongerConsiderAllOpponentsChoices = -1;// make it even if you want to see it in action
     //TIPS
         //if making depth greater, comment out most directions in getPlacesToGo
     /*
@@ -25,7 +25,7 @@ public class Louis extends Computer {
         children = new ArrayList<Computer>();
         this.originalChange=null;
         getPlacesToGo(computer); // POSSIBLE MOVES I MIGHT MAKE
-        makeTree(5);//has to be ODD//System.out.println("\nTREE: " + this.toString());
+        makeTree(3);//has to be ODD//System.out.println("\nTREE: " + this.toString());
 
     }
     boolean decideTurn() {
