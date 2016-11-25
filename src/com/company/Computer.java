@@ -26,33 +26,18 @@ public abstract class Computer {
     static BoardPiece actualMe;
     Set<AbstractMap.SimpleEntry<Integer, Integer>> destinations;
 
-    public Computer(){children = new ArrayList<Computer>();//System.out.println("Call to 17");//System.out.println("My piece is " + me)
-        }
-    public String toString(){
-        String s =  "from,to,numTurns,util,me,adversery:" + from +", "+to+", "+numTurns+", "+util+", "+me+", "+adversery
-                + " originalChange: " + originalChange
-                +
-                "computer + human " ;
-        for(Integer i : computer) {
-            s =s + i + "," ;
-        }
-        s=s+"\n";
-        for(Integer i : human) {
-            s =s + i + ",";
-        }
-             s=s   + "num children: \n" + children.size() +", changeStatic:  "+changeStatic ;
-        /*for(Computer child: children) {
-            s = s +  "   " + child.toString() + " \n" ;
-        }*/
-        return s;
-    }
-    public Computer(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
-        //System.out.println("Call to 18");//System.out.println("My piece is " + me);
-        children = new ArrayList<Computer>();
+    public Computer(){
+        children = new ArrayList<Computer>();//System.out.println("Call to 17");//System.out.println("My piece is " + me)
         if(changeStatic == null)
             changeStatic= new ArrayDeque<AbstractMap.SimpleEntry<Integer, Integer>>();
-        this.numTurns=numTurns;
         this.r = new Random();
+    }
+
+    public Computer(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
+        //System.out.println("Call to 18");//System.out.println("My piece is " + me);
+        super();
+        this.numTurns=numTurns;
+
         this.me=me;
         actualMe= BoardPiece.GOLD;
         this.adversery=adversery;
@@ -104,9 +89,6 @@ public abstract class Computer {
                 if(temp/10 == atNow /10)
                     destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 2));
             }
-
-
-
             temp=atNow - 10;
             if (atNow - 10 >= 0 && temp <= 109 && temp >=0&& available(atNow - 10)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 10));
@@ -150,19 +132,10 @@ public abstract class Computer {
     abstract boolean decideTurn();
 
     public Integer[] getTurn() {
-
-        //System.out.println  ("Call to 22"); //System.out.println("My piece is " + me);
         Integer[] nextTurn = new Integer[2];
-
         decideTurn();
-        //System.out.println("Call to 22B   ");
-        //System.out.print  ("from: " + from + ", to: " + to);
-
-
         nextTurn[0] = from;
         nextTurn[1] = to;
-
-
         return nextTurn;
     }
     boolean formsZLine(Integer one, Integer other) {
@@ -365,6 +338,25 @@ public abstract class Computer {
             return formsZLine(integer,integer1);
         }
         return false;
+    }
+
+    public String toString(){
+        String s =  "from,to,numTurns,util,me,adversery:" + from +", "+to+", "+numTurns+", "+util+", "+me+", "+adversery
+                + " originalChange: " + originalChange
+                +
+                "computer + human " ;
+        for(Integer i : computer) {
+            s =s + i + "," ;
+        }
+        s=s+"\n";
+        for(Integer i : human) {
+            s =s + i + ",";
+        }
+        s=s   + "num children: \n" + children.size() +", changeStatic:  "+changeStatic ;
+        /*for(Computer child: children) {
+            s = s +  "   " + child.toString() + " \n" ;
+        }*/
+        return s;
     }
 }
 

@@ -7,26 +7,19 @@ import java.util.Scanner;
 public class Main {
     static int counter = 1;
     public static void main(String[] args) {
-	// write your code here
         initialiseField();
         Hexgame.doMain();
-
-        /*while(numTurns > 0){
-
-            numTurns--;
-        }*/
     }
 
     /*Section 1: stuff teammates should be aware they can toggle*/
-
+    final static int noLongerConsiderAllOpponentsChoices = -1;// make it even if you want to see it in action
     static PlayerType p2 = PlayerType.COMPUTER;
     private static Integer numTurns = 300;
     private static final boolean startBoardRandomPositions = false;
 
 
     private static Computer computerGenerator() {
-        System.out.println("Call to Generator current turn is " + currentTurn);
-        return new Louis // <- you might change which Computer (Anu, Marc, etc). No constructor signature standard, whatever params you need!
+        return new Louis
                 (board,numTurns,
                 (currentTurn == BoardPiece.BLUE)? BoardPiece.BLUE: BoardPiece.GOLD,
                 (currentTurn == BoardPiece.BLUE)? BoardPiece.GOLD: BoardPiece.BLUE);

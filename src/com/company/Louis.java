@@ -9,9 +9,6 @@ package com.company;
 
 public class Louis extends Computer {
     /*OPTION*/
-    private final int noLongerConsiderAllOpponentsChoices = -1;// make it even if you want to see it in action
-    //TIPS
-        //if making depth greater, comment out most directions in getPlacesToGo
     /*
     List<Computer> children;
     int from = 0, to = 0, numTurns = 0;
@@ -20,13 +17,18 @@ public class Louis extends Computer {
     BoardPiece me,  adversery;
     Set<AbstractMap.SimpleEntry<Integer, Integer>> destinations;
      */
+
     public Louis(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery) {
         super(board,numTurns,me,adversery);//System.out.println("Call to 3");//System.out.println("mypiece is " + me);
-        children = new ArrayList<Computer>();
         this.originalChange=null;
         getPlacesToGo(computer); // POSSIBLE MOVES I MIGHT MAKE
         makeTree(3);//has to be ODD//System.out.println("\nTREE: " + this.toString());
-
+    }
+    public boolean wins(){
+        if(wins == null){
+            wins = super.wins();
+        }
+        return wins;
     }
     boolean decideTurn() {
         //NOTE DO NOT CHANGE LEVEL from 10 unless makeTree increases in which case increase 10, too
@@ -119,7 +121,7 @@ public class Louis extends Computer {
                 } else {
                     children.add(l);
                 }
-                if(level <= noLongerConsiderAllOpponentsChoices && level %2 == 0) {
+                if(level <= Main.noLongerConsiderAllOpponentsChoices && level %2 == 0) {
                     break;
                 }
 
@@ -132,7 +134,6 @@ public class Louis extends Computer {
                 if(this.originalChange == null){
                     heritage=local;
                 }
-                //System.out.println("Call to 5: Gideon(..." + heritage);
                 Gideon g = new Gideon(adversery ,me , local, human, computer, heritage); //notice THE SWITCH
                 children.add(g);
             }
@@ -143,23 +144,8 @@ public class Louis extends Computer {
         }
 
     }
-
-    private AbstractMap.SimpleEntry<Integer, Integer> fromto = null;
-    public String toString(){
-        return super.toString();
-    }
-
-
-
-
-
     private Boolean wins = null;
-    public boolean wins(){
-        if(wins == null){
-            wins = super.wins();
-        }
-        return wins;
-    }
+
 
 
 
