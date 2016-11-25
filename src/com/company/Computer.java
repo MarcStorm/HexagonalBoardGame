@@ -104,7 +104,7 @@ public abstract class Computer {
                 if(temp/10 == atNow /10)
                     destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 2));
             }
-            /*
+
             temp = atNow - 9;
             if ( temp >= 0 && temp <= 109 && temp >=0&& available(atNow - 9)) {
 
@@ -127,7 +127,7 @@ public abstract class Computer {
             if (atNow - 10 >= 0 && temp <= 109 && temp >=0&& available(atNow - 10)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 10));
             }
-            temp=atNow - 20;
+           /* temp=atNow - 20;
             if (atNow - 20 >= 0 && temp <= 109 && temp >=0&& available(atNow - 20)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 20));
             }
