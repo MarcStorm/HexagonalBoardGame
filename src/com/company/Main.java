@@ -104,6 +104,7 @@ public class Main {
                 board[x] = BoardPiece.BLUE;
             }
         } else if(twoAwayStartBoard) {
+
             board[100] = BoardPiece.BLUE;
             board[109] = BoardPiece.BLUE;
             board[0] = BoardPiece.BLUE;
@@ -113,7 +114,7 @@ public class Main {
             board[25] = BoardPiece.GOLD;
             board[35] = BoardPiece.GOLD;
             //board[43] = BoardPiece.GOLD;
-            board[67] = BoardPiece.GOLD;
+            board[66] = BoardPiece.GOLD;
         }else{
             board[0] = BoardPiece.GOLD;
             board[9] = BoardPiece.GOLD;

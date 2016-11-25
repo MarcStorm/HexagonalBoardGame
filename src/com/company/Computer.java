@@ -120,7 +120,7 @@ public abstract class Computer {
             if ((atNow - 2) % 10 < 8 && temp <= 109 && temp >=0 && available(atNow - 2)) {
                 if(temp/10 == atNow /10)
                     destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 2));
-            }/*
+            }
             temp=atNow - 10;
             if (atNow - 10 >= 0 && temp <= 109 && temp >=0&& available(atNow - 10)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 10));
@@ -137,7 +137,7 @@ public abstract class Computer {
             if (atNow + 20 <= 109 && temp <= 109 && temp >=0 && available(atNow + 20)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 20));
             }
-            */
+
         }
         //System.out.println();
 
@@ -280,7 +280,9 @@ public abstract class Computer {
                     if(alpha > temp) {
                         //we can now unambiguously choose a child that will maximize payoff no matter
                         //what min does. This is a choice with a higher payoff then we previously saw was available to us
+
                         this.originalChange = child.originalChange;
+                        System.out.println(this.originalChange.getKey() +" "+ this.originalChange.getValue());
                     }
                     //System.out.println("Computer.changeStatic.offer(child.originalChange); " + child.originalChange);
                     //Computer.changeStatic.offer(child.originalChange);

@@ -18,14 +18,12 @@ public class Louis extends Computer {
      */
     public Louis(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery) {
         super(board,numTurns,me,adversery);
-        //System.out.println("Call to 3");
-        //System.out.println("mypiece is " + me);
+        //System.out.println("Call to 3");//System.out.println("mypiece is " + me);
         children = new ArrayList<Computer>();
         this.originalChange=null;
         getPlacesToGo(computer); // POSSIBLE MOVES I MIGHT MAKE
 
-        makeTree(1
-        );//has to be odd
+        makeTree(1);//has to be odd
         //System.out.println("\nTREE: " + this.toString());
 
         //decideTurnInAdvance();
@@ -110,22 +108,12 @@ public class Louis extends Computer {
         }
 
     }
-    boolean decideTurnInAdvance() {
-        //System.out.println("Call to 6");
-        //System.out.println("mypiece is " + me);
 
-        return true;
-    }
     private AbstractMap.SimpleEntry<Integer, Integer> fromto = null;
     public String toString(){
         return super.toString();
     }
     boolean decideTurn() {
-        //System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();
-        //System.out.println("Call to 7");
-        //System.out.println("mypiece is " + me);
-        //System.out.println(this.toString());
-
         this.alphaBetaPruning(1,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
         /*while(!changeStatic.isEmpty()) {
 
@@ -143,6 +131,7 @@ public class Louis extends Computer {
         to=fromto.getValue();*/
         from=originalChange.getKey();
         to=originalChange.getValue();
+        System.out.println("counter is "+ Main.counter);
         return true;
 
     }
