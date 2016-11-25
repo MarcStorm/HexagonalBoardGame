@@ -115,7 +115,7 @@ public class Main {
             board[25] = BoardPiece.GOLD;
             board[35] = BoardPiece.GOLD;
             //board[43] = BoardPiece.GOLD;
-            board[67] = BoardPiece.GOLD;
+            board[68] = BoardPiece.GOLD;
 
         }else{
             board[0] = BoardPiece.GOLD;
