@@ -51,7 +51,7 @@ public class Gideon extends Computer {
         //System.out.println("this.originalChange.getKey() is" + this.originalChange.getKey());
         //System.out.println("this.originalChange.getValue() = " + this.originalChange.getValue());
         if(this.wins()) {
-            util = depth * 10000;
+            util = depth * 1000;
             //System.out.println("WE WIN" + this.toString());
             //System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();
         } else {
@@ -319,38 +319,7 @@ public class Gideon extends Computer {
         //System.out.println("Call to 16");
 
     }
-    boolean wins(){
-        //System.out.println("My piece is " + me);
-        ArrayList<Integer> three = this.computer;
-        int countWithoutChangeX = 0;
-        int countWithoutChangeY = 0;
-        int countWithoutChangeZ = 0;
 
-        for(int i = 0; i < 1; i++){
-            for(int j = i+1; j < 4; j++){
-                if(formsXLine(three.get(i),three.get(j) )){
-                    countWithoutChangeX++;
-                }else if(formsYLine(three.get(i),three.get(j) )){
-                    countWithoutChangeY++;
-                }else if(formsZLine(three.get(i),three.get(j) )){
-                    countWithoutChangeZ++;
-                }
-            }
-        }
-        boolean aligned = false;
-        if(countWithoutChangeX == 3 || countWithoutChangeY == 3|| countWithoutChangeZ == 3
-                ) {
-            aligned = true;
-
-        }
-        boolean blocked = false;
-        for(Integer theirPiece : this.human){
-            if(this.between(theirPiece)){
-                blocked = true;
-            }
-        }
-        return aligned && !blocked;
-    }
 
 }
 

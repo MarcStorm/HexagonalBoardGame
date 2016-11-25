@@ -31,7 +31,7 @@ public abstract class Computer {
     public String toString(){
         String s =  "from,to,numTurns,util,me,adversery:" + from +", "+to+", "+numTurns+", "+util+", "+me+", "+adversery
                 + " originalChange: " + originalChange
-                +", changeStatic:  "+changeStatic +
+                +
                 "computer + human " ;
         for(Integer i : computer) {
             s =s + i + "," ;
@@ -40,10 +40,10 @@ public abstract class Computer {
         for(Integer i : human) {
             s =s + i + ",";
         }
-             s=s   + " children: \n" ;
-        for(Computer child: children) {
+             s=s   + "num children: \n" + children.size() +", changeStatic:  "+changeStatic ;
+        /*for(Computer child: children) {
             s = s +  "   " + child.toString() + " \n" ;
-        }
+        }*/
         return s;
     }
     public Computer(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
@@ -89,6 +89,11 @@ public abstract class Computer {
                 if(temp/10 == atNow /10)
                     destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 1));
             }
+            temp=atNow - 2;
+            if (temp % 10 < 8 && temp <= 109 && temp >=0 && available(atNow - 2)) {
+                if(temp/10 == atNow /10)
+                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 2));
+            }/*
             temp= atNow + 1;
             if (temp% 10 > 0&& temp <= 109 && temp >=0 && available(atNow + 1)) {
                 if(temp/10 == atNow /10)
@@ -99,11 +104,7 @@ public abstract class Computer {
                 if(temp/10 == atNow /10)
                     destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 2));
             }
-            temp=atNow - 2;
-            if (temp % 10 < 8 && temp <= 109 && temp >=0 && available(atNow - 2)) {
-                if(temp/10 == atNow /10)
-                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 2));
-            }
+
             temp = atNow - 9;
             if ( temp >= 0 && temp <= 109 && temp >=0&& available(atNow - 9)) {
 
@@ -137,7 +138,7 @@ public abstract class Computer {
             temp=atNow + 20;
             if (atNow + 20 <= 109 && temp <= 109 && temp >=0 && available(atNow + 20)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 20));
-            }
+            }*/
 
         }
         //System.out.println();
@@ -284,7 +285,7 @@ public abstract class Computer {
 
                         this.originalChange = child.originalChange;
                         System.out.println(this.originalChange.getKey() +" "+ this.originalChange.getValue());
-                        Computer.changeStatic.offer(this.originalChange);
+                        //Computer.changeStatic.offer(this.originalChange);
                     }
                     //System.out.println("Computer.changeStatic.offer(child.originalChange); " + child.originalChange);
                     //Computer.changeStatic.offer(child.originalChange);
@@ -310,6 +311,47 @@ public abstract class Computer {
                 return this.utilityProfile(depth);
             }
         }
+    }
+    boolean wins(){
+
+        int count=0;
+        int dimension = 0;
+        if(formsXLine(computer.get(0),computer.get(1) )){
+                    count++;
+        }else if(formsYLine(computer.get(0),computer.get(1))){
+                    count++;
+                    dimension = 1;
+        }else if(formsZLine(computer.get(0),computer.get(1) )){
+                    count++;
+                    dimension =2;
+        }
+        if(formsDLine(dimension, computer.get(1),computer.get(2) ) && formsDLine(dimension, computer.get(1),computer.get(3) )){
+            count++;
+            count++;
+        }
+
+        boolean aligned = false;
+        aligned = (count==3) ;
+        boolean blocked = false;
+        for(Integer theirPiece : this.human){
+            if(this.between(theirPiece)){
+                blocked = true;
+            }
+        }
+        return aligned && !blocked;
+    }
+
+    private boolean formsDLine(int dimension, Integer integer, Integer integer1) {
+        if(dimension==0){
+            return formsXLine(integer,integer1);
+        }
+        if(dimension==1){
+            return formsYLine(integer,integer1);
+        }
+        if(dimension==2){
+            return formsZLine(integer,integer1);
+        }
+        return false;
     }
 }
 

@@ -136,13 +136,28 @@ public class Louis extends Computer {
 
 
 
-
+    private Boolean wins = null;
+    public boolean wins(){
+        if(wins == null){
+            wins = super.wins();
+        }
+        return wins;
+    }
 
 
 
     public int utilityProfile(int depth){
-        //System.out.println("Call to 8");
-        //System.out.println("mypiece is " + me);
+        //System.out.println("my piece is " + me);
+        //System.out.println("Call to 13");
+
+        //System.out.println("this.originalChange.getKey() is" + this.originalChange.getKey());
+        //System.out.println("this.originalChange.getValue() = " + this.originalChange.getValue());
+        if(this.wins()) {
+            util = depth * 1000;
+            //System.out.println("WE WIN" + this.toString());
+            //System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();
+        }
+
         return util;
     }
 
