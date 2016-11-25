@@ -44,20 +44,21 @@ public class Gideon extends Computer {
         this.originalChange = heritage;
         //System.out.println("heritage = " + heritage);
     }
-    public int utilityProfile(){
+    public int utilityProfile(int depth){
         //System.out.println("my piece is " + me);
         //System.out.println("Call to 13");
         util = this.originalChange.getKey() + this.originalChange.getValue();
         //System.out.println("this.originalChange.getKey() is" + this.originalChange.getKey());
         //System.out.println("this.originalChange.getValue() = " + this.originalChange.getValue());
         if(this.wins()) {
-            util = 10000;
+            util = depth * 10000;
             //System.out.println("WE WIN" + this.toString());
             //System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();
         } else {
             util = Main.counter;
             Main.counter *=-1;
             Main.counter += Main.counter > 0? 1: -1;
+
         }
 
         return util;

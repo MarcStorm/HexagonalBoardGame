@@ -8,6 +8,8 @@ package com.company;
 
 
 public class Louis extends Computer {
+    //TIPS
+        //if making depth greater, comment out most directions in getPlacesToGo
     /*
     List<Computer> children;
     int from = 0, to = 0, numTurns = 0;
@@ -17,18 +19,34 @@ public class Louis extends Computer {
     Set<AbstractMap.SimpleEntry<Integer, Integer>> destinations;
      */
     public Louis(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery) {
-        super(board,numTurns,me,adversery);
-        //System.out.println("Call to 3");//System.out.println("mypiece is " + me);
+        super(board,numTurns,me,adversery);//System.out.println("Call to 3");//System.out.println("mypiece is " + me);
         children = new ArrayList<Computer>();
         this.originalChange=null;
         getPlacesToGo(computer); // POSSIBLE MOVES I MIGHT MAKE
+        makeTree(3);//has to be ODD//System.out.println("\nTREE: " + this.toString());
 
-        makeTree(1);//has to be odd
-        //System.out.println("\nTREE: " + this.toString());
-
-        //decideTurnInAdvance();
     }
+    boolean decideTurn() {
+        this.alphaBetaPruning(6,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
+        /*while(!changeStatic.isEmpty()) {
+            fromto = changeStatic.poll();
+            //System.out.println("Call to 7b: " + fromto);
+        }
+        if (fromto == null){
+            //System.out.println("fromtowasnull");
+            this.getPlacesToGo(computer);
+            fromto = this.destinations.iterator().next();
+            //System.out.println("Call to 7c: " + fromto);
+        }
+        //System.out.println("Call to 7d: "+fromto);
+        from=fromto.getKey();
+        to=fromto.getValue();*/
+        from=originalChange.getKey();
+        to=originalChange.getValue();
+        System.out.println("counter is "+ Main.counter);
+        return true;
 
+    }
     public Louis(BoardPiece me, BoardPiece adversery,
                  AbstractMap.SimpleEntry<Integer, Integer> change,
                  ArrayList<Integer> positionsMe, ArrayList<Integer> positionsAdversery) {
@@ -113,28 +131,6 @@ public class Louis extends Computer {
     public String toString(){
         return super.toString();
     }
-    boolean decideTurn() {
-        this.alphaBetaPruning(1,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
-        /*while(!changeStatic.isEmpty()) {
-
-            fromto = changeStatic.poll();
-            //System.out.println("Call to 7b: " + fromto);
-        }
-        if (fromto == null){
-            //System.out.println("fromtowasnull");
-            this.getPlacesToGo(computer);
-            fromto = this.destinations.iterator().next();
-            //System.out.println("Call to 7c: " + fromto);
-        }
-        //System.out.println("Call to 7d: "+fromto);
-        from=fromto.getKey();
-        to=fromto.getValue();*/
-        from=originalChange.getKey();
-        to=originalChange.getValue();
-        System.out.println("counter is "+ Main.counter);
-        return true;
-
-    }
 
 
 
@@ -143,7 +139,8 @@ public class Louis extends Computer {
 
 
 
-    public int utilityProfile(){
+
+    public int utilityProfile(int depth){
         //System.out.println("Call to 8");
         //System.out.println("mypiece is " + me);
         return util;

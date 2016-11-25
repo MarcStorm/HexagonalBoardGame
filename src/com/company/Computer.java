@@ -84,6 +84,26 @@ public abstract class Computer {
 
 
 
+            temp=atNow - 1;
+            if (temp% 10 < 9 && temp <= 109 && temp >=0 && available(atNow - 1)) {
+                if(temp/10 == atNow /10)
+                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 1));
+            }
+            temp= atNow + 1;
+            if (temp% 10 > 0&& temp <= 109 && temp >=0 && available(atNow + 1)) {
+                if(temp/10 == atNow /10)
+                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 1));
+            }
+            temp=atNow + 2;
+            if (temp % 10 > 1 && temp <= 109 && temp >=0&& available(atNow + 2)) {
+                if(temp/10 == atNow /10)
+                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 2));
+            }
+            temp=atNow - 2;
+            if (temp % 10 < 8 && temp <= 109 && temp >=0 && available(atNow - 2)) {
+                if(temp/10 == atNow /10)
+                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 2));
+            }
             temp = atNow - 9;
             if ( temp >= 0 && temp <= 109 && temp >=0&& available(atNow - 9)) {
 
@@ -94,33 +114,14 @@ public abstract class Computer {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 18));
             }
             temp= atNow + 9;
-            if (atNow + 9 <= 109&& temp <= 109 && temp >=0 && available(atNow + 9)) {
+            if (atNow + 9 <= 109 && temp <= 109 && temp >=0 && available(atNow + 9)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 9));
             }
             temp=atNow + 18;
             if (atNow + 18 <= 109&& temp <= 109 && temp >=0 && available(atNow + 18)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 18));
             }
-            temp= atNow + 1;
-            if (atNow + 1 % 10 > 0&& temp <= 109 && temp >=0 && available(atNow + 1)) {
-                if(temp/10 == atNow /10)
-                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 1));
-            }
-            temp=atNow - 1;
-            if (atNow - 1 % 10 < 9 && temp <= 109 && temp >=0&& available(atNow - 1)) {
-                if(temp/10 == atNow /10)
-                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 1));
-            }
-            temp=atNow + 2;
-            if (atNow + 2 % 10 > 1 && temp <= 109 && temp >=0&& available(atNow + 2)) {
-                if(temp/10 == atNow /10)
-                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 2));
-            }
-            temp=atNow - 2;
-            if ((atNow - 2) % 10 < 8 && temp <= 109 && temp >=0 && available(atNow - 2)) {
-                if(temp/10 == atNow /10)
-                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 2));
-            }
+
             temp=atNow - 10;
             if (atNow - 10 >= 0 && temp <= 109 && temp >=0&& available(atNow - 10)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 10));
@@ -248,7 +249,7 @@ public abstract class Computer {
 
     public abstract boolean isTerminalNode();
 
-    public abstract int utilityProfile();
+    public abstract int utilityProfile(int depth);
     public boolean isMaxNode(boolean maximizing){
 
         //System.out.println("Call to 23");//System.out.println("My piece is " + me);
@@ -263,15 +264,15 @@ public abstract class Computer {
         //System.out.println("Call to 24");//System.out.println("My piece is " + me);
         System.out.println(this.toString());
         if (this.isTerminalNode()) {
-            return this.utilityProfile();
+            return this.utilityProfile(depth);
         } else {
             if (this.isMaxNode(maximizing)) {
                 this.util = Integer.MIN_VALUE;
                 for (Computer child : children) {
                     int temp =alpha;
                     int minValOfThisChoice = child.alphaBetaPruning(depth - 1, alpha, beta,!maximizing);
-                    this.util = (Math.max(this.utilityProfile(), minValOfThisChoice));
-                    alpha = Math.max(alpha, this.utilityProfile());//in no other branch where min can choose lower then this is it worth it for min to keep looking around--ill never pick this choice/child
+                    this.util = (Math.max(this.utilityProfile(depth), minValOfThisChoice));
+                    alpha = Math.max(alpha, this.utilityProfile(depth));//in no other branch where min can choose lower then this is it worth it for min to keep looking around--ill never pick this choice/child
                     //System.out.println("Call to 24b: this.util = " + this.utilityProfile() + ", alpha is + "+ alpha );
                     if (alpha >= beta) {
                         // Beta cutoff.
@@ -283,31 +284,30 @@ public abstract class Computer {
 
                         this.originalChange = child.originalChange;
                         System.out.println(this.originalChange.getKey() +" "+ this.originalChange.getValue());
+                        Computer.changeStatic.offer(this.originalChange);
                     }
                     //System.out.println("Computer.changeStatic.offer(child.originalChange); " + child.originalChange);
                     //Computer.changeStatic.offer(child.originalChange);
 
                 }
-                return this.utilityProfile();
+                return this.utilityProfile(depth);
             } else {
                 this.util=Integer.MAX_VALUE;
                 for (Computer child : children) {
-                    int temp = beta;
-                    this.util = (Math.min(this.utilityProfile(), child.alphaBetaPruning( depth - 1, alpha, beta, !maximizing)));
-                    beta = Math.min(alpha, this.utilityProfile());
+
+                    this.util = (Math.min(this.utilityProfile(depth), child.alphaBetaPruning( depth - 1, alpha, beta, !maximizing)));
+                    beta = Math.min(alpha, this.utilityProfile(depth));
                     //System.out.println("Call to 24c: this.util = " + this.utilityProfile() + ", beta is + "+ beta );
                     if (beta <= alpha) {
                         // Alpha cutoff.
                         break;
                     }
-                    if(beta < temp) {
 
-                    }
                     //System.out.println("Computer.changeStatic. does not offer(child.originalChange); " + child.originalChange);
 
 
                 }
-                return this.utilityProfile();
+                return this.utilityProfile(depth);
             }
         }
     }

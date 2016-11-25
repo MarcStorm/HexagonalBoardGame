@@ -70,7 +70,8 @@ public class Main {
 
     private static void placeTokens() {
 
-        boolean twoAwayStartBoard = true;
+        int movesFromWin= 1;
+        boolean closeToWin = true;
         if(startingPositionIsGivenAsTextInput){
             scan = new Scanner(System.in);
             String blueStart = scan.nextLine();
@@ -103,7 +104,7 @@ public class Main {
                 arr.add(x);
                 board[x] = BoardPiece.BLUE;
             }
-        } else if(twoAwayStartBoard) {
+        } else if(closeToWin) {
 
             board[100] = BoardPiece.BLUE;
             board[109] = BoardPiece.BLUE;
@@ -114,7 +115,8 @@ public class Main {
             board[25] = BoardPiece.GOLD;
             board[35] = BoardPiece.GOLD;
             //board[43] = BoardPiece.GOLD;
-            board[66] = BoardPiece.GOLD;
+            board[67] = BoardPiece.GOLD;
+
         }else{
             board[0] = BoardPiece.GOLD;
             board[9] = BoardPiece.GOLD;
