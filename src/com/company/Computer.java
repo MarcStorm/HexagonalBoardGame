@@ -80,7 +80,7 @@ public abstract class Computer {
                     destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 2));
             }
             temp=atNow + 2;
-            if (temp % 10 > 1 && temp <= 109 && temp >=0&& available(atNow + 2)) {
+            if ((temp % 10 )> 1 && temp <= 109 && temp >=0&& available(atNow + 2)) {
                 if(temp/10 == atNow /10)
                     destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 2));
             }
