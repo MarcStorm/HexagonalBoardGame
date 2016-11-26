@@ -45,134 +45,51 @@ public class Gideon extends Computer {
         this.originalChange = heritage;
         //System.out.println("heritage = " + heritage);
     }
-    public int utilityProfile(int depth){
-        //System.out.println("my piece is " + me);
-        //System.out.println("Call to 13");
-        util = this.originalChange.getKey() + this.originalChange.getValue();
-        //System.out.println("this.originalChange.getKey() is" + this.originalChange.getKey());
-        //System.out.println("this.originalChange.getValue() = " + this.originalChange.getValue());
-        if(this.wins()) {
-            util = depth * 1000;
-            //System.out.println("WE WIN" + this.toString());
-            //System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();
-        } else {
-            util = Main.counter;
-
-            Main.counter++;
-            if(Main.counter == 999){
-                Main.counter=1;
-                System.out.println("counter is 999, calling computer was " + this.toString());
+    public int utilityProfile(int depth, boolean maximizing){
+        if(!maximizing){
+            // if MINimizing
+            if(this.opponentWon()){
+                System.out.println("min-imizing,opponent wins: " + this.toString());
+                util = depth*1000;
+                return util;
             }
-
+            if(this.wins()){
+                System.out.println("min-imizing,wins: " + this.toString());
+                util = depth* (-1000);
+                return util;
+            }
+        }else {
+            //If MAXimizing
+            if (this.opponentWon()) {
+                System.out.println("max-imizing,opponent wins: " + this.toString());
+                util = depth * (-1000);
+                return util;
+            }
+            if (this.wins()) {
+                System.out.println("max-imizing,wins: " + this.toString());
+                util = depth * 1000;
+                return util;
+            }
         }
-        System.out.println("counter is " + Main.counter + ", utility is  " + util);
-        if(Main.counter %39 == 0) {
+        return utilityProfile(depth);
 
-            System.out.println("calling computer was " + this.toString());
-        }
+    }
+    public int utilityProfile(int depth){
+
+        util = (Main.counter%100 ) ;
+
+        if(Main.counter < 0)
+            Main.counter--;
+        else
+            Main.counter++;
+        Main.counter*=(-1);
+        if(Main.counter %25 == 0)
+            System.out.println("counter is " + Main.counter + ", utility is  " + util);
+
         return util;
     }
     boolean decideTurn(){
-        //System.out.println("my piece is " + me);
-        //System.out.println("Call to 14");
-        ArrayList<ArrayList<Integer>> placesToGo = new ArrayList<ArrayList<Integer>>();
-        for(int i = 0; i< 4; i++){
-            //ArrayList<Integer> choices = new ArrayList<Integer>();
-            //placesToGo.add(choices);
-        }
-        for(int i = 0; i< 4; i++){
-            Integer position = computer.get(i);
-            //ArrayList<Integer> choices = placesToGo.remove(i);
 
-            if(position %10 <= 3 && position /10 >= 6) {
-                int placeToGo = position-18;
-                if(board[placeToGo] == BoardPiece.EMPTY) {
-                    //choices.add(placeToGo);
-                    if (maybeUse(position,placeToGo))
-                        return true;
-                }
-
-            }
-            else if(position %10 >= 6 && position /10 <= 3) {
-                int placeToGo = position+18;
-                if(board[placeToGo] == BoardPiece.EMPTY) {
-                    //choices.add(placeToGo);
-                    if (maybeUse(position,placeToGo))
-                        return true;
-                }
-
-            }
-            //placesToGo.add(i, choices);
-        }
-		/*
-		for(int i = 0; i < 4; i++){
-			if(!placesToGo.get(i).isEmpty()){
-				to = placesToGo.get(i).get(r.nextInt(placesToGo.get(i).size()));
-				from = i;
-				return;
-
-			}
-		}*/
-        for(int i = 0; i< 4; i++){
-            int position = computer.get(i);
-            //ArrayList<Integer> choices = placesToGo.get(i);
-            if(position %10 <= 3 && position /10 <= 3) {
-                if(board[position+2] == BoardPiece.EMPTY)
-                    if( ((position+2) / 10) == ((position) / 10) ) {
-                        //choices.add(position+2);
-                        if (maybeUse(position,position+2))
-                            return true ;
-
-                    }
-                if(board[position+20] == BoardPiece.EMPTY){
-                    //choices.add(position+20);
-                    if (maybeUse(position,position+20))
-                        return true ;
-                }
-            }
-            else if(position %10 >= 6 && position /10 >= 6) {
-                if(board[position-2] == BoardPiece.EMPTY)
-                    if( ((position-2) / 10) == ((position) / 10) ) {
-                        //choices.add(position-2);
-                        if (maybeUse(position,position-2))
-                            return true;
-                    }
-                if(board[position - 20] == BoardPiece.EMPTY) {
-                    //choices.add(position-20);
-                    if (maybeUse(position,position-20))
-                        return true;
-                }
-            }
-            //placesToGo.add(i,choices);
-        }
-
-        for(int i = 0; i< 109; i++){
-            for(int j = 0; j< 4; j++){
-                int x = i + r.nextInt(50) + 25;
-                int y = x % 109;
-                if(board[y] == BoardPiece.EMPTY && withinRange(computer.get(j), y)){
-                    from = computer.get(j);
-                    to = y;
-                    return true;
-					/*ArrayList<Integer> choice = placesToGo.get(j);
-					choice.add(j);
-					choice.add(i);
-					placesToGo.add(j,choice);*/
-                }
-            }
-        }
-
-
-
-
-        ArrayList<Integer> choices = new ArrayList<Integer>();
-        int i = 0;
-        while(choices.isEmpty()){
-            choices = placesToGo.remove(0);
-            int randVal = r.nextInt(choices.size());
-            from = computer.get(i++);
-            to = choices.get(randVal);
-        }
         return false;
     }
     Boolean inRangeOfImportantStuff(Integer location){
@@ -324,7 +241,7 @@ public class Gideon extends Computer {
         return true;
     }
     public void makeTree(int level) {
-        //System.out.println("my piece is " + me);
+        System.out.println("call to gideon.makeTree(" + level + ");");
         //System.out.println("Call to 16");
 
     }

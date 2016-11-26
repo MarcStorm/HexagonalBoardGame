@@ -13,6 +13,7 @@ import java.util.*;
  */
 
 public abstract class Computer {
+
     int from = 0, to = 0, numTurns = 0;
     Integer util = 0;
     AbstractMap.SimpleEntry<Integer, Integer> originalChange = null;
@@ -20,7 +21,7 @@ public abstract class Computer {
     ArrayList<Integer> computer = new ArrayList<Integer>(),  human = new ArrayList<Integer>();
     BoardPiece me,  adversery;
     List<Computer> children ;
-    static ArrayDeque<AbstractMap.SimpleEntry<Integer, Integer>> changeStatic = null;
+    static HashMap<AbstractMap.SimpleEntry<Integer, Integer>, Integer> movesAndUtils = null;
     static Queue<AbstractMap.SimpleEntry<Integer, Integer>> BetterAndBetterOptions
             = new ArrayDeque<AbstractMap.SimpleEntry<Integer, Integer>>();
     static BoardPiece actualMe;
@@ -28,8 +29,7 @@ public abstract class Computer {
 
     public Computer(){
         children = new ArrayList<Computer>();//System.out.println("Call to 17");//System.out.println("My piece is " + me)
-        if(changeStatic == null)
-            changeStatic= new ArrayDeque<AbstractMap.SimpleEntry<Integer, Integer>>();
+
         this.r = new Random();
     }
 
@@ -70,25 +70,26 @@ public abstract class Computer {
 
 
             temp=atNow - 1;
-            if (temp% 10 < 9 && temp <= 109 && temp >=0 && available(atNow - 1)) {
+            if ((temp% 10 )< 9 && temp <= 109 && temp >=0 && available(atNow - 1)) {
                 if(temp/10 == atNow /10)
                     destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 1));
             }
             temp=atNow - 2;
-            if (temp % 10 < 8 && temp <= 109 && temp >=0 && available(atNow - 2)) {
+            if ((temp % 10) < 8 && temp <= 109 && temp >=0 && available(atNow - 2)) {
                 if(temp/10 == atNow /10)
                     destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 2));
-            }
-            temp= atNow + 1;
-            if (temp% 10 > 0&& temp <= 109 && temp >=0 && available(atNow + 1)) {
-                if(temp/10 == atNow /10)
-                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 1));
             }
             temp=atNow + 2;
             if (temp % 10 > 1 && temp <= 109 && temp >=0&& available(atNow + 2)) {
                 if(temp/10 == atNow /10)
                     destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 2));
             }
+            temp= atNow + 1;
+            if ((temp% 10 )> 0&& temp <= 109 && temp >=0 && available(atNow + 1)) {
+                if(temp/10 == atNow /10)
+                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 1));
+            }
+
             temp=atNow - 10;
             if (atNow - 10 >= 0 && temp <= 109 && temp >=0&& available(atNow - 10)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 10));
@@ -110,10 +111,7 @@ public abstract class Computer {
 
                     destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 9));
             }
-            temp=atNow - 18;
-            if (temp >= 0 && temp <= 109 && temp >=0 && available(atNow - 18)) {
-                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 18));
-            }
+
             temp= atNow + 9;
             if (atNow + 9 <= 109 && temp <= 109 && temp >=0 && available(atNow + 9)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 9));
@@ -121,6 +119,10 @@ public abstract class Computer {
             temp=atNow + 18;
             if (atNow + 18 <= 109 && temp <= 109 && temp >=0 && available(atNow + 18)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 18));
+            }
+            temp=atNow - 18;
+            if (temp >= 0 && temp <= 109 && temp >=0 && available(atNow - 18)) {
+                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 18));
             }
 
 
@@ -226,6 +228,7 @@ public abstract class Computer {
     public abstract boolean isTerminalNode();
 
     public abstract int utilityProfile(int depth);
+    public abstract int utilityProfile(int depth, boolean maximizing);
     public boolean isMaxNode(boolean maximizing){
 
         //System.out.println("Call to 23");//System.out.println("My piece is " + me);
@@ -240,7 +243,7 @@ public abstract class Computer {
         //System.out.println("Call to 24");//System.out.println("My piece is " + me);
         //System.out.println(this.toString());
         if (this.isTerminalNode()) {
-            return this.utilityProfile(depth);
+            return this.utilityProfile(depth,maximizing);
         } else {
             if (this.isMaxNode(maximizing)) {
                 this.util = Integer.MIN_VALUE;
@@ -254,42 +257,39 @@ public abstract class Computer {
                         // Beta cutoff.
                         break;
                     }
-                    if(alpha > temp) {
+                    if( alpha > temp) {
                         //we can now unambiguously choose a child that will maximize payoff no matter
                         //what min does. This is a choice with a higher payoff then we previously saw was available to us
 
-                        this.originalChange = child.originalChange;
-                        System.out.println(this.originalChange.getKey() +" "+ this.originalChange.getValue());
+                        this.originalChange=child.originalChange;
+
+                        //System.out.println(this.originalChange.getKey() +" "+ this.originalChange.getValue());
                         //Computer.changeStatic.offer(this.originalChange);
                     }
                     //System.out.println("Computer.changeStatic.offer(child.originalChange); " + child.originalChange);
                     //Computer.changeStatic.offer(child.originalChange);
 
                 }
-                return this.utilityProfile(depth);
+                return this.utilityProfile(depth,maximizing);
             } else {
                 this.util=Integer.MAX_VALUE;
-                /*if(this.opponentWon()){
-                    return 1000*depth+1;
-                }*/
                 for (Computer child : children) {
-
                     this.util = (Math.min(this.utilityProfile(depth), child.alphaBetaPruning( depth - 1, alpha, beta, !maximizing)));
+                    int temp = beta;
                     beta = Math.min(alpha, this.utilityProfile(depth));
-                    //System.out.println("Call to 24c: this.util = " + this.utilityProfile() + ", beta is + "+ beta );
+
                     if (beta <= alpha) {
                         // Alpha cutoff.
                         break;
                     }
-
-                    //System.out.println("Computer.changeStatic. does not offer(child.originalChange); " + child.originalChange);
-
-
                 }
-                return this.utilityProfile(depth);
+                return this.utilityProfile(depth,maximizing);
             }
         }
     }
+
+
+
     boolean opponentWon(){
         Computer opponent = new Gideon(adversery,me,new AbstractMap.SimpleEntry<Integer, Integer>(human.get(0),human.get(0)),human,computer,originalChange);
         return opponent.wins();
@@ -352,7 +352,7 @@ public abstract class Computer {
         for(Integer i : human) {
             s =s + i + ",";
         }
-        s=s   + "num children: \n" + children.size() +", changeStatic:  "+changeStatic ;
+        s=s   + "num children: \n" + children.size() ;
         /*for(Computer child: children) {
             s = s +  "   " + child.toString() + " \n" ;
         }*/

@@ -64,7 +64,8 @@ public class Main {
     private static void placeTokens() {
 
         int movesFromWin= 1;
-        boolean closeToWin = true;
+        boolean closeToWin = !true;
+        boolean blockTheirWin=true;
         if(startingPositionIsGivenAsTextInput){
             scan = new Scanner(System.in);
             String blueStart = scan.nextLine();
@@ -109,7 +110,17 @@ public class Main {
             board[35] = BoardPiece.GOLD;
             board[53] = BoardPiece.GOLD;
 
-        }else{
+        }else if (blockTheirWin){
+            board[5] = BoardPiece.BLUE;
+            board[15] = BoardPiece.BLUE;
+            board[95] = BoardPiece.BLUE;
+            board[109] = BoardPiece.BLUE;
+
+            board[44] = BoardPiece.GOLD;
+            board[54] = BoardPiece.GOLD;
+            board[0] = BoardPiece.GOLD;
+            board[100] = BoardPiece.GOLD;
+        } else{
             board[0] = BoardPiece.GOLD;
             board[9] = BoardPiece.GOLD;
             board[103] = BoardPiece.GOLD;
@@ -139,6 +150,7 @@ public class Main {
                 if(withinRange(from, to)){
                     board[from] = BoardPiece.EMPTY;
                     board[to] = turn;
+
                     return true;
                 }
             }
