@@ -253,19 +253,17 @@ public abstract class Computer {
                     this.util = (Math.max(this.utilityProfile(depth), minValOfThisChoice));
                     alpha = Math.max(alpha, this.utilityProfile(depth));//in no other branch where min can choose lower then this is it worth it for min to keep looking around--ill never pick this choice/child
                     //System.out.println("Call to 24b: this.util = " + this.utilityProfile() + ", alpha is + "+ alpha );
-                    if (alpha >= beta) {
-                        // Beta cutoff.
-                        break;
-                    }
-                    if( alpha > temp) {
+
+
+
                         //we can now unambiguously choose a child that will maximize payoff no matter
                         //what min does. This is a choice with a higher payoff then we previously saw was available to us
 
-                        this.originalChange=child.originalChange;
+
 
                         //System.out.println(this.originalChange.getKey() +" "+ this.originalChange.getValue());
                         //Computer.changeStatic.offer(this.originalChange);
-                    }
+
                     //System.out.println("Computer.changeStatic.offer(child.originalChange); " + child.originalChange);
                     //Computer.changeStatic.offer(child.originalChange);
 
@@ -278,10 +276,10 @@ public abstract class Computer {
                     int temp = beta;
                     beta = Math.min(alpha, this.utilityProfile(depth));
 
-                    if (beta <= alpha) {
-                        // Alpha cutoff.
-                        break;
-                    }
+
+
+
+
                 }
                 return this.utilityProfile(depth,maximizing);
             }
