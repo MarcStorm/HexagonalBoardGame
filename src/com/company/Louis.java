@@ -71,6 +71,7 @@ public class Louis extends Computer {
         for(Integer i : positionsAdversery){
             human.add(i);
         }
+        this.children = new ArrayList<Computer>();
         //System.out.println("Louis");
         //System.out.println(computer);
         //System.out.println("VS");
@@ -102,6 +103,7 @@ public class Louis extends Computer {
     public void makeTree(int level) {
         //System.out.println("Call to 5 ");
         //System.out.println("mypiece is " + me);
+        children= new ArrayList<Computer>();
         AbstractMap.SimpleEntry<Integer, Integer> heritage = this.originalChange;
         if (level > 0) {
 
@@ -116,14 +118,14 @@ public class Louis extends Computer {
                 Computer l = new Louis(adversery ,me , each, human, computer, heritage); //notice THE SWITCH
                 if((level%2 == 0) && l.wins()){
                     l = new Gideon(adversery,me,each,human,computer,heritage);
-                    children.add(l);
+                } else if (l.opponentWon()){
+                    l = new Amalia(adversery,me,each,human,computer,heritage);
+                }
+                children.add(l);
 
-                } else {
-                    children.add(l);
-                }
-                if(level <= Main.noLongerConsiderAllOpponentsChoices && level %2 == 0) {
+                /*if(level <= Main.noLongerConsiderAllOpponentsChoices && level %2 == 0) {
                     break;
-                }
+                }*/
 
             }
 
@@ -140,7 +142,8 @@ public class Louis extends Computer {
         }
 
         for(Computer lg : children){
-            lg.makeTree(level - 1 );
+            if(!lg.isTerminalNode())
+                lg.makeTree(level - 1 );
         }
 
     }
@@ -159,6 +162,9 @@ public class Louis extends Computer {
             util = depth * 1000;
             //System.out.println("WE WIN" + this.toString());
             //System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();//System.out.println();
+        }
+        if(this.opponentWon()){
+            util = depth * -1000;
         }
 
         return util;
