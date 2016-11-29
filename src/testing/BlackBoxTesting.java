@@ -90,4 +90,34 @@ public class BlackBoxTesting {
         org.junit.Assert.assertEquals(new Integer(43), computer.originalChange.getKey());
         org.junit.Assert.assertEquals(new Integer(45), computer.originalChange.getValue());
     }
+
+
+
+
+    @org.junit.Test
+    public void testUtility_WinsOneMoveAway1(){
+        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,53);
+        computer.decideTurn();
+        int util = computer.alphaBetaPruning(10,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
+        org.junit.Assert.assertEquals(9000, util);
+
+        org.junit.Assert.assertEquals(9000, computer.utilityProfile(10, true));
+    }
+    @org.junit.Test
+    public void testChoiceFrom_WinsOneMoveAway1(){
+        //note: this has to be changed once it returns multiple answers
+        //will be like for all latest turns if [0] is 53 all after are 53 too right?
+        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,53);
+        computer.decideTurn();
+        Integer[]  latestTurn  = computer.getTurn();
+        org.junit.Assert.assertEquals(new Integer(53), latestTurn[0]);
+    }
+    @org.junit.Test
+    public void testChoiceTo_WinsOneMoveAway1(){
+        //note: this has to be changed once it returns multiple answers
+        //will be like for all latest turns if [0] is 53 all after are 53 too right?
+        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,53);
+        Integer[]  latestTurn  = computer.getTurn();
+        org.junit.Assert.assertEquals(new Integer(55), latestTurn[1]);
+    }
 }

@@ -98,7 +98,7 @@ public class Main {
                 arr.add(x);
                 board[x] = BoardPiece.BLUE;
             }
-        } else if(closeToWin) {
+        } else if(!closeToWin) {
 
             board[100] = BoardPiece.BLUE;
             board[109] = BoardPiece.BLUE;
