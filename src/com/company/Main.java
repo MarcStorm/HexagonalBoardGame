@@ -18,22 +18,25 @@ public class Main {
     private static final boolean startBoardRandomPositions = false;
 
 
-    private static Computer computerGenerator() {
-        return new Louis
-                (board,numTurns,
-                (currentTurn == BoardPiece.BLUE)? BoardPiece.BLUE: BoardPiece.GOLD,
-                (currentTurn == BoardPiece.BLUE)? BoardPiece.GOLD: BoardPiece.BLUE);
-    }
+
+
+    private static boolean  startingPositionIsGivenAsTextInput = false;
     /*End Section 1*/
 
 
     /*Section 2: Should work, not yet tested*/
-    private static boolean  startingPositionIsGivenAsTextInput = false;
+
     /*End section 2*/
     /*Section 2: soon to be toggleable*/
 
 
     /*Section 3: soon to be toggleable*/
+    private static Computer computerGenerator() {
+        return new Louis
+                (board,numTurns,
+                        (currentTurn == BoardPiece.BLUE)? BoardPiece.BLUE: BoardPiece.GOLD,
+                        (currentTurn == BoardPiece.BLUE)? BoardPiece.GOLD: BoardPiece.BLUE);
+    }
     private static PlayerType p1 = PlayerType.HUMAN;
     private static final boolean readInInput = false; //
     /*End Section 3*/
