@@ -81,7 +81,7 @@ public class BlackBoxTesting {
     }*/
 
     @org.junit.Test
-    public void testAlphaBeta_LosesOneMoveAwayOneRecourse() {
+    public void testChoice_LosesOneMoveAwayOneRecourse() {
         com.company.Louis computer = getComputer(5, 25, 95, 107, 43, 9, 100, 0);
         computer.decideTurn();
 
