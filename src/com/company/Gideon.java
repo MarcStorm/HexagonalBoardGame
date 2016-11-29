@@ -78,8 +78,9 @@ public class Gideon extends Computer {
         return utilityProfile(depth);
 
     }
-    public int utilityProfile(int depth){
 
+    public int utilityProfile(int depth){
+        //TODO: make better. Must be less then or equal to 999 greater then or equal to -999
         util = (Main.counter%100 ) ;
 
         if(Main.counter < 0)
@@ -87,8 +88,8 @@ public class Gideon extends Computer {
         else
             Main.counter++;
         Main.counter*=(-1);
-        if(Main.counter %25 == 0)
-            System.out.println("counter is " + Main.counter + ", utility is  " + util);
+        //if(Main.counter %25 == 0)
+            //System.out.println("counter is " + Main.counter + ", utility is  " + util);
 
         return util;
     }

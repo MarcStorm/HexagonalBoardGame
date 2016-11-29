@@ -16,16 +16,16 @@ public abstract class Computer {
 
     int from = 0, to = 0, numTurns = 0;
     Integer util = 0;
-    AbstractMap.SimpleEntry<Integer, Integer> originalChange = null;
+    public AbstractMap.SimpleEntry<Integer, Integer> originalChange = null;
     Random r ;
     ArrayList<Integer> computer = new ArrayList<Integer>(),  human = new ArrayList<Integer>();
     BoardPiece me,  adversery;
-    List<Computer> children ;
+    public List<Computer> children ;
     static HashMap<AbstractMap.SimpleEntry<Integer, Integer>, Integer> movesAndUtils = null;
     static Queue<AbstractMap.SimpleEntry<Integer, Integer>> BetterAndBetterOptions
             = new ArrayDeque<AbstractMap.SimpleEntry<Integer, Integer>>();
     static BoardPiece actualMe;
-    Set<AbstractMap.SimpleEntry<Integer, Integer>> destinations;
+    public Set<AbstractMap.SimpleEntry<Integer, Integer>> destinations;
 
     public Computer(){
         children = new ArrayList<Computer>();//System.out.println("Call to 17");//System.out.println("My piece is " + me)
@@ -239,9 +239,7 @@ public abstract class Computer {
         //System.out.println("me is " + me+ ", p2 aka actualME is " + actualMe + ", maximizing is " + maximizing);
         return maximizing;
     }
-    int alphaBetaPruning(int depth, int alpha, int beta, boolean maximizing) {
-        //System.out.println("Call to 24");//System.out.println("My piece is " + me);
-        //System.out.println(this.toString());
+    public int alphaBetaPruning(int depth, int alpha, int beta, boolean maximizing) {
         if (this.isTerminalNode()) {
             return this.utilityProfile(depth,maximizing);
         } else {
