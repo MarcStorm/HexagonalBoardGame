@@ -30,7 +30,7 @@ public class Louis extends Computer {
         }
         return wins;
     }
-    boolean decideTurn() {
+    public boolean decideTurn() {
         Computer.movesAndUtils = new HashMap<AbstractMap.SimpleEntry<Integer,Integer>, Integer>();
         //maybe somehow make it able to use the one from last turn
         //NOTE DO NOT CHANGE LEVEL from 10 unless makeTree increases in which case increase 10, too
@@ -44,7 +44,7 @@ public class Louis extends Computer {
                 this.originalChange = c.originalChange;
 
             }
-            System.out.println(c.util);
+//            System.out.println(c.util);
         }
 
         /*while(!changeStatic.isEmpty()) {
@@ -174,32 +174,34 @@ public class Louis extends Computer {
         return util;
     }
     public int utilityProfile(int depth,boolean maximizing){
+        String s = "";
         if(!maximizing){
             // if MINimizing
            if(this.opponentWon()){
-               System.out.println("min-imizing,opponent wins: " + this.toString());
+               s = "min-imizing,opponent wins: " + this.toString();
                util = depth*1000;
                return util;
            }
            if(this.wins()){
-               System.out.println("min-imizing,wins: " + this.toString());
+               s = "min-imizing,wins: " + this.toString();
                util = depth* (-1000);
                return util;
            }
         }else {
             //If MAXimizing
             if (this.opponentWon()) {
-                System.out.println("max-imizing,opponent wins: " + this.toString());
+                s = "max-imizing,opponent wins: " + this.toString();
                 util = depth * (-1000);
                 return util;
             }
             if (this.wins()) {
-                System.out.println("max-imizing,wins: " + this.toString());
+                s = "max-imizing,wins: " + this.toString();
                 util = depth * 1000;
                 return util;
             }
         }
-        return util;
+        //System.out.println(s);
+        return utilityProfile(depth);
     }
 
 }

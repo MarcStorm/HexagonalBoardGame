@@ -64,7 +64,7 @@ public class Main {
     private static void placeTokens() {
 
         int movesFromWin= 1;
-        boolean closeToWin = !true;
+        boolean closeToWin = true;
         boolean blockTheirWin=true;
         if(startingPositionIsGivenAsTextInput){
             scan = new Scanner(System.in);

@@ -46,31 +46,35 @@ public class Gideon extends Computer {
         //System.out.println("heritage = " + heritage);
     }
     public int utilityProfile(int depth, boolean maximizing){
+        String s = "";
         if(!maximizing){
             // if MINimizing
             if(this.opponentWon()){
-                System.out.println("min-imizing,opponent wins: " + this.toString());
+                s = "min-imizing,opponent wins: " + this.toString();
                 util = depth*1000;
                 return util;
             }
             if(this.wins()){
-                System.out.println("min-imizing,wins: " + this.toString());
+                s = "min-imizing,wins: " + this.toString();
                 util = depth* (-1000);
                 return util;
             }
         }else {
             //If MAXimizing
             if (this.opponentWon()) {
-                System.out.println("max-imizing,opponent wins: " + this.toString());
+                s = "max-imizing,opponent wins: " + this.toString();
                 util = depth * (-1000);
                 return util;
             }
             if (this.wins()) {
-                System.out.println("max-imizing,wins: " + this.toString());
+                s = "max-imizing,wins: " + this.toString();
                 util = depth * 1000;
                 return util;
             }
         }
+        //System.out.println(s);
+
+
         return utilityProfile(depth);
 
     }
