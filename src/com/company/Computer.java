@@ -117,7 +117,7 @@ public abstract class Computer {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 9));
             }
             temp=atNow + 18;
-            if (atNow + 18 <= 109 && temp <= 109 && && temp /10 == atNow / 10 temp >=0 && available(atNow + 18)) {
+            if (atNow + 18 <= 109 && temp <= 109 && temp /10 == atNow / 10 && temp >=0 && available(atNow + 18)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 18));
             }
             temp=atNow - 18;
