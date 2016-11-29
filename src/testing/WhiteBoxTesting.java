@@ -5,7 +5,7 @@ import com.company.BoardPiece;
 /**
  * Created by gideonpotok on 11/26/16.
  */
-public class Test  {
+public class WhiteBoxTesting {
     Object o = null;
     BoardPiece[] board;
     @org.junit.Before
@@ -59,6 +59,6 @@ public class Test  {
         //will be like for all latest turns if [0] is 53 all after are 53 too right?
         com.company.Louis computer =oneAwayFromWinHumanCantBlock();
         Integer[]  latestTurn  = computer.getTurn();
-        org.junit.Assert.assertTrue(new Integer(55) == latestTurn[1] || new Integer(75) == latestTurn[1]);
+        org.junit.Assert.assertTrue(new Integer(55) == latestTurn[1]);
     }
 }
