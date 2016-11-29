@@ -24,7 +24,7 @@ public class BlackBoxTesting {
         org.junit.Assert.assertNull("sorry was null", o);
     }
     com.company.Louis getComputer(int blue1, int blue2, int blue3, int blue4,
-                                          int gold1,int gold2,int gold3, int gold4){
+                                  int gold1,int gold2,int gold3, int gold4){
         for(int i = 0; i < 109; i++){
             board[i] = BoardPiece.EMPTY;
         }
@@ -63,6 +63,7 @@ public class BlackBoxTesting {
         //note: this has to be changed once it returns multiple answers
         //will be like for all latest turns if [0] is 53 all after are 53 too right?
         com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,53);
+        computer.decideTurn();
         Integer[]  latestTurn  = computer.getTurn();
         org.junit.Assert.assertEquals(new Integer(55), latestTurn[1]);
     }
@@ -91,12 +92,11 @@ public class BlackBoxTesting {
         org.junit.Assert.assertEquals(new Integer(45), computer.originalChange.getValue());
     }
 
-
-
-
+    /* Test where the brick have to options of where to move in order to win.
+     * The test will check that the brick is actually move to one of those to locations. */
     @org.junit.Test
-    public void testUtility_WinsOneMoveAway1(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,53);
+    public void testUtility_WinsOneMoveAwayTwoOptions(){
+        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,54);
         computer.decideTurn();
         int util = computer.alphaBetaPruning(10,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
         org.junit.Assert.assertEquals(9000, util);
@@ -104,20 +104,52 @@ public class BlackBoxTesting {
         org.junit.Assert.assertEquals(9000, computer.utilityProfile(10, true));
     }
     @org.junit.Test
-    public void testChoiceFrom_WinsOneMoveAway1(){
-        //note: this has to be changed once it returns multiple answers
-        //will be like for all latest turns if [0] is 53 all after are 53 too right?
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,53);
+    public void testChoiceFrom_WinsOneMoveAwayTwoOptions(){
+        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,54);
         computer.decideTurn();
         Integer[]  latestTurn  = computer.getTurn();
-        org.junit.Assert.assertEquals(new Integer(53), latestTurn[0]);
+        org.junit.Assert.assertEquals(new Integer(54), latestTurn[0]);
     }
     @org.junit.Test
-    public void testChoiceTo_WinsOneMoveAway1(){
-        //note: this has to be changed once it returns multiple answers
-        //will be like for all latest turns if [0] is 53 all after are 53 too right?
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,53);
+    public void testChoiceTo_WinsOneMoveAwayTwoOptions(){
+        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,54);
+        computer.decideTurn();
         Integer[]  latestTurn  = computer.getTurn();
-        org.junit.Assert.assertEquals(new Integer(55), latestTurn[1]);
+        if (latestTurn[1]==45) {
+            org.junit.Assert.assertEquals(new Integer(45), latestTurn[1]);
+        } else {
+            org.junit.Assert.assertEquals(new Integer(55), latestTurn[1]);
+        }
+    }
+
+    /* Test where the brick have to options of where to move in order to win.
+     * The test will check that the brick is actually move to one of those to locations. */
+    /*@org.junit.Test
+    public void testUtility_WinsTwoMovesAwayOneOption(){
+        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,51);
+        computer.decideTurn();
+        int util = computer.alphaBetaPruning(10,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
+        org.junit.Assert.assertEquals(9000, util);
+
+        org.junit.Assert.assertEquals(9000, computer.utilityProfile(10, true));
+    }*/
+    @org.junit.Test
+    public void testChoiceFrom_WinsTwoMovesAwayOneOption(){
+        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
+        computer.decideTurn();
+        Integer[]  latestTurn  = computer.getTurn();
+        org.junit.Assert.assertEquals(new Integer(58), latestTurn[0]);
+    }
+    @org.junit.Test
+    public void testChoiceTo_WinsTwoMovesAwayOneOption(){
+        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
+        //First move towards victory.
+        computer.decideTurn();
+        Integer[]  latestTurn  = computer.getTurn();
+        org.junit.Assert.assertEquals(new Integer(56), latestTurn[1]);
+        /*//Second move towards victory.
+        computer.decideTurn();
+        latestTurn  = computer.getTurn();
+        org.junit.Assert.assertEquals(new Integer(55), latestTurn[1]);*/
     }
 }
