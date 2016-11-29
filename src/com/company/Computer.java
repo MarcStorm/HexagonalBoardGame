@@ -272,7 +272,7 @@ public abstract class Computer {
                 for (Computer child : children) {
                     this.util = (Math.min(this.utilityProfile(depth), child.alphaBetaPruning( depth - 1, alpha, beta, !maximizing)));
                     int temp = beta;
-                    beta = Math.min(alpha, this.utilityProfile(depth));
+                    beta = Math.min(beta, this.utilityProfile(depth));
 
 
 
