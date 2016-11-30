@@ -50,30 +50,30 @@ public class Gideon extends Computer {
         if(!maximizing){
             // if MINimizing
             if(this.opponentWon()){
-                s = "min-imizing,opponent wins: " + this.toString();
+                s = "Gideon" +"min-imizing,opponent wins: " + this.toString();
                 util = depth*1000;
                 return util;
             }
             if(this.wins()){
-                s = "min-imizing,wins: " + this.toString();
+                s = "Gideon" +"min-imizing,wins: " + this.toString();
                 util = depth* (-1000);
                 return util;
             }
         }else {
             //If MAXimizing
             if (this.opponentWon()) {
-                s = "max-imizing,opponent wins: " + this.toString();
+                s = "Gideon" +"max-imizing,opponent wins: " + this.toString();
                 util = depth * (-1000);
                 return util;
             }
             if (this.wins()) {
-                s = "max-imizing,wins: " + this.toString();
+                s = "Gideon" +"max-imizing,wins: " + this.toString();
                 util = depth * 1000;
                 return util;
             }
         }
-        //System.out.println(s);
-
+        if(!s.equals(""))
+            System.out.println(s);
 
         return utilityProfile(depth);
 

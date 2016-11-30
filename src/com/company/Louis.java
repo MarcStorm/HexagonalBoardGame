@@ -22,7 +22,7 @@ public class Louis extends Computer {
         super(board,numTurns,me,adversery);//System.out.println("Call to 3");//System.out.println("mypiece is " + me);
         this.originalChange=null;
         getPlacesToGo(computer); // POSSIBLE MOVES I MIGHT MAKE
-        makeTree(3);//has to be ODD//System.out.println("\nTREE: " + this.toString());
+        makeTree(Main.depth);//has to be ODD//System.out.println("\nTREE: " + this.toString());
     }
     public boolean wins(){
         if(wins == null){
@@ -36,7 +36,7 @@ public class Louis extends Computer {
         //NOTE DO NOT CHANGE LEVEL from 10 unless makeTree increases in which case increase 10, too
         //It does not correspond to level exactly. And it gets negative if you have it the
         //the same number of levels as the tree.
-        this.alphaBetaPruning(10,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
+        this.alphaBetaPruning(Main.depth+6,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
         int max = Integer.MIN_VALUE;
         for(Computer c : children){
             if(c.util > max){
@@ -46,6 +46,7 @@ public class Louis extends Computer {
             }
 //            System.out.println(c.util);
         }
+        System.out.println(this.originalChange.getKey() + " " + this.originalChange.getValue());
 
         /*while(!changeStatic.isEmpty()) {
             fromto = changeStatic.poll();
@@ -127,7 +128,7 @@ public class Louis extends Computer {
 
                 //System.out.println("Call to 5: louis(..." + heritage);
                 Computer l = new Louis(adversery ,me , each, human, computer, heritage); //notice THE SWITCH
-                if((level%2 == 0) && l.wins()){
+                /*if((level%2 == 0) && l.wins()){
                     l = new Gideon(adversery,me,each,human,computer,heritage);
                     children.clear();
                     children.add(l);
@@ -137,9 +138,11 @@ public class Louis extends Computer {
                     children.clear();
                     children.add(l);
                     break;
-                }
+                }*/
                 children.add(l);
-
+                if(me != actualMe){
+                    break; // who cares what opponent does in this example.
+                }
                 /*if(level <= Main.noLongerConsiderAllOpponentsChoices && level %2 == 0) {
                     break;
                 }*/
@@ -169,39 +172,37 @@ public class Louis extends Computer {
 
 
 
-    public int utilityProfile(int depth){
 
-        return util;
-    }
     public int utilityProfile(int depth,boolean maximizing){
         String s = "";
         if(!maximizing){
             // if MINimizing
            if(this.opponentWon()){
-               s = "min-imizing,opponent wins: " + this.toString();
+               s = "Louis: "+ "min-imizing,opponent wins: " + this.toString();
                util = depth*1000;
                return util;
            }
            if(this.wins()){
-               s = "min-imizing,wins: " + this.toString();
+               s = "Louis: "+ "min-imizing,wins: " + this.toString();
                util = depth* (-1000);
                return util;
            }
         }else {
             //If MAXimizing
             if (this.opponentWon()) {
-                s = "max-imizing,opponent wins: " + this.toString();
+                s = "Louis: "+ "max-imizing,opponent wins: " + this.toString();
                 util = depth * (-1000);
                 return util;
             }
             if (this.wins()) {
-                s = "max-imizing,wins: " + this.toString();
+                s ="Louis: "+  "max-imizing,wins: " + this.toString();
                 util = depth * 1000;
                 return util;
             }
         }
-        //System.out.println(s);
-        return utilityProfile(depth);
+        if(!s.equals(""))
+            System.out.println(s);
+        return util;
     }
 
 }

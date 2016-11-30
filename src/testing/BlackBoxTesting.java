@@ -37,7 +37,7 @@ public class BlackBoxTesting {
         board[gold2] = BoardPiece.GOLD;
         board[gold3] = BoardPiece.GOLD;
         board[gold4] = BoardPiece.GOLD;
-        return new com.company.Louis(board, 0,
+        return new com.company.Louis(board, 100,
                 BoardPiece.GOLD, BoardPiece.BLUE );
     }
     @org.junit.Test
@@ -136,7 +136,7 @@ public class BlackBoxTesting {
     @org.junit.Test
     public void testChoiceFrom_WinsTwoMovesAwayOneOption(){
         com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
-        computer.decideTurn();
+
         Integer[]  latestTurn  = computer.getTurn();
         org.junit.Assert.assertEquals(new Integer(58), latestTurn[0]);
     }
@@ -144,7 +144,7 @@ public class BlackBoxTesting {
     public void testChoiceTo_WinsTwoMovesAwayOneOption(){
         com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
         //First move towards victory.
-        computer.decideTurn();
+
         Integer[]  latestTurn  = computer.getTurn();
         org.junit.Assert.assertEquals(new Integer(56), latestTurn[1]);
         /*//Second move towards victory.

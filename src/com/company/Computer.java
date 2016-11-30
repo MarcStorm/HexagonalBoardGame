@@ -15,7 +15,7 @@ import java.util.*;
 public abstract class Computer {
 
     int from = 0, to = 0, numTurns = 0;
-    Integer util = 0;
+    Integer util = Integer.MIN_VALUE;
     public AbstractMap.SimpleEntry<Integer, Integer> originalChange = null;
     Random r ;
     ArrayList<Integer> computer = new ArrayList<Integer>(),  human = new ArrayList<Integer>();
@@ -135,6 +135,12 @@ public abstract class Computer {
 
     public Integer[] getTurn() {
         Integer[] nextTurn = new Integer[2];
+        if(Main.startingPositionIsGivenAsTextInput ) {
+            for(int i = 0; i < 100; i++){
+                decideTurn();
+
+            }
+        }
         decideTurn();
         nextTurn[0] = from;
         nextTurn[1] = to;
@@ -227,7 +233,6 @@ public abstract class Computer {
 
     public abstract boolean isTerminalNode();
 
-    public abstract int utilityProfile(int depth);
     public abstract int utilityProfile(int depth, boolean maximizing);
     public boolean isMaxNode(boolean maximizing){
 
@@ -240,7 +245,7 @@ public abstract class Computer {
         return maximizing;
     }
     public int alphaBetaPruning(int depth, int alpha, int beta, boolean maximizing) {
-        if (this.isTerminalNode()) {
+        if (this.isTerminalNode() || this.opponentWon()) {
             return this.utilityProfile(depth,maximizing);
         } else {
             if (this.isMaxNode(maximizing)) {
@@ -248,8 +253,8 @@ public abstract class Computer {
                 for (Computer child : children) {
                     int temp =alpha;
                     int minValOfThisChoice = child.alphaBetaPruning(depth - 1, alpha, beta,!maximizing);
-                    this.util = (Math.max(this.utilityProfile(depth), minValOfThisChoice));
-                    alpha = Math.max(alpha, this.utilityProfile(depth));//in no other branch where min can choose lower then this is it worth it for min to keep looking around--ill never pick this choice/child
+                    this.util = (Math.max(this.utilityProfile(depth, maximizing), minValOfThisChoice));
+                    alpha = Math.max(alpha, this.util);//in no other branch where min can choose lower then this is it worth it for min to keep looking around--ill never pick this choice/child
                     //System.out.println("Call to 24b: this.util = " + this.utilityProfile() + ", alpha is + "+ alpha );
 
 
@@ -270,9 +275,9 @@ public abstract class Computer {
             } else {
                 this.util=Integer.MAX_VALUE;
                 for (Computer child : children) {
-                    this.util = (Math.min(this.utilityProfile(depth), child.alphaBetaPruning( depth - 1, alpha, beta, !maximizing)));
+                    this.util = (Math.min(this.utilityProfile(depth,maximizing), child.alphaBetaPruning( depth - 1, alpha, beta, !maximizing)));
                     int temp = beta;
-                    beta = Math.min(beta, this.utilityProfile(depth));
+                    beta = Math.min(beta, this.util);
 
 
 

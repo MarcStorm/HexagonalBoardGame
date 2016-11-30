@@ -6,9 +6,12 @@ import java.util.Random;
 import java.util.Scanner;
 public class Main {
     static int counter = 1;
+    static int depth = 3;
     public static void main(String[] args) {
         initialiseField();
-        Hexgame.doMain();
+        if(!startBoardRandomPositions) {
+            Hexgame.doMain();
+        }
     }
 
     /*Section 1: stuff teammates should be aware they can toggle*/
@@ -20,7 +23,9 @@ public class Main {
 
 
 
-    private static boolean  startingPositionIsGivenAsTextInput = false;
+    static boolean  startingPositionIsGivenAsTextInput = false;
+    static boolean closeToWin = true;
+    static boolean blockTheirWin=false;
     /*End Section 1*/
 
 
@@ -67,8 +72,7 @@ public class Main {
     private static void placeTokens() {
 
         int movesFromWin= 1;
-        boolean closeToWin = true;
-        boolean blockTheirWin=true;
+
         if(startingPositionIsGivenAsTextInput){
             scan = new Scanner(System.in);
             String blueStart = scan.nextLine();
@@ -101,17 +105,17 @@ public class Main {
                 arr.add(x);
                 board[x] = BoardPiece.BLUE;
             }
-        } else if(!closeToWin) {
+        } else if(closeToWin) {
 
             board[100] = BoardPiece.BLUE;
             board[109] = BoardPiece.BLUE;
             board[0] = BoardPiece.BLUE;
-            board[30] = BoardPiece.BLUE;
+            board[31] = BoardPiece.BLUE;
 
             board[15] = BoardPiece.GOLD;
             board[25] = BoardPiece.GOLD;
             board[35] = BoardPiece.GOLD;
-            board[53] = BoardPiece.GOLD;
+            board[58] = BoardPiece.GOLD;
 
         }else if (blockTheirWin){
             board[5] = BoardPiece.BLUE;
