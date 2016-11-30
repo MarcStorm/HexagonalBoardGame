@@ -1,7 +1,5 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -32,6 +30,7 @@ public class Main {
             Hexgame.doMain();
         }
     }
+
     private static BoardPiece[] setUpBoard(int blue1, int blue2, int blue3, int blue4,
                                   int gold1,int gold2,int gold3, int gold4){
 
@@ -50,6 +49,7 @@ public class Main {
         board[gold4] = BoardPiece.GOLD;
         return board;
     }
+
     /*Section 1: stuff teammates should be aware they can toggle*/
     final static int noLongerConsiderAllOpponentsChoices = -1;// make it even if you want to see it in action
     static PlayerType p2 = PlayerType.COMPUTER;
@@ -64,10 +64,7 @@ public class Main {
 
 
     /*Section 2: Should work, not yet tested*/
-
     /*End section 2*/
-    /*Section 2: soon to be toggleable*/
-
 
     /*Section 3: soon to be toggleable*/
     private static Computer computerGenerator() {
@@ -88,7 +85,6 @@ public class Main {
     private static Computer computer1 = null , computer2;
 
     private static Integer from = null;
-
 
     private static void initialiseField() {
         board = new BoardPiece[110];
@@ -213,8 +209,6 @@ public class Main {
     * called by computer player
     * */
     public static Computer click(Integer integer) {
-
-
         //return null;
         if(from == null ){
 
@@ -240,10 +234,6 @@ public class Main {
 
     }
 
-    private void printInput(){
-        //Look in this file's history for an early implementation.
-        //Deleted until it will be useful
-    }
     private static boolean withinRange(Integer from, Integer to) {
         if(to == from + 1 || to == from + 2 || to == from - 1 || to == from - 2 ) {
             if(to/10 == from /10)
@@ -258,57 +248,18 @@ public class Main {
         return false;
     }
 
-    private static void readPlayerPositions(BufferedReader bufferedReader) throws IOException {
-        //Look in this file's history for an early implementation.
-        //Deleted until it will be useful
-    }
     public static void isItAComputersTurn() {
-		/*
-		 if(FourInARow.p2 == PlayerType.COMPUTER && p2 != null){
-						Integer[]  latestTurn = new Integer[2];
-						final long start = System.nanoTime();
-						do {
-
-							latestTurn = p2.getTurn();
-
-
-						} while (System.nanoTime()-start < 1L*1000L*1000L*1000L);
-					FourInARow.click(latestTurn[0]);
-					p2 = FourInARow.click(latestTurn[1]);
-					FourInARow.currentTurn = BoardPiece.BLUE;
-		 */
-		/*if(p1 == PlayerType.COMPUTER && currentTurn == BoardPiece.BLUE){
-			computer1 = computerGenerator();
-
-			Integer[]  latestTurn = null;
-			final long start = System.nanoTime();
-			do {
-				latestTurn = computer1.getTurn();
-
-			} while (System.nanoTime()-start < 5L*1000L*1000L*1000L);
-			if(latestTurn != null) {
-				click(latestTurn[0]);
-				click(latestTurn[1]);
-			}
-    		numTurns--;
-
-		}*/
         if(p2 == PlayerType.COMPUTER  && currentTurn == BoardPiece.GOLD){
             computer2 = computerGenerator();
 
             Integer[]  latestTurn = null;
             final long start = System.nanoTime();
             latestTurn = computer2.getTurn();
-            /*
-            do {
-                latestTurn = computer2.getTurn();
 
-            } while (System.nanoTime()-start < 5L*1000L*1000L*1000L);*/
             if(latestTurn != null) {
                 click(latestTurn[0]);
                 click(latestTurn[1]);
             }
-
             numTurns--;
         }
     }
