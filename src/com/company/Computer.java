@@ -141,6 +141,41 @@ public abstract class Computer {
             }
         }
     }
+
+    // Created to replace getPlaceToGo if it has another bug (or to sanity check it)
+    public void getPlacesToGo2(ArrayList<Integer> whichPlayer) {
+        destinations = new HashSet<>();
+        for (Integer atNow : whichPlayer) {
+
+            if (atNow > 9 && atNow % 10 < 9) //Can we move UP 1?
+                destinations.add(new AbstractMap.SimpleEntry<>(atNow, atNow - 9));
+            if (atNow % 10 > 0 && atNow < 100) // Can we move DOWN 1?
+                destinations.add(new AbstractMap.SimpleEntry<>(atNow, atNow + 9));
+            if (atNow % 10 < 9) // Can we move NE 1?
+                destinations.add(new AbstractMap.SimpleEntry<>(atNow, atNow + 1));
+            if (atNow > 9) // Can we move NW 1?
+                destinations.add(new AbstractMap.SimpleEntry<>(atNow, atNow - 10));
+            if (atNow < 100) // Can we move SE 1?
+                destinations.add(new AbstractMap.SimpleEntry<>(atNow, atNow + 10));
+            if (atNow % 10 > 0) // Can we move SW 1?
+                destinations.add(new AbstractMap.SimpleEntry<>(atNow, atNow - 1));
+
+            if (atNow > 19 && atNow % 10 < 8) //Can we move UP 2?
+                destinations.add(new AbstractMap.SimpleEntry<>(atNow, atNow - 18));
+            if (atNow % 10 > 1 && atNow < 90) // Can we move DOWN 2?
+                destinations.add(new AbstractMap.SimpleEntry<>(atNow, atNow + 18));
+            if (atNow % 10 < 8) // Can we move NE 2?
+                destinations.add(new AbstractMap.SimpleEntry<>(atNow, atNow + 2));
+            if (atNow > 19) // Can we move NW 2?
+                destinations.add(new AbstractMap.SimpleEntry<>(atNow, atNow - 20));
+            if (atNow < 90) // Can we move SE 2?
+                destinations.add(new AbstractMap.SimpleEntry<>(atNow, atNow + 20));
+            if (atNow % 10 > 1) // Can we move SW 2?
+                destinations.add(new AbstractMap.SimpleEntry<>(atNow, atNow - 2));
+        }
+    }
+
+    
     abstract void makeTree(int level);
     abstract boolean decideTurn();
 
