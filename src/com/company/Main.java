@@ -1,9 +1,11 @@
 package com.company;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+
 public class Main {
     static int counter = 1;
     static int depth = 3;
