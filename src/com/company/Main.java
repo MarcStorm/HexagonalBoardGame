@@ -22,14 +22,14 @@ import java.util.Scanner;
  */
 public class Main {
     public static boolean lookAtTheirTurns = true;
-    static int counter = 1;
-    static int depth = 3;
-    static int depthPlus = 3;
+    public static int counter = 1;
+    public static int depth = 3;
+    public static int depthPlus = 3;
     static BoardPiece playerToStart;
 
     public static void main(String[] args) {
         initialiseField();
-        if(!startBoardRandomPositions) {
+        if(!startingPositionIsGivenAsTextInput) {
             Hexgame.doMain();
         }
     }
@@ -133,10 +133,13 @@ public class Main {
                 board[x] = BoardPiece.BLUE;
             }
         } else if(closeToWin) {
+
             if(fromWin==2)
-                setUpBoard(100,109,0,31,15,25,35,58);
+                setUpBoard(86,87,101,63,  72,27,36,45);
+                //setUpBoard(100,109,0,31,15,25,35,58);
             else
-                setUpBoard(100,109,0,30,  15,25,35,54);
+                setUpBoard(24,64,46,95,  16,27,36,45);
+                //setUpBoard(100,109,0,30,  15,25,35,54);
 
 
         }else if (blockTheirWin){
@@ -273,54 +276,5 @@ public class Main {
         //Look in this file's history for an early implementation.
         //Deleted until it will be useful
     }
-    public static void isItAComputersTurn() {
-		/*
-		 if(FourInARow.p2 == PlayerType.COMPUTER && p2 != null){
-						Integer[]  latestTurn = new Integer[2];
-						final long start = System.nanoTime();
-						do {
 
-							latestTurn = p2.getTurn();
-
-
-						} while (System.nanoTime()-start < 1L*1000L*1000L*1000L);
-					FourInARow.click(latestTurn[0]);
-					p2 = FourInARow.click(latestTurn[1]);
-					FourInARow.currentTurn = BoardPiece.BLUE;
-		 */
-		/*if(p1 == PlayerType.COMPUTER && currentTurn == BoardPiece.BLUE){
-			computer1 = computerGenerator();
-
-			Integer[]  latestTurn = null;
-			final long start = System.nanoTime();
-			do {
-				latestTurn = computer1.getTurn();
-
-			} while (System.nanoTime()-start < 5L*1000L*1000L*1000L);
-			if(latestTurn != null) {
-				click(latestTurn[0]);
-				click(latestTurn[1]);
-			}
-    		numTurns--;
-
-		}*/
-        if(p2 == PlayerType.COMPUTER  && currentTurn == BoardPiece.GOLD){
-            computer2 = computerGenerator();
-
-            Integer[]  latestTurn = null;
-            final long start = System.nanoTime();
-            latestTurn = computer2.getTurn();
-            /*
-            do {
-                latestTurn = computer2.getTurn();
-
-            } while (System.nanoTime()-start < 5L*1000L*1000L*1000L);*/
-            if(latestTurn != null) {
-                click(latestTurn[0]);
-                click(latestTurn[1]);
-            }
-
-            numTurns--;
-        }
-    }
 }

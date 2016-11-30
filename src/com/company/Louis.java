@@ -125,27 +125,17 @@ public class Louis extends Computer {
                 if(this.originalChange == null){
                     heritage=each;
                 }
-
-                //System.out.println("Call to 5: louis(..." + heritage);
                 Computer l = new Louis(adversery ,me , each, human, computer, heritage); //notice THE SWITCH
-                /*if((level%2 == 0) && l.wins()){
+                if(l.opponentWon()){
                     l = new Gideon(adversery,me,each,human,computer,heritage);
                     children.clear();
                     children.add(l);
                     break;
-                } else if (l.opponentWon()){
-                    l = new Gideon(adversery,me,each,human,computer,heritage);
-                    children.clear();
-                    children.add(l);
-                    break;
-                }*/
+                }
                 children.add(l);
                 if(me != actualMe && !Main.lookAtTheirTurns){
                     break; // who cares what opponent does in this example.
                 }
-                /*if(level <= Main.noLongerConsiderAllOpponentsChoices && level %2 == 0) {
-                    break;
-                }*/
 
             }
 

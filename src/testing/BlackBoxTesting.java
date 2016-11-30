@@ -1,6 +1,8 @@
 package testing;
 
 import com.company.BoardPiece;
+import com.company.Main;
+
 import java.util.*;
 /**
  * Created by gideonpotok on 11/26/16.
@@ -102,14 +104,14 @@ public class BlackBoxTesting {
     @org.junit.Test
     public void testChoiceFrom_WinsOneMoveAwayTwoOptions(){
         com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,54);
-        computer.decideTurn();
+        //computer.decideTurn();
         Integer[]  latestTurn  = computer.getTurn();
         org.junit.Assert.assertEquals(new Integer(54), latestTurn[0]);
     }
     @org.junit.Test
     public void testChoiceTo_WinsOneMoveAwayTwoOptions(){
         com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,54);
-        computer.decideTurn();
+        //computer.decideTurn();
         Integer[]  latestTurn  = computer.getTurn();
         if (latestTurn[1]==45) {
             org.junit.Assert.assertEquals(new Integer(45), latestTurn[1]);
@@ -117,6 +119,17 @@ public class BlackBoxTesting {
             org.junit.Assert.assertEquals(new Integer(55), latestTurn[1]);
         }
     }
+    @org.junit.Test
+    public void testChoice_1AwayWin(){
+        com.company.Louis computer = getComputer(24,64,46,95,  16,27,36,45);
+        //computer.decideTurn();
+        Integer[]  latestTurn  = computer.getTurn();
+        org.junit.Assert.assertEquals(new Integer(16), latestTurn[0]);
+        org.junit.Assert.assertEquals(new Integer(18), latestTurn[1]);
+
+    }
+
+
 
     /* Test where the brick have to options of where to move in order to win.
      * The test will check that the brick is actually move to one of those to locations. */

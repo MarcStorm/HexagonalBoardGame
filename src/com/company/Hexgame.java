@@ -146,26 +146,19 @@ class DrawingPanel extends JPanel
 
 
             p2 = Main.click(Hexmech.zeroTo110.get(p));
-            if(p2!=null && p2.opponentWon()){
-                createAndShowGUI();
-            }
+
             repaint();
-            if(Main.p2 == PlayerType.COMPUTER && p2 != null){
+            while(Main.p2 == PlayerType.COMPUTER && p2 != null && Main.currentTurn == BoardPiece.GOLD){
                 Integer[]  latestTurn = new Integer[2];
-                final long start = System.nanoTime();
-                //do {
-                    Main.currentTurn = BoardPiece.GOLD;
-                    latestTurn = p2.getTurn();
-
-
-                //} while (System.nanoTime()-start < 5L*1000L*1000L*1000L);
+                latestTurn[0] = -1;
+                latestTurn[1] = -1;
+                latestTurn = p2.getTurn();
                 Main.click(latestTurn[0]);
                 p2 = Main.click(latestTurn[1]);
 
             }
-            if(p2!=null && p2.opponentWon()){
-                createAndShowGUI();
-            }
+            repaint();
+
         }
     }
 } //end of MyMouseListener class

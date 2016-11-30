@@ -70,7 +70,7 @@ public class WhiteBoxTesting {
                 for (com.company.Computer c : gc.children) {
                     int count = 0;
                     for (Integer i : c.human) {
-                        count += (count % 5);
+                        count += (i % 5);
                     }
                     if (count == 0) {
                         winningFinalists.add(c);
@@ -83,17 +83,76 @@ public class WhiteBoxTesting {
     @org.junit.Test
     public void test15makeTreeSkipTheirDecisionSpace_WinsOneMoveAwayTwoOptions(){
         Main.lookAtTheirTurns = false;
+        Main.depth = 2;
+
         ArrayList<com.company.Computer> winningFinalists =test15makeTree_WinsOneMoveAwayTwoOptions();
-        org.junit.Assert.assertEquals(184, winningFinalists.size());
+        for(com.company.Computer c: winningFinalists){
+            org.junit.Assert.assertTrue(c.isTerminalNode());
+        }
+        for(com.company.Computer c: winningFinalists){
+            if(!c.opponentWon()){
+                System.out.println("");
+            }
+            //org.junit.Assert.assertTrue();
+            //org.junit.Assert.assertEquals(Main.depthPlus*1000, c.utilityProfile() );
+        }
+        org.junit.Assert.assertEquals(8, winningFinalists.size());
     }
     @org.junit.Test
     public void test15makeTree2_WinsOneMoveAwayTwoOptions(){
         com.company.Main.lookAtTheirTurns = true;
+        Main.depth = 2;
+
         ArrayList<com.company.Computer> winningFinalists =test15makeTree_WinsOneMoveAwayTwoOptions();
-        org.junit.Assert.assertEquals(5334, winningFinalists.size());
+        for(com.company.Computer c: winningFinalists){
+            org.junit.Assert.assertTrue(c.isTerminalNode());
+        }
+        for(com.company.Computer c: winningFinalists){
+            if(!c.opponentWon()){
+                System.out.println("");
+            }
+            //org.junit.Assert.assertTrue();
+            //org.junit.Assert.assertEquals(Main.depthPlus*1000, c.utilityProfile() );
+        }
+        org.junit.Assert.assertEquals(176, winningFinalists.size());
     }
 
+    @org.junit.Test
+    public void test16makeTreeSkipTheirDecisionSpace_WinsOneMoveAwayTwoOptions(){
+        Main.lookAtTheirTurns = false;
+        Main.depth = 3;
 
+        ArrayList<com.company.Computer> winningFinalists =test15makeTree_WinsOneMoveAwayTwoOptions();
+        for(com.company.Computer c: winningFinalists){
+            org.junit.Assert.assertTrue(!c.isTerminalNode());
+        }
+        for(com.company.Computer c: winningFinalists){
+            if(!c.opponentWon()){
+                System.out.println("");
+            }
+            //org.junit.Assert.assertTrue();
+            //org.junit.Assert.assertEquals(Main.depthPlus*1000, c.utilityProfile() );
+        }
+        org.junit.Assert.assertEquals(8, winningFinalists.size());
+    }
+    @org.junit.Test
+    public void test16makeTree2_WinsOneMoveAwayTwoOptions(){
+        com.company.Main.lookAtTheirTurns = true;
+        Main.depth = 3;
+
+        ArrayList<com.company.Computer> winningFinalists =test15makeTree_WinsOneMoveAwayTwoOptions();
+        for(com.company.Computer c: winningFinalists){
+            org.junit.Assert.assertTrue(!c.isTerminalNode());
+        }
+        for(com.company.Computer c: winningFinalists){
+            if(!c.opponentWon()){
+                System.out.println("");
+            }
+            //org.junit.Assert.assertTrue();
+            //org.junit.Assert.assertEquals(Main.depthPlus*1000, c.utilityProfile() );
+        }
+        org.junit.Assert.assertEquals(176, winningFinalists.size());
+    }
 
 
 

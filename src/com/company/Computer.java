@@ -20,8 +20,6 @@ public abstract class Computer {
     BoardPiece me,  adversery;
     public List<Computer> children ;
     static HashMap<AbstractMap.SimpleEntry<Integer, Integer>, Integer> movesAndUtils = null;
-    static Queue<AbstractMap.SimpleEntry<Integer, Integer>> BetterAndBetterOptions
-            = new ArrayDeque<AbstractMap.SimpleEntry<Integer, Integer>>();
     static BoardPiece actualMe;
     public Set<AbstractMap.SimpleEntry<Integer, Integer>> destinations;
 
@@ -52,6 +50,10 @@ public abstract class Computer {
     private boolean available(int location) {
         ////System.out.print("Call to 19, ");//System.out.println("My piece is " + me);
         for (Integer them : human) {
+            if (them == location)
+                return false;
+        }
+        for (Integer them : computer) {
             if (them == location)
                 return false;
         }
@@ -254,21 +256,6 @@ public abstract class Computer {
                     int minValOfThisChoice = child.alphaBetaPruning(depth - 1, alpha, beta,!maximizing);
                     this.util = (Math.max(this.utilityProfile(depth, maximizing), minValOfThisChoice));
                     alpha = Math.max(alpha, this.util);//in no other branch where min can choose lower then this is it worth it for min to keep looking around--ill never pick this choice/child
-                    //System.out.println("Call to 24b: this.util = " + this.utilityProfile() + ", alpha is + "+ alpha );
-
-
-
-                        //we can now unambiguously choose a child that will maximize payoff no matter
-                        //what min does. This is a choice with a higher payoff then we previously saw was available to us
-
-
-
-                        //System.out.println(this.originalChange.getKey() +" "+ this.originalChange.getValue());
-                        //Computer.changeStatic.offer(this.originalChange);
-
-                    //System.out.println("Computer.changeStatic.offer(child.originalChange); " + child.originalChange);
-                    //Computer.changeStatic.offer(child.originalChange);
-
                 }
                 return this.utilityProfile(depth,maximizing);
             } else {
@@ -277,11 +264,6 @@ public abstract class Computer {
                     this.util = (Math.min(this.utilityProfile(depth,maximizing), child.alphaBetaPruning( depth - 1, alpha, beta, !maximizing)));
                     int temp = beta;
                     beta = Math.min(beta, this.util);
-
-
-
-
-
                 }
                 return this.utilityProfile(depth,maximizing);
             }
@@ -290,11 +272,11 @@ public abstract class Computer {
 
 
 
-    boolean opponentWon(){
+    public boolean opponentWon(){
         Computer opponent = new Gideon(adversery,me,new AbstractMap.SimpleEntry<Integer, Integer>(human.get(0),human.get(0)),human,computer,originalChange);
         return opponent.wins();
     }
-    boolean wins(){
+    public boolean wins(){
 
         int count=0;
         int dimension = 0;
