@@ -19,6 +19,7 @@ import java.util.Scanner;
  * I pledge on my honor that I have not given or received any unauthorized assistance on this project.
  */
 public class Main {
+    static boolean  startingPositionIsGivenAsTextInput = false;
     public static boolean lookAtTheirTurns = true;
 
     public static int counter = 1;
@@ -33,7 +34,7 @@ public class Main {
     private static Integer numTurns = 300;
     private static final boolean startBoardRandomPositions = false;
 
-    static boolean  startingPositionIsGivenAsTextInput = false;
+
     static boolean closeToWin = true;
     static boolean blockTheirWin=false;
     static int fromWin=2;
@@ -54,21 +55,17 @@ public class Main {
     private static final boolean readInInput = false; //
     /*End Section 3*/
 
-    private static final int numberOfMarkers = 4;
-    private static int playerToMakeMove;
+
     public static BoardPiece[] board;
     public static BoardPiece currentTurn = BoardPiece.BLUE;
     private static Scanner scan;
-    private static Computer computer1 = null , computer2;
     private static Integer from = null;
     public static void main(String[] args) {
-
-
         initialiseField();
         if (!startingPositionIsGivenAsTextInput) {
             Hexgame.doMain();
         } else {
-            com.company.Computer l = computerGenerator();
+            Computer l = computerGenerator();
             l.getTurn();
         }
     }

@@ -68,7 +68,7 @@ public class Louis extends Computer {
     }
 
     public boolean decideTurn() {
-        makeTree(Main.depth);//has to be ODD//System.out.println("\nTREE: " + this.toString());
+        makeTree(Main.depth, true);//has to be ODD//System.out.println("\nTREE: " + this.toString());
         Computer.movesAndUtils = new HashMap<AbstractMap.SimpleEntry<Integer,Integer>, Integer>();
         //maybe somehow make it able to use the one from last turn
         //NOTE DO NOT CHANGE LEVEL from 10 unless makeTree increases in which case increase 10, too
@@ -94,7 +94,7 @@ public class Louis extends Computer {
         return false;
     }
 
-    public void makeTree(int level) {
+    public void makeTree(int level, boolean maximizing) {
         //System.out.println("Call to 5 ");
         //System.out.println("mypiece is " + me);
         children= new ArrayList<Computer>();
@@ -118,7 +118,7 @@ public class Louis extends Computer {
                     children.add(l);
                 }
 
-                if(me != actualMe && !Main.lookAtTheirTurns){
+                if(!maximizing && !Main.lookAtTheirTurns){
                     break;
                 }
 
@@ -137,7 +137,7 @@ public class Louis extends Computer {
 
         for(Computer lg : children){
             if(!lg.isTerminalNode())
-                lg.makeTree(level - 1 );
+                lg.makeTree(level - 1, !maximizing );
         }
 
     }

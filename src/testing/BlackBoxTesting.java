@@ -35,8 +35,10 @@ public class BlackBoxTesting {
         board[gold2] = BoardPiece.GOLD;
         board[gold3] = BoardPiece.GOLD;
         board[gold4] = BoardPiece.GOLD;
-        return new com.company.Louis(board, 100,
-                BoardPiece.GOLD, BoardPiece.BLUE );
+        com.company.Louis l =  new com.company.Louis(board, 100,
+                BoardPiece.GOLD, BoardPiece.BLUE);
+        l.decideTurn();
+        return l;
     }
     @org.junit.Test
     public void testUtility_WinsOneMoveAway(){

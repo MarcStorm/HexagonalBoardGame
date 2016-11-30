@@ -38,6 +38,7 @@ public class Jump {
         Main.depth = 2;
         ArrayList<Integer> a = new ArrayList<Integer>();
         a.add(54);
+
         ArrayList<com.company.Computer> winningFinalists = listOfwinningChildren(86, 87, 92, 63, 72, 27, 36, 45, a);
         org.junit.Assert.assertFalse(winningFinalists.isEmpty());
     }
@@ -106,8 +107,10 @@ public class Jump {
         board[gold2] = BoardPiece.GOLD;
         board[gold3] = BoardPiece.GOLD;
         board[gold4] = BoardPiece.GOLD;
-        return new com.company.Louis(board, 100,
+        com.company.Louis l =  new com.company.Louis(board, 100,
                 BoardPiece.GOLD, BoardPiece.BLUE);
+        l.decideTurn();
+        return l;
     }
 
 

@@ -20,7 +20,7 @@ public abstract class Computer {
     BoardPiece me,  adversery;
     public List<Computer> children ;
     static HashMap<AbstractMap.SimpleEntry<Integer, Integer>, Integer> movesAndUtils = null;
-    static BoardPiece actualMe;
+
     public Set<AbstractMap.SimpleEntry<Integer, Integer>> destinations;
 
     public Computer(){
@@ -35,7 +35,7 @@ public abstract class Computer {
         this.numTurns=numTurns;
 
         this.me=me;
-        actualMe= BoardPiece.GOLD;
+
         this.adversery=adversery;
 
         for(int i = 0; i <= 109; i++){
@@ -141,14 +141,15 @@ public abstract class Computer {
             }
         }
     }
-    abstract void makeTree(int level);
+    abstract void makeTree(int level,boolean maximizing);
     abstract boolean decideTurn();
 
     public Integer[] getTurn() {
+        System.err.println("from getTurn to error stream, playing as " + Main.currentTurn + " right now.");
         Integer[] nextTurn = new Integer[2];
         Main.depth=1;
         if(Main.startingPositionIsGivenAsTextInput ) {
-            for(int i = 1; i < 5; i++){
+            while(true){
 
                 decideTurn();
                 Main.depth ++;
@@ -156,9 +157,9 @@ public abstract class Computer {
             }
         } else {
             decideTurn();
+            nextTurn[0] = from;
+            nextTurn[1] = to;
         }
-        nextTurn[0] = from;
-        nextTurn[1] = to;
         return nextTurn;
     }
 
@@ -266,9 +267,6 @@ public abstract class Computer {
     public abstract int utilityProfile(int depth, boolean maximizing);
 
     public boolean isMaxNode(boolean maximizing){
-        if(maximizing == (me == actualMe)){
-            return maximizing;
-        }
         return maximizing;
     }
 

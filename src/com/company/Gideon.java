@@ -225,7 +225,7 @@ public class Gideon extends Computer {
         return true;
     }
 
-    public void makeTree(int level) {
+    public void makeTree(int level, boolean maximizing) {
     }
 }
 

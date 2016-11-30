@@ -23,15 +23,7 @@ public class WhiteBoxTesting {
     }
 
 
-    @org.junit.Test
-    public void testAlphaBetaReturnVal_akaUtil_WinsOneMoveAway() {
-        com.company.Louis computer = getComputer(100, 109, 0, 30, 15, 25, 35, 53);
-        computer.makeTree(0);
 
-        for (com.company.Computer child: computer.children){
-            org.junit.Assert.assertTrue(child.isTerminalNode());
-        }
-    }
 
 
     com.company.Louis getComputer(int blue1, int blue2, int blue3, int blue4,
@@ -48,8 +40,11 @@ public class WhiteBoxTesting {
         board[gold2] = BoardPiece.GOLD;
         board[gold3] = BoardPiece.GOLD;
         board[gold4] = BoardPiece.GOLD;
-        return new com.company.Louis(board, 0,
-                BoardPiece.GOLD, BoardPiece.BLUE );
+        com.company.Louis l =  new com.company.Louis(board, 100,
+                BoardPiece.GOLD, BoardPiece.BLUE);
+        l.decideTurn();
+        return l;
+
     }
     public ArrayList<com.company.Computer>  test15makeTree_WinsOneMoveAwayTwoOptions() {
 
@@ -133,7 +128,7 @@ public class WhiteBoxTesting {
             //org.junit.Assert.assertTrue();
             //org.junit.Assert.assertEquals(Main.depthPlus*1000, c.utilityProfile() );
         }
-        org.junit.Assert.assertEquals(8, winningFinalists.size());
+        org.junit.Assert.assertEquals(4, winningFinalists.size());
     }
     @org.junit.Test
     public void test16makeTree2_WinsOneMoveAwayTwoOptions(){
@@ -145,13 +140,11 @@ public class WhiteBoxTesting {
             org.junit.Assert.assertTrue(!c.isTerminalNode() || c.opponentWon());
         }
         for(com.company.Computer c: winningFinalists){
-            if(!c.opponentWon()){
-                System.out.println("");
-            }
-            //org.junit.Assert.assertTrue();
+
+            org.junit.Assert.assertTrue(c.opponentWon());
             //org.junit.Assert.assertEquals(Main.depthPlus*1000, c.utilityProfile() );
         }
-        org.junit.Assert.assertEquals(176, winningFinalists.size());
+        org.junit.Assert.assertEquals(88, winningFinalists.size());
     }
 
 
