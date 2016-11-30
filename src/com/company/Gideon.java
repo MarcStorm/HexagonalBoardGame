@@ -1,25 +1,26 @@
 package com.company;
+
+import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.*;
+
 /**
- * Created by gideonpotok on 11/5/16.
+ * @Author Anu Challa (achalla@terpmail.umd.edu)
+ * @Author Gideon Potok (gideon.potok@gmail.com)
+ * @Author Marc Storm Larsen (mslarsen1992@gmail.com)
+ *
+ * I pledge on my honor that I have not given or received any unauthorized assistance on this project.
  */
-//to do make sure this is max player
+// TODO: Make sure this is max player
 public class Gideon extends Computer {
     BoardPiece[] board;
-    public  boolean isTerminalNode(){
-        //System.out.println("Call to 9");
-        //System.out.println("my piece is " + me);
-        return true;
-    }
+
     public Gideon(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
         super(board,numTurns,me,adversery);
         this.board = board;
         //System.out.println("Call to 10");
         //System.out.println("my piece is " + me);
-
     }
+
     public Gideon(BoardPiece me, BoardPiece adversery,
                   AbstractMap.SimpleEntry<Integer, Integer> change,
                   ArrayList<Integer> positionsMe, ArrayList<Integer> positionsAdversery, AbstractMap.SimpleEntry<Integer, Integer> heritage) {
@@ -45,6 +46,13 @@ public class Gideon extends Computer {
         this.originalChange = heritage;
         //System.out.println("heritage = " + heritage);
     }
+
+    public  boolean isTerminalNode(){
+        //System.out.println("Call to 9");
+        //System.out.println("my piece is " + me);
+        return true;
+    }
+
     public int utilityProfile(int depth, boolean maximizing){
         String s = "";
         if(!maximizing){
