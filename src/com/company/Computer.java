@@ -285,26 +285,37 @@ public abstract class Computer {
      * @return              The return value is a value that is used by the algorithm itself for the search.
      */
     public int alphaBetaPruning(int depth, int alpha, int beta, boolean maximizing) {
+        // If the node is a terminal node or the depth is 0,
+        // then the bottom of the tree or the limited tree has been reached.
         if (this.isTerminalNode() || this.opponentWon()) {
             return this.utilityProfile(depth,maximizing);
         } else {
             if (this.isMaxNode(maximizing)) {
                 this.util = Integer.MIN_VALUE;
                 for (Computer child : children) {
-                    int temp =alpha;
                     int minValOfThisChoice = child.alphaBetaPruning(depth - 1, alpha, beta,!maximizing);
-                    this.util = (Math.max(this.utilityProfile(depth, maximizing), minValOfThisChoice));
-                    alpha = Math.max(alpha, this.util);//in no other branch where min can choose lower then this is it worth it for min to keep looking around--ill never pick this choice/child
+                    this.util = Math.max(this.util, minValOfThisChoice);
+                    alpha = Math.max(alpha, this.util);
+
+                    // Beta cut-off.
+                    if (beta <= alpha) {
+                        break;
+                    }
                 }
-                return this.utilityProfile(depth,maximizing);
+                return this.util;
             } else {
-                this.util=Integer.MAX_VALUE;
+                this.util = Integer.MAX_VALUE;
                 for (Computer child : children) {
-                    this.util = (Math.min(this.utilityProfile(depth,maximizing), child.alphaBetaPruning( depth - 1, alpha, beta, !maximizing)));
-                    int temp = beta;
+                    int maxValOfThisChoice = child.alphaBetaPruning(depth - 1, alpha, beta, !maximizing);
+                    this.util = Math.min(this.util, maxValOfThisChoice);
                     beta = Math.min(beta, this.util);
+
+                    // Alpha cut-off.
+                    if (beta <= alpha) {
+                        break;
+                    }
                 }
-                return this.utilityProfile(depth,maximizing);
+                return this.util;
             }
         }
     }
