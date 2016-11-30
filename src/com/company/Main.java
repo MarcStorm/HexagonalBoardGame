@@ -23,7 +23,7 @@ public class Main {
 
     public static int counter = 1;
     public static int depth = 3;
-    public static int depthPlus = 3;
+    public static int depthPlus = 2;
 
     public static void main(String[] args) {
         initialiseField();
@@ -103,8 +103,6 @@ public class Main {
      */
     private static void placeTokens() {
 
-        int movesFromWin= 1;
-
         if(startingPositionIsGivenAsTextInput){
             readInput();
         }
@@ -131,7 +129,8 @@ public class Main {
         } else if(closeToWin) {
 
             if(fromWin==2)
-                setUpBoard(86,87,101,63,  72,27,36,45);
+                setUpBoard(24,64,46,95,  16,27,36,45);
+                //setUpBoard(86,87,101,63,  72,27,36,45);
                 //setUpBoard(100,109,0,31,15,25,35,58);
             else
                 setUpBoard(24,64,46,95,  16,27,36,45);

@@ -124,7 +124,7 @@ public class WhiteBoxTesting {
 
         ArrayList<com.company.Computer> winningFinalists =test15makeTree_WinsOneMoveAwayTwoOptions();
         for(com.company.Computer c: winningFinalists){
-            org.junit.Assert.assertTrue(!c.isTerminalNode());
+            org.junit.Assert.assertTrue(!c.isTerminalNode() || c.opponentWon() );
         }
         for(com.company.Computer c: winningFinalists){
             if(!c.opponentWon()){
@@ -142,7 +142,7 @@ public class WhiteBoxTesting {
 
         ArrayList<com.company.Computer> winningFinalists =test15makeTree_WinsOneMoveAwayTwoOptions();
         for(com.company.Computer c: winningFinalists){
-            org.junit.Assert.assertTrue(!c.isTerminalNode());
+            org.junit.Assert.assertTrue(!c.isTerminalNode() || c.opponentWon());
         }
         for(com.company.Computer c: winningFinalists){
             if(!c.opponentWon()){

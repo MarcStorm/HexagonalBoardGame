@@ -3,17 +3,10 @@
   <component name="ChangeListManager">
     <list id="df8648ae-a26f-4fb3-a1a7-f51463fd05e4" name="Default" comment="Made it human vs computer" />
     <list default="true" id="61294679-6380-482c-8b45-3f271ac66724" name="New changelist" comment="Insignificant.&#10;">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/company/Main.java.orig" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Three/com/company/BoardPiece.class" afterPath="$PROJECT_DIR$/out/production/Three/com/company/BoardPiece.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Three/com/company/Gideon.class" afterPath="$PROJECT_DIR$/out/production/Three/com/company/Gideon.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Three/com/company/Louis.class" afterPath="$PROJECT_DIR$/out/production/Three/com/company/Louis.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Three/com/company/PlayerType.class" afterPath="$PROJECT_DIR$/out/production/Three/com/company/PlayerType.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Computer.java" afterPath="$PROJECT_DIR$/src/com/company/Computer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Gideon.java" afterPath="$PROJECT_DIR$/src/com/company/Gideon.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Louis.java" afterPath="$PROJECT_DIR$/src/com/company/Louis.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Main.java" afterPath="$PROJECT_DIR$/src/com/company/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/PlayerType.java" afterPath="$PROJECT_DIR$/src/com/company/PlayerType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/testing/WhiteBoxTesting.java" afterPath="$PROJECT_DIR$/src/testing/WhiteBoxTesting.java" />
     </list>
     <ignored path="Four.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,19 +60,84 @@
       <file leaf-file-name="Computer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Computer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4667">
-              <caret line="328" column="31" selection-start-line="328" selection-start-column="31" selection-end-line="328" selection-end-column="31" />
+            <state relative-caret-position="176">
+              <caret line="125" column="31" selection-start-line="125" selection-start-column="31" selection-end-line="125" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Louis.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WhiteBoxTesting.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/testing/WhiteBoxTesting.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1073">
+              <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1674#1696#0" expanded="true" />
+                <element signature="e#2131#2153#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Louis.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Louis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-223">
+            <state relative-caret-position="461">
               <caret line="119" column="15" selection-start-line="119" selection-start-column="15" selection-end-line="119" selection-end-column="15" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BoardPiece.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/BoardPiece.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+              <folding>
+                <element signature="docComment;class#Main#0" expanded="false" />
+                <element signature="docComment;method#placeTokens#0;class#Main#0" expanded="false" />
+                <element signature="docComment;method#readInput#0;class#Main#0" expanded="false" />
+                <element signature="method#readInput#0;class#Main#0" expanded="false" />
+                <element signature="docComment;method#readPlayersPositions#0;class#Main#0" expanded="false" />
+                <element signature="method#readPlayersPositions#0;class#Main#0" expanded="false" />
+                <element signature="docComment;method#readStartingPlayer#0;class#Main#0" expanded="false" />
+                <element signature="method#takeTurn#0;class#Main#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java.orig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Main.java.orig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-165">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlackBoxTesting.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/testing/BlackBoxTesting.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,12 +177,12 @@
         <option value="$PROJECT_DIR$/src/com/company/Hexgame.java" />
         <option value="$PROJECT_DIR$/src/testing/Test.java" />
         <option value="$PROJECT_DIR$/src/testing/BlackBoxTesting.java" />
-        <option value="$PROJECT_DIR$/src/testing/WhiteBoxTesting.java" />
         <option value="$PROJECT_DIR$/src/com/company/PlayerType.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Main.java" />
         <option value="$PROJECT_DIR$/src/com/company/Gideon.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Computer.java" />
         <option value="$PROJECT_DIR$/src/com/company/Louis.java" />
+        <option value="$PROJECT_DIR$/src/testing/WhiteBoxTesting.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Computer.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Main.java" />
       </list>
     </option>
   </component>
@@ -200,10 +258,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="testing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -247,7 +301,7 @@
       <recent name="com.company" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.testing in Three">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -284,32 +338,6 @@
       <option name="MAIN_CLASS_NAME" value="testing.BlackBoxTesting" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="BlackBoxTesting.test15makeTree_WinsOneMoveAwayTwoOptions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="testing.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="Three" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="testing" />
-      <option name="MAIN_CLASS_NAME" value="testing.BlackBoxTesting" />
-      <option name="METHOD_NAME" value="test15makeTree_WinsOneMoveAwayTwoOptions" />
-      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -374,6 +402,32 @@
       <patterns />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="testing in Three" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="Three" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="testing" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -624,17 +678,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.BlackBoxTesting" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.BlackBoxTesting.test15makeTree_WinsOneMoveAwayTwoOptions" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.BlackBoxTesting.test15makeTree2_WinsOneMoveAwayTwoOptions" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.WhiteBoxTesting" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.BlackBoxTesting.test15makeTree2_WinsOneMoveAwayTwoOptions" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.WhiteBoxTesting" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.testing in Three" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.WhiteBoxTesting" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.BlackBoxTesting" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.BlackBoxTesting.test15makeTree2_WinsOneMoveAwayTwoOptions" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.BlackBoxTesting.test15makeTree_WinsOneMoveAwayTwoOptions" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.testing in Three" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.WhiteBoxTesting" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.BlackBoxTesting" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.BlackBoxTesting.test15makeTree2_WinsOneMoveAwayTwoOptions" />
       </list>
     </recent_temporary>
   </component>
@@ -677,21 +731,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BlackBoxTesting - 2016.11.30 at 10h 57m 24s.xml">
-      <configuration name="BlackBoxTesting" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="WhiteBoxTesting - 2016.11.30 at 10h 57m 55s.xml">
-      <configuration name="WhiteBoxTesting" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="WhiteBoxTesting - 2016.11.30 at 11h 10m 28s.xml">
-      <configuration name="WhiteBoxTesting" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="WhiteBoxTesting - 2016.11.30 at 11h 10m 44s.xml">
-      <configuration name="WhiteBoxTesting" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="WhiteBoxTesting - 2016.11.30 at 11h 11m 14s.xml">
-      <configuration name="WhiteBoxTesting" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="WhiteBoxTesting - 2016.11.30 at 11h 11m 46s.xml">
       <configuration name="WhiteBoxTesting" configurationId="JUnit" />
     </history-entry>
@@ -706,6 +745,21 @@
     </history-entry>
     <history-entry file="WhiteBoxTesting - 2016.11.30 at 11h 52m 03s.xml">
       <configuration name="WhiteBoxTesting" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="testing_in_Three - 2016.11.30 at 15h 34m 11s.xml">
+      <configuration name="testing in Three" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="testing_in_Three - 2016.11.30 at 15h 35m 38s.xml">
+      <configuration name="testing in Three" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="testing_in_Three - 2016.11.30 at 15h 48m 47s.xml">
+      <configuration name="testing in Three" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="testing_in_Three - 2016.11.30 at 15h 56m 19s.xml">
+      <configuration name="testing in Three" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="testing_in_Three - 2016.11.30 at 16h 01m 58s.xml">
+      <configuration name="testing in Three" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
@@ -726,12 +780,13 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287841" sideWeight="0.49427754" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32754344" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49129352" sideWeight="0.5457797" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3377551" sideWeight="0.49427754" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28893661" sideWeight="0.45422032" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33706468" sideWeight="0.49427754" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2885572" sideWeight="0.45422032" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32462686" sideWeight="0.49427754" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -749,7 +804,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32754344" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17811158" sideWeight="0.5074074" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -826,14 +880,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/Louis.java</url>
-          <line>113</line>
-          <properties />
-          <option name="timeStamp" value="131" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="142" />
     </breakpoint-manager>
     <watches-manager />
@@ -843,22 +889,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/company/Gideon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1560">
-          <caret line="231" column="0" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#inRangeOfImportantStuff#0;class#Gideon#0" expanded="false" />
-            <element signature="method#inRangeOfNotImportantStuff#0;class#Gideon#0" expanded="false" />
-            <element signature="method#maybeUseHelper#0;class#Gideon#0" expanded="false" />
-            <element signature="method#maybeUse#0;class#Gideon#0" expanded="false" />
-            <element signature="method#fromVsTo_toWins#0;class#Gideon#0" expanded="false" />
-            <element signature="method#fromVsTo_toWins_helper#0;class#Gideon#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Computer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -924,7 +954,6 @@
           <folding>
             <element signature="docComment;class#Main#0" expanded="false" />
             <element signature="docComment;method#placeTokens#0;class#Main#0" expanded="false" />
-            <element signature="method#placeTokens#0;class#Main#0" expanded="false" />
             <element signature="docComment;method#readInput#0;class#Main#0" expanded="false" />
             <element signature="method#readInput#0;class#Main#0" expanded="false" />
             <element signature="docComment;method#readPlayersPositions#0;class#Main#0" expanded="false" />
@@ -1036,7 +1065,6 @@
           <folding>
             <element signature="docComment;class#Main#0" expanded="false" />
             <element signature="docComment;method#placeTokens#0;class#Main#0" expanded="false" />
-            <element signature="method#placeTokens#0;class#Main#0" expanded="false" />
             <element signature="docComment;method#readInput#0;class#Main#0" expanded="false" />
             <element signature="method#readInput#0;class#Main#0" expanded="false" />
             <element signature="docComment;method#readPlayersPositions#0;class#Main#0" expanded="false" />
@@ -1125,7 +1153,6 @@
           <folding>
             <element signature="docComment;class#Main#0" expanded="false" />
             <element signature="docComment;method#placeTokens#0;class#Main#0" expanded="false" />
-            <element signature="method#placeTokens#0;class#Main#0" expanded="false" />
             <element signature="docComment;method#readInput#0;class#Main#0" expanded="false" />
             <element signature="method#readInput#0;class#Main#0" expanded="false" />
             <element signature="docComment;method#readPlayersPositions#0;class#Main#0" expanded="false" />
@@ -1214,7 +1241,6 @@
           <folding>
             <element signature="docComment;class#Main#0" expanded="false" />
             <element signature="docComment;method#placeTokens#0;class#Main#0" expanded="false" />
-            <element signature="method#placeTokens#0;class#Main#0" expanded="false" />
             <element signature="docComment;method#readInput#0;class#Main#0" expanded="false" />
             <element signature="method#readInput#0;class#Main#0" expanded="false" />
             <element signature="docComment;method#readPlayersPositions#0;class#Main#0" expanded="false" />
@@ -1274,58 +1300,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/testing/WhiteBoxTesting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="114" column="17" selection-start-line="114" selection-start-column="17" selection-end-line="114" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1674#1696#0" expanded="true" />
-            <element signature="e#2131#2153#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/testing/BlackBoxTesting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/PlayerType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="13" column="3" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="244" column="17" selection-start-line="244" selection-start-column="17" selection-end-line="244" selection-end-column="17" />
-          <folding>
-            <element signature="docComment;class#Main#0" expanded="false" />
-            <element signature="docComment;method#placeTokens#0;class#Main#0" expanded="false" />
-            <element signature="method#placeTokens#0;class#Main#0" expanded="false" />
-            <element signature="docComment;method#readInput#0;class#Main#0" expanded="false" />
-            <element signature="method#readInput#0;class#Main#0" expanded="false" />
-            <element signature="docComment;method#readPlayersPositions#0;class#Main#0" expanded="false" />
-            <element signature="method#readPlayersPositions#0;class#Main#0" expanded="false" />
-            <element signature="docComment;method#readStartingPlayer#0;class#Main#0" expanded="false" />
-            <element signature="method#takeTurn#0;class#Main#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/BoardPiece.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -1346,19 +1324,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Computer.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/BoardPiece.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4667">
-          <caret line="328" column="31" selection-start-line="328" selection-start-column="31" selection-end-line="328" selection-end-column="31" />
+        <state relative-caret-position="210">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Louis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-223">
+        <state relative-caret-position="461">
           <caret line="119" column="15" selection-start-line="119" selection-start-column="15" selection-end-line="119" selection-end-column="15" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java.orig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-165">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testing/BlackBoxTesting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Computer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="125" column="31" selection-start-line="125" selection-start-column="31" selection-end-line="125" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testing/WhiteBoxTesting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1073">
+          <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1674#1696#0" expanded="true" />
+            <element signature="e#2131#2153#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+          <folding>
+            <element signature="docComment;class#Main#0" expanded="false" />
+            <element signature="docComment;method#placeTokens#0;class#Main#0" expanded="false" />
+            <element signature="docComment;method#readInput#0;class#Main#0" expanded="false" />
+            <element signature="method#readInput#0;class#Main#0" expanded="false" />
+            <element signature="docComment;method#readPlayersPositions#0;class#Main#0" expanded="false" />
+            <element signature="method#readPlayersPositions#0;class#Main#0" expanded="false" />
+            <element signature="docComment;method#readStartingPlayer#0;class#Main#0" expanded="false" />
+            <element signature="method#takeTurn#0;class#Main#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
