@@ -325,6 +325,10 @@ public abstract class Computer {
         return opponent.wins();
     }
 
+    /**
+     * This method will determine if
+     * @return
+     */
     boolean wins(){
 
         int count=0;
@@ -341,6 +345,7 @@ public abstract class Computer {
         if(formsDLine(dimension, computer.get(1),computer.get(2) ) && formsDLine(dimension, computer.get(1),computer.get(3) )){
             count++;
             count++;
+            //count += 2;
         }
 
         boolean aligned = false;
