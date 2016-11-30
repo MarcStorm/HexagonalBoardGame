@@ -236,7 +236,7 @@ public abstract class Computer {
     }
 
     /* Is their piece blocking my 4 in a row? */
-    /*TO DO: this is a very temporary implementation change soon*/
+    /* TODO: this is a very temporary implementation change soon*/
     public boolean between(Integer theirPiece) {
         //eventually we can just ask if it is between the most extreme of computers pieces
         for(int i = 0; i < 4; i++){
@@ -259,13 +259,9 @@ public abstract class Computer {
     public abstract int utilityProfile(int depth, boolean maximizing);
 
     public boolean isMaxNode(boolean maximizing){
-
-        //System.out.println("Call to 23");//System.out.println("My piece is " + me);
         if(maximizing == (me == actualMe)){
             return maximizing;
         }
-        //System.out.print("ERROR in isMaxNode, ");
-        //System.out.println("me is " + me+ ", p2 aka actualME is " + actualMe + ", maximizing is " + maximizing);
         return maximizing;
     }
 
