@@ -1,7 +1,7 @@
 package testing;
 
 import com.company.BoardPiece;
-
+import java.util.*;
 /**
  * Created by gideonpotok on 11/26/16.
  */
@@ -18,11 +18,7 @@ public class BlackBoxTesting {
     public void tearDown(){
 
     }
-    @org.junit.Test
-    public void test1(){
-        o = null;
-        org.junit.Assert.assertNull("sorry was null", o);
-    }
+
     com.company.Louis getComputer(int blue1, int blue2, int blue3, int blue4,
                                   int gold1,int gold2,int gold3, int gold4){
         for(int i = 0; i < 109; i++){
@@ -133,23 +129,9 @@ public class BlackBoxTesting {
 
         org.junit.Assert.assertEquals(9000, computer.utilityProfile(10, true));
     }*/
-    @org.junit.Test
-    public void testChoiceFrom_WinsTwoMovesAwayOneOption(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
 
-        Integer[]  latestTurn  = computer.getTurn();
-        org.junit.Assert.assertEquals(new Integer(58), latestTurn[0]);
-    }
-    @org.junit.Test
-    public void testChoiceTo_WinsTwoMovesAwayOneOption(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
-        //First move towards victory.
 
-        Integer[]  latestTurn  = computer.getTurn();
-        org.junit.Assert.assertEquals(new Integer(56), latestTurn[1]);
-        /*//Second move towards victory.
-        computer.decideTurn();
-        latestTurn  = computer.getTurn();
-        org.junit.Assert.assertEquals(new Integer(55), latestTurn[1]);*/
-    }
+
+
+
 }

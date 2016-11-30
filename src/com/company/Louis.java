@@ -36,7 +36,7 @@ public class Louis extends Computer {
         //NOTE DO NOT CHANGE LEVEL from 10 unless makeTree increases in which case increase 10, too
         //It does not correspond to level exactly. And it gets negative if you have it the
         //the same number of levels as the tree.
-        this.alphaBetaPruning(Main.depth+6,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
+        this.alphaBetaPruning(Main.depth+Main.depthPlus,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
         int max = Integer.MIN_VALUE;
         for(Computer c : children){
             if(c.util > max){
@@ -140,7 +140,7 @@ public class Louis extends Computer {
                     break;
                 }*/
                 children.add(l);
-                if(me != actualMe){
+                if(me != actualMe && !Main.lookAtTheirTurns){
                     break; // who cares what opponent does in this example.
                 }
                 /*if(level <= Main.noLongerConsiderAllOpponentsChoices && level %2 == 0) {

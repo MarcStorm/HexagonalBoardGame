@@ -1,6 +1,7 @@
 package testing;
 import java.util.*;
 import com.company.BoardPiece;
+import com.company.Main;
 
 /**
  * Created by gideonpotok on 11/26/16.
@@ -32,6 +33,7 @@ public class WhiteBoxTesting {
         }
     }
 
+
     com.company.Louis getComputer(int blue1, int blue2, int blue3, int blue4,
                                   int gold1,int gold2,int gold3, int gold4){
         for(int i = 0; i < 109; i++){
@@ -48,6 +50,97 @@ public class WhiteBoxTesting {
         board[gold4] = BoardPiece.GOLD;
         return new com.company.Louis(board, 0,
                 BoardPiece.GOLD, BoardPiece.BLUE );
+    }
+    public ArrayList<com.company.Computer>  test15makeTree_WinsOneMoveAwayTwoOptions() {
+
+        com.company.Louis computer = getComputer(100, 109, 0, 30, 15, 25, 35, 58);
+        com.company.Computer winner = null;
+        ArrayList<com.company.Computer> winningChildren = new ArrayList<com.company.Computer>();
+        for (com.company.Computer child : computer.children) {
+            if (child.originalChange.getKey().equals(new Integer(58))) {
+                if (child.human.contains(56) || child.human.contains(76) || child.human.contains(57) || child.human.contains(67)) {
+                    winningChildren.add(child);
+                }
+            }
+
+        }
+        ArrayList<com.company.Computer> winningFinalists = new ArrayList<com.company.Computer>();
+        for (com.company.Computer w : winningChildren) {
+            for (com.company.Computer gc : w.children) {
+                for (com.company.Computer c : gc.children) {
+                    int count = 0;
+                    for (Integer i : c.human) {
+                        count += (count % 5);
+                    }
+                    if (count == 0) {
+                        winningFinalists.add(c);
+                    }
+                }
+            }
+        }
+        return winningFinalists;
+    }
+    @org.junit.Test
+    public void test15makeTreeSkipTheirDecisionSpace_WinsOneMoveAwayTwoOptions(){
+        Main.lookAtTheirTurns = false;
+        ArrayList<com.company.Computer> winningFinalists =test15makeTree_WinsOneMoveAwayTwoOptions();
+        org.junit.Assert.assertEquals(184, winningFinalists.size());
+    }
+    @org.junit.Test
+    public void test15makeTree2_WinsOneMoveAwayTwoOptions(){
+        com.company.Main.lookAtTheirTurns = true;
+        ArrayList<com.company.Computer> winningFinalists =test15makeTree_WinsOneMoveAwayTwoOptions();
+        org.junit.Assert.assertEquals(5334, winningFinalists.size());
+    }
+
+
+
+
+
+
+
+    @org.junit.Test
+    public void test15ChoiceFrom_WinsTwoMovesAwayOneOption(){
+        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
+
+        Integer[]  latestTurn  = computer.getTurn();
+        org.junit.Assert.assertTrue(58 == latestTurn[0]);
+        org.junit.Assert.assertEquals(new Integer(58), latestTurn[0]);
+    }
+    @org.junit.Test
+    public void test15ChoiceTo_WinsTwoMovesAwayOneOption(){
+        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
+        //First move towards victory.
+
+        Integer[]  latestTurn  = computer.getTurn();
+        org.junit.Assert.assertEquals(new Integer(56), latestTurn[1]);
+
+        /*//Second move towards victory.
+        computer.decideTurn();
+        latestTurn  = computer.getTurn();
+        org.junit.Assert.assertEquals(new Integer(55), latestTurn[1]);*/
+    }
+
+
+
+
+    @org.junit.Test
+    public void test15levelOneOfTree_WinsOneMoveAwayTwoOptions(){
+        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
+        com.company.Computer winner = null;
+        ArrayList<com.company.Computer> winningChildren= new ArrayList<com.company.Computer>();
+        for(com.company.Computer child: computer.children){
+            if(child.originalChange.getKey().equals(new Integer(58))){
+                if(child.human.contains(56) || child.human.contains(76) || child.human.contains(57) || child.human.contains(67)){
+                    winningChildren.add(child);
+                }
+            }
+
+        }
+        //System.out.println("winning children was " + winningChildren.toString());
+        org.junit.Assert.assertEquals(4, winningChildren.size());
+
+
     }
 
 

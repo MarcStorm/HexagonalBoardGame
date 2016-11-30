@@ -18,7 +18,7 @@ public abstract class Computer {
     Integer util = Integer.MIN_VALUE;
     public AbstractMap.SimpleEntry<Integer, Integer> originalChange = null;
     Random r ;
-    ArrayList<Integer> computer = new ArrayList<Integer>(),  human = new ArrayList<Integer>();
+    public ArrayList<Integer> computer = new ArrayList<Integer>(),  human = new ArrayList<Integer>();
     BoardPiece me,  adversery;
     public List<Computer> children ;
     static HashMap<AbstractMap.SimpleEntry<Integer, Integer>, Integer> movesAndUtils = null;
@@ -107,21 +107,21 @@ public abstract class Computer {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 20));
             }
             temp = atNow - 9;
-            if ( temp >= 0 && temp <= 109 && temp /10 == atNow / 10 &&  temp >=0&& available(atNow - 9)) {
+            if ( temp >= 0 && temp <= 109 && temp < atNow  &&  temp >=0&& available(atNow - 9)) {
 
                     destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 9));
             }
 
             temp= atNow + 9;
-            if (atNow + 9 <= 109 && temp <= 109 && temp /10 == atNow / 10 && temp >=0 && available(atNow + 9)) {
+            if (atNow + 9 <= 109 && temp <= 109 && temp > atNow && temp >=0 && available(atNow + 9)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 9));
             }
             temp=atNow + 18;
-            if (atNow + 18 <= 109 && temp <= 109 && temp /10 == atNow / 10 && temp >=0 && available(atNow + 18)) {
+            if (atNow + 18 <= 109 && temp <= 109 && temp > atNow  && temp >=0 && available(atNow + 18)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 18));
             }
             temp=atNow - 18;
-            if (temp >= 0 && temp <= 109 && temp /10 == atNow / 10 && available(atNow - 18)) {
+            if (temp >= 0 && temp <= 109 && temp < atNow  && available(atNow - 18)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 18));
             }
 

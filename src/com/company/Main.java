@@ -5,15 +5,33 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 public class Main {
+    public static boolean lookAtTheirTurns = true;
     static int counter = 1;
-    static int depth = 3;
+    static int depth = 3, depthPlus = 3;
     public static void main(String[] args) {
         initialiseField();
         if(!startBoardRandomPositions) {
             Hexgame.doMain();
         }
     }
+    private static BoardPiece[] setUpBoard(int blue1, int blue2, int blue3, int blue4,
+                                  int gold1,int gold2,int gold3, int gold4){
 
+        board = new BoardPiece[110];
+        for(int i = 0; i < 109; i++){
+            board[i] = BoardPiece.EMPTY;
+        }
+        board[blue1] = BoardPiece.BLUE;
+        board[blue2] = BoardPiece.BLUE;
+        board[blue3] = BoardPiece.BLUE;
+        board[blue4] = BoardPiece.BLUE;
+
+        board[gold1] = BoardPiece.GOLD;
+        board[gold2] = BoardPiece.GOLD;
+        board[gold3] = BoardPiece.GOLD;
+        board[gold4] = BoardPiece.GOLD;
+        return board;
+    }
     /*Section 1: stuff teammates should be aware they can toggle*/
     final static int noLongerConsiderAllOpponentsChoices = -1;// make it even if you want to see it in action
     static PlayerType p2 = PlayerType.COMPUTER;
@@ -26,6 +44,7 @@ public class Main {
     static boolean  startingPositionIsGivenAsTextInput = false;
     static boolean closeToWin = true;
     static boolean blockTheirWin=false;
+    static int fromWin=2;
     /*End Section 1*/
 
 
@@ -106,28 +125,17 @@ public class Main {
                 board[x] = BoardPiece.BLUE;
             }
         } else if(closeToWin) {
+            if(fromWin==2)
+                setUpBoard(100,109,0,31,15,25,35,58);
+            else
+                setUpBoard(100,109,0,30,  15,25,35,54);
 
-            board[100] = BoardPiece.BLUE;
-            board[109] = BoardPiece.BLUE;
-            board[0] = BoardPiece.BLUE;
-            board[31] = BoardPiece.BLUE;
-
-            board[15] = BoardPiece.GOLD;
-            board[25] = BoardPiece.GOLD;
-            board[35] = BoardPiece.GOLD;
-            board[58] = BoardPiece.GOLD;
 
         }else if (blockTheirWin){
-            board[5] = BoardPiece.BLUE;
-            board[15] = BoardPiece.BLUE;
-            board[95] = BoardPiece.BLUE;
-            board[109] = BoardPiece.BLUE;
+            setUpBoard(5,15,95,109,44,54,0,100);
 
-            board[44] = BoardPiece.GOLD;
-            board[54] = BoardPiece.GOLD;
-            board[0] = BoardPiece.GOLD;
-            board[100] = BoardPiece.GOLD;
         } else{
+            setUpBoard(0,9,103,106,100,109,3,6);
             board[0] = BoardPiece.GOLD;
             board[9] = BoardPiece.GOLD;
             board[103] = BoardPiece.GOLD;
