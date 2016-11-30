@@ -24,7 +24,7 @@ public class Main {
     public static boolean lookAtTheirTurns = true;
     static int counter = 1;
     static int depth = 3;
-
+    static int depthPlus = 3;
     static BoardPiece playerToStart;
 
     public static void main(String[] args) {

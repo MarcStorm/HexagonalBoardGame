@@ -104,22 +104,23 @@ public abstract class Computer {
             if (atNow + 20 <= 109 && temp <= 109 && temp >=0 && temp > atNow && available(atNow + 20)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 20));
             }
-            temp = atNow - 9;
-            if ( temp >= 0 && temp <= 109 && temp < atNow  &&  temp >=0&& available(atNow - 9)) {
 
-                    destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 9));
-            }
 
             temp= atNow + 9;
-            if (atNow + 9 <= 109 && temp <= 109 && temp > atNow && temp >=0 && available(atNow + 9)) {
+            if ((atNow %9) > 1  && atNow + 9 <= 109 && temp <= 109 && temp > atNow && temp >=0 && available(atNow + 9)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 9));
             }
             temp=atNow + 18;
-            if (atNow + 18 <= 109 && temp <= 109 && temp > atNow  && temp >=0 && available(atNow + 18)) {
+            if ( (atNow %9) > 2 && atNow + 18 <= 109 && temp <= 109 && temp > atNow  && temp >=0 && available(atNow + 18)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow + 18));
             }
+            temp = atNow - 9;
+            if ( (temp %9) > 1 &&  temp >= 0 && temp <= 109 && temp < atNow  &&  temp >=0&& available(atNow - 9)) {
+
+                destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 9));
+            }
             temp=atNow - 18;
-            if (temp >= 0 && temp <= 109 && temp < atNow  && available(atNow - 18)) {
+            if ((temp %9) > 2 && temp >= 0 && temp <= 109 && temp < atNow  && available(atNow - 18)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 18));
             }
 
