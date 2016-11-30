@@ -24,10 +24,8 @@ public class Main {
     public static boolean lookAtTheirTurns = true;
     static int counter = 1;
     static int depth = 3;
-<<<<<<< HEAD
-=======
+
     static BoardPiece playerToStart;
->>>>>>> 00addad19def3e97b0c5088b293c8725646cae9e
 
     public static void main(String[] args) {
         initialiseField();
@@ -168,30 +166,9 @@ public class Main {
     private static void readInput() {
         scan = new Scanner(System.in);
         readPlayersPositions();
-<<<<<<< HEAD
     }
 
-    /**
-     * This method is used to read the initial positions of the two players playing the game and store
-     * them in the game board structure.
-     * The positions are assumed to be given like so:
-     * x1 x2 x3 x4
-     * y1 y2 y3 y4
-     */
-    private static void readPlayersPositions() {
-        String blueStart = scan.nextLine();
-        String goldStart = scan.nextLine();
-        currentTurn = scan.nextInt() == 0 ? BoardPiece.BLUE: BoardPiece.GOLD;
-        for(String each: blueStart.split(" ")){
-            board[Integer.parseInt(each)] = BoardPiece.BLUE;
-        }
-        for(String each: goldStart.split(" ")){
-            board[Integer.parseInt(each)] = BoardPiece.GOLD;
-        }
-=======
-        readStartingPlayer();
->>>>>>> 00addad19def3e97b0c5088b293c8725646cae9e
-    }
+
 
     /**
      * This method is used to read the initial positions of the two players playing the game and store
