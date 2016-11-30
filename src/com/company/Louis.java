@@ -15,7 +15,7 @@ public class Louis extends Computer {
         super(board,numTurns,me,adversery);//System.out.println("Call to 3");//System.out.println("mypiece is " + me);
         this.originalChange=null;
         getPlacesToGo(computer); // POSSIBLE MOVES I MIGHT MAKE
-        makeTree(Main.depth);//has to be ODD//System.out.println("\nTREE: " + this.toString());
+
     }
 
     public Louis(BoardPiece me, BoardPiece adversery,
@@ -68,6 +68,7 @@ public class Louis extends Computer {
     }
 
     public boolean decideTurn() {
+        makeTree(Main.depth);//has to be ODD//System.out.println("\nTREE: " + this.toString());
         Computer.movesAndUtils = new HashMap<AbstractMap.SimpleEntry<Integer,Integer>, Integer>();
         //maybe somehow make it able to use the one from last turn
         //NOTE DO NOT CHANGE LEVEL from 10 unless makeTree increases in which case increase 10, too

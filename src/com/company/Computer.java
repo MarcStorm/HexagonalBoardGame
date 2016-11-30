@@ -146,13 +146,17 @@ public abstract class Computer {
 
     public Integer[] getTurn() {
         Integer[] nextTurn = new Integer[2];
+        Main.depth=1;
         if(Main.startingPositionIsGivenAsTextInput ) {
-            for(int i = 0; i < 100; i++){
+            for(int i = 1; i < 5; i++){
+
                 decideTurn();
+                Main.depth ++;
 
             }
+        } else {
+            decideTurn();
         }
-        decideTurn();
         nextTurn[0] = from;
         nextTurn[1] = to;
         return nextTurn;

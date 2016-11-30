@@ -25,31 +25,7 @@ public class Main {
     public static int depth = 3;
     public static int depthPlus = 2;
 
-    public static void main(String[] args) {
-        initialiseField();
-        if(!startingPositionIsGivenAsTextInput) {
-            Hexgame.doMain();
-        }
-    }
 
-    private static BoardPiece[] setUpBoard(int blue1, int blue2, int blue3, int blue4,
-                                  int gold1,int gold2,int gold3, int gold4){
-
-        board = new BoardPiece[110];
-        for(int i = 0; i < 109; i++){
-            board[i] = BoardPiece.EMPTY;
-        }
-        board[blue1] = BoardPiece.BLUE;
-        board[blue2] = BoardPiece.BLUE;
-        board[blue3] = BoardPiece.BLUE;
-        board[blue4] = BoardPiece.BLUE;
-
-        board[gold1] = BoardPiece.GOLD;
-        board[gold2] = BoardPiece.GOLD;
-        board[gold3] = BoardPiece.GOLD;
-        board[gold4] = BoardPiece.GOLD;
-        return board;
-    }
 
     /*Section 1: stuff teammates should be aware they can toggle*/
     final static int noLongerConsiderAllOpponentsChoices = -1;// make it even if you want to see it in action
@@ -84,9 +60,38 @@ public class Main {
     public static BoardPiece currentTurn = BoardPiece.BLUE;
     private static Scanner scan;
     private static Computer computer1 = null , computer2;
-
     private static Integer from = null;
+    public static void main(String[] args) {
 
+
+        initialiseField();
+        if (!startingPositionIsGivenAsTextInput) {
+            Hexgame.doMain();
+        } else {
+            com.company.Computer l = computerGenerator();
+            l.getTurn();
+        }
+    }
+
+
+    private static BoardPiece[] setUpBoard(int blue1, int blue2, int blue3, int blue4,
+                                           int gold1,int gold2,int gold3, int gold4){
+
+        board = new BoardPiece[110];
+        for(int i = 0; i < 109; i++){
+            board[i] = BoardPiece.EMPTY;
+        }
+        board[blue1] = BoardPiece.BLUE;
+        board[blue2] = BoardPiece.BLUE;
+        board[blue3] = BoardPiece.BLUE;
+        board[blue4] = BoardPiece.BLUE;
+
+        board[gold1] = BoardPiece.GOLD;
+        board[gold2] = BoardPiece.GOLD;
+        board[gold3] = BoardPiece.GOLD;
+        board[gold4] = BoardPiece.GOLD;
+        return board;
+    }
     private static void initialiseField() {
         board = new BoardPiece[110];
 
