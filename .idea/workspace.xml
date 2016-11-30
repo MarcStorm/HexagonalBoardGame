@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list id="df8648ae-a26f-4fb3-a1a7-f51463fd05e4" name="Default" comment="Made it human vs computer" />
     <list default="true" id="61294679-6380-482c-8b45-3f271ac66724" name="New changelist" comment="Insignificant.&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Gideon.java" afterPath="$PROJECT_DIR$/src/com/company/Gideon.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Computer.java" afterPath="$PROJECT_DIR$/src/com/company/Computer.java" />
     </list>
     <ignored path="Four.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,29 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Gideon.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Gideon.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.125" vertical-offset="0" max-vertical-offset="1845">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#inRangeOfImportantStuff#0;class#Gideon#0" expanded="false" />
-                <element signature="method#inRangeOfNotImportantStuff#0;class#Gideon#0" expanded="false" />
-                <element signature="method#maybeUseHelper#0;class#Gideon#0" expanded="false" />
-                <element signature="method#maybeUse#0;class#Gideon#0" expanded="false" />
-                <element signature="method#fromVsTo_toWins#0;class#Gideon#0" expanded="false" />
-                <element signature="method#fromVsTo_toWins_helper#0;class#Gideon#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Computer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Computer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Computer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5535">
-              <caret line="183" column="21" selection-start-line="183" selection-start-column="21" selection-end-line="183" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.8743719" vertical-offset="4008" max-vertical-offset="6405">
+              <caret line="302" column="7" selection-start-line="302" selection-start-column="7" selection-end-line="302" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -97,13 +79,13 @@
         <option value="$PROJECT_DIR$/src/com/company/tester.java" />
         <option value="$PROJECT_DIR$/src/com/company/Hexgame.java" />
         <option value="$PROJECT_DIR$/src/testing/Test.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Computer.java" />
         <option value="$PROJECT_DIR$/src/testing/BlackBoxTesting.java" />
         <option value="$PROJECT_DIR$/src/testing/WhiteBoxTesting.java" />
         <option value="$PROJECT_DIR$/src/com/company/PlayerType.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
         <option value="$PROJECT_DIR$/src/com/company/Louis.java" />
         <option value="$PROJECT_DIR$/src/com/company/Gideon.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Computer.java" />
       </list>
     </option>
   </component>
@@ -607,7 +589,7 @@
       <created>1478344968403</created>
       <option name="number" value="Default" />
       <updated>1478344968403</updated>
-      <workItem from="1480528833507" duration="1142000" />
+      <workItem from="1480528833507" duration="1455000" />
     </task>
     <task id="LOCAL-00001" summary="Some changes I have made since tuesday to Main">
       <created>1478345536371</created>
@@ -665,7 +647,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1142000" />
+    <option name="totallyTimeSpent" value="1455000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -684,9 +666,9 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3254565" sideWeight="0.49427754" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3254565" sideWeight="0.49427754" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867885" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32867885" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17811158" sideWeight="0.4925926" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -1281,18 +1263,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Computer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5535">
-          <caret line="183" column="21" selection-start-line="183" selection-start-column="21" selection-end-line="183" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Gideon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.125" vertical-offset="0" max-vertical-offset="1845">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.725" vertical-offset="1350" max-vertical-offset="1950">
+          <caret line="259" column="5" selection-start-line="259" selection-start-column="5" selection-end-line="259" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#inRangeOfImportantStuff#0;class#Gideon#0" expanded="false" />
@@ -1302,6 +1276,14 @@
             <element signature="method#fromVsTo_toWins#0;class#Gideon#0" expanded="false" />
             <element signature="method#fromVsTo_toWins_helper#0;class#Gideon#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Computer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8743719" vertical-offset="4008" max-vertical-offset="6405">
+          <caret line="302" column="7" selection-start-line="302" selection-start-column="7" selection-end-line="302" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>

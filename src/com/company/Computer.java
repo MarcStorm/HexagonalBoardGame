@@ -49,7 +49,16 @@ public abstract class Computer {
         }
 
     }
+
+    /**
+     * This method will tell if a given location is occupied or not.
+     *
+     * @param location      the location that is wished to be checked whether or not it's occupied.
+     * @return boolean      true if the location is EMPTY.
+     *                      false if the location is occupied.
+     */
     private boolean available(int location) {
+        // TODO: Need to add a check to see if your own bricks are at the location.
         ////System.out.print("Call to 19, ");//System.out.println("My piece is " + me);
         for (Integer them : human) {
             if (them == location)
@@ -58,14 +67,22 @@ public abstract class Computer {
         return true;
     }
 
+    /**
+     * This method will compute all the positions that the player's bricks can move to. Furthermore, the method will
+     * store this information in a data structure that specifies which brick is able to move to where.
+     * As the game board is a diamond shape constructed by a hexagons, each brick can move in 6 directions from its
+     * current position. This method will also check that the computed position is within the game board. This will
+     * ensure that a player is never faced with the option to move outside the game board, an illegal move.
+     * The data structure used for this method allows to look up the destinations, to and from, in constant time.
+     *
+     * @param whichPlayer   the player for which it is desired to determine its possible places to move to.
+     */
     public void getPlacesToGo(ArrayList<Integer> whichPlayer) { //always should be computer passed in
         //System.out.println("Call to 20");//System.out.println("My piece is " + me);
         destinations = new HashSet<AbstractMap.SimpleEntry<Integer, Integer>>();
         for (Integer atNow : whichPlayer) {
             AbstractMap.SimpleEntry<Integer, Integer> pair;
         int temp = 0;
-
-
 
             temp=atNow - 1;
             if ((temp% 10 )< 9 && temp <= 109 && temp >=0 && available(atNow - 1)) {
@@ -123,11 +140,7 @@ public abstract class Computer {
             if ((temp %9) > 2 && temp >= 0 && temp <= 109 && temp < atNow  && available(atNow - 18)) {
                 destinations.add(new AbstractMap.SimpleEntry<Integer, Integer>(atNow, atNow - 18));
             }
-
-
         }
-        //System.out.println();
-
     }
     abstract void makeTree(int level);
     abstract boolean decideTurn();
@@ -145,18 +158,42 @@ public abstract class Computer {
         nextTurn[1] = to;
         return nextTurn;
     }
+
+    /**
+     * This method will determine whether or not two bricks on the game board form a line across the z axis.
+     *
+     * @param one       int parameter that is the location of the brick on the game board.
+     * @param other     int parameter that is the location of the brick on the game board.
+     * @return          boolean. True if the two locations form a line across the z axis, otherwise false.
+     */
     boolean formsZLine(Integer one, Integer other) {
         if(one % 10 == other % 10){
             return true;
         }
         return false;
     }
+
+    /**
+     * This method will determine whether or not two bricks on the game board form a line across the x axis.
+     *
+     * @param one       int parameter that is the location of the brick on the game board.
+     * @param other     int parameter that is the location of the brick on the game board.
+     * @return          boolean. True if the two locations form a line across the x axis, otherwise false.
+     */
     boolean formsXLine(Integer one, Integer other) {
         if (one%9 == other%9 && one != 0 && other != 0){
             return true;
         }
         return false;
     }
+
+    /**
+     * This method will determine whether or not two bricks on the game board form a line across the y axis.
+     *
+     * @param one       int parameter that is the location of the brick on the game board.
+     * @param other     int parameter that is the location of the brick on the game board.
+     * @return          boolean. True if the two locations form a line across the x axis, otherwise false.
+     */
     boolean formsYLine(Integer one, Integer other) {
         if (one/10 == other/10){
             return true;
@@ -198,6 +235,7 @@ public abstract class Computer {
         }
         return false;
     }
+
     /* Is their piece blocking my 4 in a row? */
     /*TO DO: this is a very temporary implementation change soon*/
     public boolean between(Integer theirPiece) {
@@ -212,27 +250,15 @@ public abstract class Computer {
                     if(formsZLine(this.computer.get(i), theirPiece) && formsZLine(theirPiece, this.computer.get(j)))
                         return true;
                 }
-
             }
         }
         return false;
     }
 
-
-    /*
-    private boolean wins(BoardPiece[] possBoard) {
-        // TODO Auto-generated method stub
-        //System.out.println("My piece is " + me);
-        boolean wins = false;
-        Computer c = new Louis(possBoard, 1000, me, adversery);
-
-        return c.wins();
-
-    }*/
-
     public abstract boolean isTerminalNode();
 
     public abstract int utilityProfile(int depth, boolean maximizing);
+
     public boolean isMaxNode(boolean maximizing){
 
         //System.out.println("Call to 23");//System.out.println("My piece is " + me);
@@ -243,6 +269,21 @@ public abstract class Computer {
         //System.out.println("me is " + me+ ", p2 aka actualME is " + actualMe + ", maximizing is " + maximizing);
         return maximizing;
     }
+
+    /**
+     * This method is a Depth First Search (DFS) which implements alpha-beta pruning. Without the implementation of the
+     * alpha-beta pruning, DFS has a running time of O(b^d), where b is the branching factor and d is the depth. With
+     * alpha-beta pruning this running time can be improved as it can be determined if certain parts of the tree is
+     * worth searching through. However, even with alpha-beta pruning the worst case running time will be the same as
+     * DFS.
+     *
+     * @param depth         The int parameter depth tells how much of the search is left as it will decrease by one
+     *                      every time the algorithm is run.
+     * @param alpha         This int parameter denotes the largest lower bound on ancestors for min nodes.
+     * @param beta          This int parameter denotes the smallest upper bound on ancestors for max nodes.
+     * @param maximizing    This boolean parameter will tell whether the node is a max or min node.
+     * @return              The return value is a value that is used by the algorithm itself for the search.
+     */
     public int alphaBetaPruning(int depth, int alpha, int beta, boolean maximizing) {
         if (this.isTerminalNode() || this.opponentWon()) {
             return this.utilityProfile(depth,maximizing);
@@ -254,21 +295,6 @@ public abstract class Computer {
                     int minValOfThisChoice = child.alphaBetaPruning(depth - 1, alpha, beta,!maximizing);
                     this.util = (Math.max(this.utilityProfile(depth, maximizing), minValOfThisChoice));
                     alpha = Math.max(alpha, this.util);//in no other branch where min can choose lower then this is it worth it for min to keep looking around--ill never pick this choice/child
-                    //System.out.println("Call to 24b: this.util = " + this.utilityProfile() + ", alpha is + "+ alpha );
-
-
-
-                        //we can now unambiguously choose a child that will maximize payoff no matter
-                        //what min does. This is a choice with a higher payoff then we previously saw was available to us
-
-
-
-                        //System.out.println(this.originalChange.getKey() +" "+ this.originalChange.getValue());
-                        //Computer.changeStatic.offer(this.originalChange);
-
-                    //System.out.println("Computer.changeStatic.offer(child.originalChange); " + child.originalChange);
-                    //Computer.changeStatic.offer(child.originalChange);
-
                 }
                 return this.utilityProfile(depth,maximizing);
             } else {
@@ -277,23 +303,17 @@ public abstract class Computer {
                     this.util = (Math.min(this.utilityProfile(depth,maximizing), child.alphaBetaPruning( depth - 1, alpha, beta, !maximizing)));
                     int temp = beta;
                     beta = Math.min(beta, this.util);
-
-
-
-
-
                 }
                 return this.utilityProfile(depth,maximizing);
             }
         }
     }
 
-
-
     boolean opponentWon(){
         Computer opponent = new Gideon(adversery,me,new AbstractMap.SimpleEntry<Integer, Integer>(human.get(0),human.get(0)),human,computer,originalChange);
         return opponent.wins();
     }
+
     boolean wins(){
 
         int count=0;
@@ -323,7 +343,6 @@ public abstract class Computer {
             }
             return true;
         }
-
         return false;
     }
 
@@ -353,11 +372,8 @@ public abstract class Computer {
             s =s + i + ",";
         }
         s=s   + "num children: \n" + children.size() ;
-        /*for(Computer child: children) {
-            s = s +  "   " + child.toString() + " \n" ;
-        }*/
+
         return s;
     }
-
 }
 
