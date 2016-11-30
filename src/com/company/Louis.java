@@ -1,22 +1,15 @@
 package com.company;
 
+import java.util.*;
+
 /**
- * Created by gideonpotok on 11/5/16.
+ * @Author Anu Challa (achalla@terpmail.umd.edu)
+ * @Author Gideon Potok (gideon.potok@gmail.com)
+ * @Author Marc Storm Larsen (mslarsen1992@gmail.com)
+ *
+ * I pledge on my honor that I have not given or received any unauthorized assistance on this project.
  */
-
-        import java.util.*;
-
-
 public class Louis extends Computer {
-    /*OPTION*/
-    /*
-    List<Computer> children;
-    int from = 0, to = 0, numTurns = 0;
-    Random r ;
-    ArrayList<Integer> computer = new ArrayList<Integer>(),  human = new ArrayList<Integer>();
-    BoardPiece me,  adversery;
-    Set<AbstractMap.SimpleEntry<Integer, Integer>> destinations;
-     */
 
     public Louis(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery) {
         super(board,numTurns,me,adversery);//System.out.println("Call to 3");//System.out.println("mypiece is " + me);
@@ -24,48 +17,7 @@ public class Louis extends Computer {
         getPlacesToGo(computer); // POSSIBLE MOVES I MIGHT MAKE
         makeTree(Main.depth);//has to be ODD//System.out.println("\nTREE: " + this.toString());
     }
-    public boolean wins(){
-        if(wins == null){
-            wins = super.wins();
-        }
-        return wins;
-    }
-    public boolean decideTurn() {
-        Computer.movesAndUtils = new HashMap<AbstractMap.SimpleEntry<Integer,Integer>, Integer>();
-        //maybe somehow make it able to use the one from last turn
-        //NOTE DO NOT CHANGE LEVEL from 10 unless makeTree increases in which case increase 10, too
-        //It does not correspond to level exactly. And it gets negative if you have it the
-        //the same number of levels as the tree.
-        this.alphaBetaPruning(Main.depth+Main.depthPlus,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
-        int max = Integer.MIN_VALUE;
-        for(Computer c : children){
-            if(c.util > max){
-                max = c.util;
-                this.originalChange = c.originalChange;
 
-            }
-//            System.out.println(c.util);
-        }
-        System.out.println(this.originalChange.getKey() + " " + this.originalChange.getValue());
-
-        /*while(!changeStatic.isEmpty()) {
-            fromto = changeStatic.poll();
-            //System.out.println("Call to 7b: " + fromto);
-        }
-        if (fromto == null){
-            //System.out.println("fromtowasnull");
-            this.getPlacesToGo(computer);
-            fromto = this.destinations.iterator().next();
-            //System.out.println("Call to 7c: " + fromto);
-        }
-        //System.out.println("Call to 7d: "+fromto);
-        from=fromto.getKey();
-        to=fromto.getValue();*/
-        from=originalChange.getKey();
-        to=originalChange.getValue();
-        return true;
-
-    }
     public Louis(BoardPiece me, BoardPiece adversery,
                  AbstractMap.SimpleEntry<Integer, Integer> change,
                  ArrayList<Integer> positionsMe, ArrayList<Integer> positionsAdversery) {
@@ -97,6 +49,7 @@ public class Louis extends Computer {
         getPlacesToGo(computer);
 
     }
+
     public Louis(BoardPiece me, BoardPiece adversery,
                  AbstractMap.SimpleEntry<Integer, Integer> change,
                  ArrayList<Integer> positionsMe, ArrayList<Integer> positionsAdversery,
@@ -106,12 +59,40 @@ public class Louis extends Computer {
         //System.out.println("mypiece is " + me);
         this.originalChange = originalChange;
     }
+
+    public boolean wins(){
+        if(wins == null){
+            wins = super.wins();
+        }
+        return wins;
+    }
+
+    public boolean decideTurn() {
+        Computer.movesAndUtils = new HashMap<AbstractMap.SimpleEntry<Integer,Integer>, Integer>();
+        //maybe somehow make it able to use the one from last turn
+        //NOTE DO NOT CHANGE LEVEL from 10 unless makeTree increases in which case increase 10, too
+        //It does not correspond to level exactly. And it gets negative if you have it the
+        //the same number of levels as the tree.
+        this.alphaBetaPruning(Main.depth+Main.depthPlus,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
+        int max = Integer.MIN_VALUE;
+        for(Computer c : children){
+            if(c.util > max){
+                max = c.util;
+                this.originalChange = c.originalChange;
+
+            }
+        }
+        System.out.println(this.originalChange.getKey() + " " + this.originalChange.getValue());
+
+        from=originalChange.getKey();
+        to=originalChange.getValue();
+        return true;
+    }
+
     public  boolean isTerminalNode(){
-        //if wins return true
-        //System.out.println("Call to 4");
-        //System.out.println("mypiece is " + me);
         return false;
     }
+
     public void makeTree(int level) {
         //System.out.println("Call to 5 ");
         //System.out.println("mypiece is " + me);
@@ -126,19 +107,21 @@ public class Louis extends Computer {
                     heritage=each;
                 }
                 Computer l = new Louis(adversery ,me , each, human, computer, heritage); //notice THE SWITCH
+
                 if(l.opponentWon()){
                     l = new Gideon(adversery,me,each,human,computer,heritage);
                     children.clear();
                     children.add(l);
                     break;
+                } else {
+                    children.add(l);
                 }
-                children.add(l);
+
                 if(me != actualMe && !Main.lookAtTheirTurns){
-                    break; // who cares what opponent does in this example.
+                    break;
                 }
 
             }
-
         } else {
             for (AbstractMap.SimpleEntry<Integer, Integer> each : this.destinations) {
                 //After roots turn, EACH change is made to the real computer
@@ -157,11 +140,8 @@ public class Louis extends Computer {
         }
 
     }
+
     private Boolean wins = null;
-
-
-
-
 
     public int utilityProfile(int depth,boolean maximizing){
         String s = "";
