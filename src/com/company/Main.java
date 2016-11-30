@@ -25,7 +25,6 @@ public class Main {
     static int counter = 1;
     static int depth = 3;
     static int depthPlus = 3;
-    static BoardPiece playerToStart;
 
     public static void main(String[] args) {
         initialiseField();
@@ -166,9 +165,8 @@ public class Main {
     private static void readInput() {
         scan = new Scanner(System.in);
         readPlayersPositions();
+        readStartingPlayer();
     }
-
-
 
     /**
      * This method is used to read the initial positions of the two players playing the game and store
@@ -180,7 +178,6 @@ public class Main {
     private static void readPlayersPositions() {
         String blueStart = scan.nextLine();
         String goldStart = scan.nextLine();
-        currentTurn = scan.nextInt() == 0 ? BoardPiece.BLUE: BoardPiece.GOLD;
         for(String each: blueStart.split(" ")){
             board[Integer.parseInt(each)] = BoardPiece.BLUE;
         }
@@ -194,16 +191,8 @@ public class Main {
      * Hence, the input is assumed to be given as 0 or 1.
      */
     private static void readStartingPlayer() {
-        int startingPlayer = Integer.parseInt(scan.nextLine());
-        if (startingPlayer == 0) {
-            playerToStart = BoardPiece.BLUE;
-        } else {
-            playerToStart = BoardPiece.GOLD;
-        }
+        currentTurn = scan.nextInt() == 0 ? BoardPiece.BLUE: BoardPiece.GOLD;
     }
-
-
-
 
     private static boolean takeTurn(BoardPiece turn, Integer from, Integer to) {
         if(board[from] == turn) {
