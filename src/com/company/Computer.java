@@ -200,21 +200,24 @@ public abstract class Computer {
         return false;
     }
 
+    /**
+     * This method will tell whether or not a brick is between two other bricks.
+     *
+     * @param left      int parameter that denotes one of the boundary bricks.
+     * @param mid       int parameter that denotes the brick in the middle.
+     * @param right     int parameter that denotes one of the boundary bricks.
+     * @return          boolean. True if mid is inbetween left and right, otherwise false.
+     */
     boolean between(Integer left, Integer mid, Integer right) {
         return (left < mid && mid < right ) || (left > mid && mid > right ) ;
     }
+
     boolean formsLine(Integer one, Integer other) {
         if(one % 10 == other % 10){
-            ////System.out.println("In forms line: one is " + one + ", other is " + other);
-            ////System.out.println("mod ten the same");
             return true;
         } else if (one/10 == other/10){
-            ////System.out.println("In forms line: one is " + one + ", other is " + other);
-            ////System.out.println("10 times same x plus single dig num the same");
             return true;
         } else if (one%9 == other%9 && one != 0 && other != 0){
-            ////System.out.println("In forms line: one is " + one + ", other is " + other);
-            ////System.out.println("mod nine the same");
             return true;
         }
         return false;
