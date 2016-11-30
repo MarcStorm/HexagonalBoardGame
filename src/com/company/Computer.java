@@ -2,18 +2,16 @@ package com.company;
 
 import java.util.*;
 
-
 /**
  * @Author Anu Challa (achalla@terpmail.umd.edu)
  * @Author Gideon Potok (gideon.potok@gmail.com)
  * @Author Marc Storm Larsen (mslarsen1992@gmail.com)
  *
- * I pledge on my honor that I have not given or received any unauthorized
- * assistance on this project.
+ * I pledge on my honor that I have not given or received any unauthorized assistance on this project.
  */
-
 public abstract class Computer {
 
+    // TODO: Add private, protected or public to fields.
     int from = 0, to = 0, numTurns = 0;
     Integer util = Integer.MIN_VALUE;
     public AbstractMap.SimpleEntry<Integer, Integer> originalChange = null;
