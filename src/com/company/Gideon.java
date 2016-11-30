@@ -17,39 +17,21 @@ public class Gideon extends Computer {
     public Gideon(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
         super(board,numTurns,me,adversery);
         this.board = board;
-        //System.out.println("Call to 10");
-        //System.out.println("my piece is " + me);
     }
 
     public Gideon(BoardPiece me, BoardPiece adversery,
                   AbstractMap.SimpleEntry<Integer, Integer> change,
                   ArrayList<Integer> positionsMe, ArrayList<Integer> positionsAdversery, AbstractMap.SimpleEntry<Integer, Integer> heritage) {
-        //System.out.println("my piece is " + me);
         this.me=me;
         this.adversery=adversery;
-        //System.out.print("Call to 11: ");
-        //children = new ArrayList<Computer>();
-        this.computer = new ArrayList<Integer>(positionsMe);//(level %2 == 0)? positionsMe:positionsAdversery;
+        this.computer = new ArrayList<Integer>(positionsMe);
         this.human = new ArrayList<Integer>(positionsAdversery);
-        //System.out.println("Gideon");
-        //System.out.println(computer);
-        //System.out.println("VS");
-        //System.out.println("1"+human);
-        //System.out.println("("+change + ")");
-
-        this.human.remove(change.getKey()); //THIS IS CORRECT
-        //System.out.println("2"+human);
-        this.human.add(positionsMe.size() - 1, change.getValue()); //THIS IS CORRECT
-        //System.out.println("3"+human);
-        //System.out.println();
-        //getPlacesToGo(computer);
+        this.human.remove(change.getKey());
+        this.human.add(positionsMe.size() - 1, change.getValue());
         this.originalChange = heritage;
-        //System.out.println("heritage = " + heritage);
     }
 
     public  boolean isTerminalNode(){
-        //System.out.println("Call to 9");
-        //System.out.println("my piece is " + me);
         return true;
     }
 
@@ -96,27 +78,23 @@ public class Gideon extends Computer {
         else
             Main.counter++;
         Main.counter*=(-1);
-        //if(Main.counter %25 == 0)
-            //System.out.println("counter is " + Main.counter + ", utility is  " + util);
 
         return util;
     }
+
     boolean decideTurn(){
 
         return false;
     }
+
     Boolean inRangeOfImportantStuff(Integer location){
-        //System.out.println("calling  menthod inRangeOfImportantStuff. location is " + location.toString());
         return withinRange(33,location)
                 || withinRange(37, location)
                 || withinRange(73, location)
                 || withinRange(77, location);
-
-
-
     }
+
     Boolean inRangeOfNotImportantStuff(Integer location){
-        //System.out.println("calling  menthod inRangeOfNotImportantStuff. location is " + location.toString());
         return withinRange(90,location)
                 || withinRange(91, location)
                 || withinRange(101, location)
@@ -129,24 +107,20 @@ public class Gideon extends Computer {
                 || withinRange(1, location)
                 || withinRange(11, location)
                 || withinRange(10, location);
-
-
-
-
     }
+
     boolean maybeUseHelper(Integer from, Integer to){
-        //System.out.println("Call to 14");
         int useThisOne = 800;
         Boolean useOrNo = false;
         useOrNo = r.nextInt(useThisOne) %9 == 0;
         if(useOrNo){
-
             this.from=from;
             this.to=to;
             return true;
         }
         return false;
     }
+
     public boolean maybeUse(Integer from, Integer to){
         if(fromVsTo_toWins(from,to, computer.get(0), computer.get(1),computer.get(2),computer.get(3))){
             //return true;
@@ -167,8 +141,6 @@ public class Gideon extends Computer {
             }
         }
 
-
-
         for(int i = 0; i < 4; i++){
             if(withinRange(to, human.get(i))
                     && !withinRange(from, human.get(i))){
@@ -180,6 +152,7 @@ public class Gideon extends Computer {
             return true;
         return false;
     }
+
     boolean fromVsTo_toWins(Integer from2, Integer to2, Integer integer, Integer integer2, Integer integer3,
                             Integer integer4) {
         if(integer == from2){
@@ -196,8 +169,8 @@ public class Gideon extends Computer {
         }
         return false;
     }
-    boolean fromVsTo_toWins_helper(Integer from2, Integer to2, Integer integer, Integer integer2, Integer integer3
-    ) {
+
+    boolean fromVsTo_toWins_helper(Integer from2, Integer to2, Integer integer, Integer integer2, Integer integer3) {
         ArrayList<Integer> three = new ArrayList<Integer>();
         three.add(integer);
         three.add(integer2);
@@ -245,20 +218,14 @@ public class Gideon extends Computer {
             max = countWithChangeZ;
 
         if(max <= countWithoutChangeX || max <= countWithoutChangeY || max <= countWithoutChangeZ ){
-            //System.out.println("No gain from switching in terms of num of computer tokens in a line (max was " + max + ").");
             return false;
         } else if (max < 1){
             return false;
         }
-        //System.out.println("MOVING SO MORE IN SAME ROW from is " + from2 + ", to is " + to2 +". max was " + max);
         return true;
     }
+
     public void makeTree(int level) {
-        System.out.println("call to gideon.makeTree(" + level + ");");
-        //System.out.println("Call to 16");
-
     }
-
-
 }
 
