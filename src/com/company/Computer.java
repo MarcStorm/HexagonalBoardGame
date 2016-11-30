@@ -347,7 +347,6 @@ public abstract class Computer {
         if(formsDLine(dimension, computer.get(1),computer.get(2) ) && formsDLine(dimension, computer.get(1),computer.get(3) )){
             count++;
             count++;
-            //count += 2;
         }
 
         boolean aligned = false;
@@ -364,6 +363,14 @@ public abstract class Computer {
         return false;
     }
 
+    /**
+     * This method will determine whether or not two bricks on the game board form a line across a given axis.
+     * @param dimension     int that denotes the dimension. This value is assumed to be 0, 1 or 2 corresponding to
+     *                      the x, y, z axises respectively.
+     * @param integer       int parameter that is the location of the brick on the game board.
+     * @param integer1      int parameter that is the location of the brick on the game board.
+     * @return
+     */
     private boolean formsDLine(int dimension, Integer integer, Integer integer1) {
         if(dimension==0){
             return formsXLine(integer,integer1);
