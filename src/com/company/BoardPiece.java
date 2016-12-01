@@ -15,3 +15,6 @@ package com.company;
 public enum BoardPiece {
     EMPTY, GOLD, BLUE
 }
+enum PlayerType {
+    HUMAN, COMPUTER
+}

@@ -11,15 +11,15 @@ import java.util.ArrayList;
  * I pledge on my honor that I have not given or received any unauthorized assistance on this project.
  */
 // TODO: Make sure this is max player
-public class Gideon extends Computer {
+public class Terminal extends Computer {
     BoardPiece[] board;
 
-    public Gideon(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
-        super(board,numTurns,me,adversery);
+    public Terminal(BoardPiece[] board,  BoardPiece me, BoardPiece adversery){
+        super(board,me,adversery);
         this.board = board;
     }
 
-    public Gideon(BoardPiece me, BoardPiece adversery,
+    public Terminal(BoardPiece me, BoardPiece adversery,
                   AbstractMap.SimpleEntry<Integer, Integer> change,
                   ArrayList<Integer> positionsMe, ArrayList<Integer> positionsAdversery, AbstractMap.SimpleEntry<Integer, Integer> heritage) {
         this.me=me;

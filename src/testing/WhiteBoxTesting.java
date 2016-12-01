@@ -26,7 +26,7 @@ public class WhiteBoxTesting {
 
 
 
-    com.company.Louis getComputer(int blue1, int blue2, int blue3, int blue4,
+    com.company.Nonterminal getComputer(int blue1, int blue2, int blue3, int blue4,
                                   int gold1,int gold2,int gold3, int gold4){
         for(int i = 0; i < 109; i++){
             board[i] = BoardPiece.EMPTY;
@@ -40,15 +40,14 @@ public class WhiteBoxTesting {
         board[gold2] = BoardPiece.GOLD;
         board[gold3] = BoardPiece.GOLD;
         board[gold4] = BoardPiece.GOLD;
-        com.company.Louis l =  new com.company.Louis(board, 100,
+        com.company.Nonterminal l =  new com.company.Nonterminal(board,
                 BoardPiece.GOLD, BoardPiece.BLUE);
         l.decideTurn();
         return l;
-
     }
     public ArrayList<com.company.Computer>  test15makeTree_WinsOneMoveAwayTwoOptions() {
 
-        com.company.Louis computer = getComputer(100, 109, 0, 30, 15, 25, 35, 58);
+        com.company.Nonterminal computer = getComputer(100, 109, 0, 30, 15, 25, 35, 58);
         com.company.Computer winner = null;
         ArrayList<com.company.Computer> winningChildren = new ArrayList<com.company.Computer>();
         for (com.company.Computer child : computer.children) {
@@ -144,7 +143,12 @@ public class WhiteBoxTesting {
             org.junit.Assert.assertTrue(c.opponentWon());
             //org.junit.Assert.assertEquals(Main.depthPlus*1000, c.utilityProfile() );
         }
-        org.junit.Assert.assertEquals(88, winningFinalists.size());
+        if(Main.lookAtTheirTurns)
+                org.junit.Assert.assertEquals(176, winningFinalists.size());
+        else
+            org.junit.Assert.assertEquals(88,winningFinalists.size());
+
+
     }
 
 
@@ -153,7 +157,7 @@ public class WhiteBoxTesting {
 
     @org.junit.Test
     public void test15ChoiceFrom_WinsTwoMovesAwayOneOption(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
+        com.company.Nonterminal computer = getComputer(100,109,0,30,  15,25,35,58);
 
         Integer[]  latestTurn  = computer.getTurn();
         org.junit.Assert.assertTrue(58 == latestTurn[0]);
@@ -161,7 +165,7 @@ public class WhiteBoxTesting {
     }
     @org.junit.Test
     public void test15ChoiceTo_WinsTwoMovesAwayOneOption(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
+        com.company.Nonterminal computer = getComputer(100,109,0,30,  15,25,35,58);
         //First move towards victory.
 
         Integer[]  latestTurn  = computer.getTurn();
@@ -178,7 +182,7 @@ public class WhiteBoxTesting {
 
     @org.junit.Test
     public void test15levelOneOfTree_WinsOneMoveAwayTwoOptions(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
+        com.company.Nonterminal computer = getComputer(100,109,0,30,  15,25,35,58);
         com.company.Computer winner = null;
         ArrayList<com.company.Computer> winningChildren= new ArrayList<com.company.Computer>();
         for(com.company.Computer child: computer.children){

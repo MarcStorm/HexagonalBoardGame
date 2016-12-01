@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * @Author Anu Challa (achalla@terpmail.umd.edu)
- * @Author Gideon Potok (gideon.potok@gmail.com)
+ * @Author Terminal Potok (gideon.potok@gmail.com)
  * @Author Marc Storm Larsen (mslarsen1992@gmail.com)
  *
  * I pledge on my honor that I have not given or received any unauthorized assistance on this project.
@@ -29,10 +29,9 @@ public abstract class Computer {
         this.r = new Random();
     }
 
-    public Computer(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
+    public Computer(BoardPiece[] board, BoardPiece me, BoardPiece adversery){
         //System.out.println("Call to 18");//System.out.println("My piece is " + me);
         super();
-        this.numTurns=numTurns;
 
         this.me=me;
 
@@ -145,7 +144,6 @@ public abstract class Computer {
     abstract boolean decideTurn();
 
     public Integer[] getTurn() {
-        System.err.println("from getTurn to error stream, playing as " + Main.currentTurn + " right now.");
         Integer[] nextTurn = new Integer[2];
         Main.depth=1;
         if(Main.startingPositionIsGivenAsTextInput ) {
@@ -269,7 +267,93 @@ public abstract class Computer {
     public boolean isMaxNode(boolean maximizing){
         return maximizing;
     }
+/*    public int pruning(int depth, int alpha, int beta, boolean maximizing) {
+        // If the node is a terminal node or the depth is 0,
+        // then the bottom of the tree or the limited tree has been reached.
+        if(Main.testing){
+            children= new ArrayList<Computer>();
+        }
+        AbstractMap.SimpleEntry<Integer, Integer> heritage = this.originalChange;
+        if (level > 0) {}
+        if (this.isTerminalNode() || this.opponentWon()) {
+            return this.utilityProfile(depth,maximizing);
+        } else {
+            if (this.isMaxNode(maximizing)) {
+                this.util = Integer.MIN_VALUE;
+                for (Computer child : children) {
+                    int minValOfThisChoice = child.alphaBetaPruning(depth - 1, alpha, beta,!maximizing);
+                    this.util = Math.max(this.util, minValOfThisChoice);
+                    alpha = Math.max(alpha, this.util);
 
+                    // Beta cut-off.
+                    if (beta <= alpha) {
+                        break;
+                    }
+                }
+                return this.util;
+            } else {
+                this.util = Integer.MAX_VALUE;
+                for (Computer child : children) {
+                    int maxValOfThisChoice = child.alphaBetaPruning(depth - 1, alpha, beta, !maximizing);
+                    this.util = Math.min(this.util, maxValOfThisChoice);
+                    beta = Math.min(beta, this.util);
+
+                    // Alpha cut-off.
+                    if (beta <= alpha) {
+                        break;
+                    }
+                }
+                return this.util;
+            }
+        }
+    }
+    public void makeTree(int level, boolean maximizing) {
+
+
+
+        if (level > 0) {
+
+            for (AbstractMap.SimpleEntry<Integer, Integer> each : this.destinations) {
+                //After roots turn, EACH change is made to the real computer
+
+                if(this.originalChange == null){
+                    heritage=each;
+                }
+                Computer l = new Nonterminal(adversery ,me , each, human, computer, heritage); //notice THE SWITCH
+
+                if(l.opponentWon()){
+                    l = new Terminal(adversery,me,each,human,computer,heritage);
+                    children.clear();
+                    children.add(l);
+                    break;
+                } else {
+                    children.add(l);
+                }
+
+                if(!maximizing && !Main.lookAtTheirTurns){
+                    break;
+                }
+
+            }
+        } else {
+            for (AbstractMap.SimpleEntry<Integer, Integer> each : this.destinations) {
+                //After roots turn, EACH change is made to the real computer
+                AbstractMap.SimpleEntry<Integer, Integer> local  = new AbstractMap.SimpleEntry<Integer, Integer>(each.getKey(),each.getValue());
+                if(this.originalChange == null){
+                    heritage=local;
+                }
+                Terminal g = new Terminal(adversery ,me , local, human, computer, heritage); //notice THE SWITCH
+                children.add(g);
+            }
+        }
+
+        for(Computer lg : children){
+            if(!lg.isTerminalNode())
+                lg.makeTree(level - 1, !maximizing );
+        }
+
+    }
+*/
     /**
      * This method is a Depth First Search (DFS) which implements alpha-beta pruning. Without the implementation of the
      * alpha-beta pruning, DFS has a running time of O(b^d), where b is the branching factor and d is the depth. With
@@ -284,10 +368,11 @@ public abstract class Computer {
      * @param maximizing    This boolean parameter will tell whether the node is a max or min node.
      * @return              The return value is a value that is used by the algorithm itself for the search.
      */
+
     public int alphaBetaPruning(int depth, int alpha, int beta, boolean maximizing) {
         // If the node is a terminal node or the depth is 0,
         // then the bottom of the tree or the limited tree has been reached.
-        if (this.isTerminalNode() || this.opponentWon()) {
+        if (depth == 1|| this.opponentWon()) {
             return this.utilityProfile(depth,maximizing);
         } else {
             if (this.isMaxNode(maximizing)) {
@@ -323,7 +408,7 @@ public abstract class Computer {
 
 
     public boolean opponentWon(){
-        Computer opponent = new Gideon(adversery,me,new AbstractMap.SimpleEntry<Integer, Integer>(human.get(0),human.get(0)),human,computer,originalChange);
+        Computer opponent = new Terminal(adversery,me,new AbstractMap.SimpleEntry<Integer, Integer>(human.get(0),human.get(0)),human,computer,originalChange);
         return opponent.wins();
     }
 

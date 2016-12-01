@@ -27,7 +27,7 @@ public class Jump {
         Main.lookAtTheirTurns = true;
         Main.depth = 3;
 
-        com.company.Louis computer = getComputer(86, 87, 92, 63, 72, 27, 36, 45);
+        com.company.Nonterminal computer = getComputer(86, 87, 92, 63, 72, 27, 36, 45);
         Integer[] latestTurn = computer.getTurn();
         org.junit.Assert.assertEquals(new Integer(72), latestTurn[0]);
         org.junit.Assert.assertEquals(new Integer(54), latestTurn[1]);
@@ -45,7 +45,7 @@ public class Jump {
     public ArrayList<com.company.Computer> listOfwinningChildren(int blue1, int blue2, int blue3, int blue4,
                                                                                     int gold1, int gold2, int gold3, int gold4, ArrayList<Integer> winningTo) {
 
-        com.company.Louis computer = getComputer(blue1, blue2, blue3, blue4, gold1, gold2, gold3, gold4);
+        com.company.Nonterminal computer = getComputer(blue1, blue2, blue3, blue4, gold1, gold2, gold3, gold4);
         com.company.Computer winner = null;
         ArrayList<com.company.Computer> winningChildren = new ArrayList<com.company.Computer>();
         for (com.company.Computer child : computer.children) {
@@ -64,7 +64,7 @@ public class Jump {
     }
     public ArrayList<com.company.Computer> test15makeTree_WinsOneMoveAwayTwoOptions(int blue1, int blue2, int blue3, int blue4,
                                                                                     int gold1, int gold2, int gold3, int gold4, ArrayList<Integer> winningTo) {
-        com.company.Louis computer = getComputer(blue1, blue2, blue3, blue4, gold1, gold2, gold3, gold4);
+        com.company.Nonterminal computer = getComputer(blue1, blue2, blue3, blue4, gold1, gold2, gold3, gold4);
         com.company.Computer winner = null;
         ArrayList<com.company.Computer> winningChildren = new ArrayList<com.company.Computer>();
         for (com.company.Computer child : computer.children) {
@@ -93,7 +93,7 @@ public class Jump {
         return winningFinalists;
     }
 
-    com.company.Louis getComputer(int blue1, int blue2, int blue3, int blue4,
+    com.company.Nonterminal getComputer(int blue1, int blue2, int blue3, int blue4,
                                   int gold1, int gold2, int gold3, int gold4) {
         for (int i = 0; i < 109; i++) {
             board[i] = BoardPiece.EMPTY;
@@ -107,7 +107,7 @@ public class Jump {
         board[gold2] = BoardPiece.GOLD;
         board[gold3] = BoardPiece.GOLD;
         board[gold4] = BoardPiece.GOLD;
-        com.company.Louis l =  new com.company.Louis(board, 100,
+        com.company.Nonterminal l =  new com.company.Nonterminal(board,
                 BoardPiece.GOLD, BoardPiece.BLUE);
         l.decideTurn();
         return l;
