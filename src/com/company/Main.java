@@ -33,7 +33,7 @@ public class Main {
     }
 
     private static BoardPiece[] setUpBoard(int blue1, int blue2, int blue3, int blue4,
-                                  int gold1,int gold2,int gold3, int gold4){
+                                           int gold1, int gold2, int gold3, int gold4){
 
         board = new BoardPiece[110];
         for(int i = 0; i < 109; i++){

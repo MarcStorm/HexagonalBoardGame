@@ -1,8 +1,10 @@
 package com.company;
 
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  * Created by gideonpotok on 11/5/16.
  */

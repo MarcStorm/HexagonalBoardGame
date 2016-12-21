@@ -2,10 +2,7 @@ package com.company;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
-import java.util.TreeSet;
 
-import javax.swing.*;
 /**
  * Created by gideonpotok on 11/5/16.
  */

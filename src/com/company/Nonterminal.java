@@ -1,6 +1,8 @@
 package com.company;
 
-import java.util.*;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @Author Anu Challa (achalla@terpmail.umd.edu)
@@ -73,7 +75,7 @@ public class Nonterminal extends Computer {
         //NOTE DO NOT CHANGE LEVEL from 10 unless makeTree increases in which case increase 10, too
         //It does not correspond to level exactly. And it gets negative if you have it the
         //the same number of levels as the tree.
-        this.alphaBetaPruning(Main.depth+Main.depthPlus,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
+        this.alphaBetaPruning(Main.depth+ Main.depthPlus,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
         int max = Integer.MIN_VALUE;
         for(Computer c : children){
             if(c.util > max){
