@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * @Author Anu Challa (achalla@terpmail.umd.edu)
- * @Author Gideon Potok (gideon.potok@gmail.com)
+ * @Author Terminal Potok (gideon.potok@gmail.com)
  * @Author Marc Storm Larsen (mslarsen1992@gmail.com)
  *
  * I pledge on my honor that I have not given or received any unauthorized assistance on this project.
@@ -356,7 +356,7 @@ public abstract class Computer {
 
 
     public boolean opponentWon(){
-        Computer opponent = new Gideon(adversery,me,new AbstractMap.SimpleEntry<Integer, Integer>(human.get(0),human.get(0)),human,computer,originalChange);
+        Computer opponent = new Terminal(adversery,me,new AbstractMap.SimpleEntry<Integer, Integer>(human.get(0),human.get(0)),human,computer,originalChange);
         return opponent.wins();
     }
 

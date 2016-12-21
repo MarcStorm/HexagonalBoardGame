@@ -2,6 +2,7 @@ package testing;
 import java.util.*;
 import com.company.BoardPiece;
 import com.company.Main;
+import com.company.Nonterminal;
 
 /**
  * Created by gideonpotok on 11/26/16.
@@ -25,7 +26,7 @@ public class WhiteBoxTesting {
 
     @org.junit.Test
     public void testAlphaBetaReturnVal_akaUtil_WinsOneMoveAway() {
-        com.company.Louis computer = getComputer(100, 109, 0, 30, 15, 25, 35, 53);
+        Nonterminal computer = getComputer(100, 109, 0, 30, 15, 25, 35, 53);
         computer.makeTree(0);
 
         for (com.company.Computer child: computer.children){
@@ -34,8 +35,8 @@ public class WhiteBoxTesting {
     }
 
 
-    com.company.Louis getComputer(int blue1, int blue2, int blue3, int blue4,
-                                  int gold1,int gold2,int gold3, int gold4){
+    Nonterminal getComputer(int blue1, int blue2, int blue3, int blue4,
+                            int gold1, int gold2, int gold3, int gold4){
         for(int i = 0; i < 109; i++){
             board[i] = BoardPiece.EMPTY;
         }
@@ -48,12 +49,12 @@ public class WhiteBoxTesting {
         board[gold2] = BoardPiece.GOLD;
         board[gold3] = BoardPiece.GOLD;
         board[gold4] = BoardPiece.GOLD;
-        return new com.company.Louis(board, 0,
+        return new Nonterminal(board, 0,
                 BoardPiece.GOLD, BoardPiece.BLUE );
     }
     public ArrayList<com.company.Computer>  test15makeTree_WinsOneMoveAwayTwoOptions() {
 
-        com.company.Louis computer = getComputer(100, 109, 0, 30, 15, 25, 35, 58);
+        Nonterminal computer = getComputer(100, 109, 0, 30, 15, 25, 35, 58);
         com.company.Computer winner = null;
         ArrayList<com.company.Computer> winningChildren = new ArrayList<com.company.Computer>();
         for (com.company.Computer child : computer.children) {
@@ -160,7 +161,7 @@ public class WhiteBoxTesting {
 
     @org.junit.Test
     public void test15ChoiceFrom_WinsTwoMovesAwayOneOption(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
+        Nonterminal computer = getComputer(100,109,0,30,  15,25,35,58);
 
         Integer[]  latestTurn  = computer.getTurn();
         org.junit.Assert.assertTrue(58 == latestTurn[0]);
@@ -168,7 +169,7 @@ public class WhiteBoxTesting {
     }
     @org.junit.Test
     public void test15ChoiceTo_WinsTwoMovesAwayOneOption(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
+        Nonterminal computer = getComputer(100,109,0,30,  15,25,35,58);
         //First move towards victory.
 
         Integer[]  latestTurn  = computer.getTurn();
@@ -185,7 +186,7 @@ public class WhiteBoxTesting {
 
     @org.junit.Test
     public void test15levelOneOfTree_WinsOneMoveAwayTwoOptions(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,58);
+        Nonterminal computer = getComputer(100,109,0,30,  15,25,35,58);
         com.company.Computer winner = null;
         ArrayList<com.company.Computer> winningChildren= new ArrayList<com.company.Computer>();
         for(com.company.Computer child: computer.children){

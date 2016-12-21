@@ -5,23 +5,23 @@ import java.util.ArrayList;
 
 /**
  * @Author Anu Challa (achalla@terpmail.umd.edu)
- * @Author Gideon Potok (gideon.potok@gmail.com)
+ * @Author Terminal Potok (gideon.potok@gmail.com)
  * @Author Marc Storm Larsen (mslarsen1992@gmail.com)
  *
  * I pledge on my honor that I have not given or received any unauthorized assistance on this project.
  */
 // TODO: Make sure this is max player
-public class Gideon extends Computer {
+public class Terminal extends Computer {
     BoardPiece[] board;
 
-    public Gideon(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
+    public Terminal(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery){
         super(board,numTurns,me,adversery);
         this.board = board;
     }
 
-    public Gideon(BoardPiece me, BoardPiece adversery,
-                  AbstractMap.SimpleEntry<Integer, Integer> change,
-                  ArrayList<Integer> positionsMe, ArrayList<Integer> positionsAdversery, AbstractMap.SimpleEntry<Integer, Integer> heritage) {
+    public Terminal(BoardPiece me, BoardPiece adversery,
+                    AbstractMap.SimpleEntry<Integer, Integer> change,
+                    ArrayList<Integer> positionsMe, ArrayList<Integer> positionsAdversery, AbstractMap.SimpleEntry<Integer, Integer> heritage) {
         this.me=me;
         this.adversery=adversery;
         this.computer = new ArrayList<Integer>(positionsMe);
@@ -40,24 +40,24 @@ public class Gideon extends Computer {
         if(!maximizing){
             // if MINimizing
             if(this.opponentWon()){
-                s = "Gideon" +"min-imizing,opponent wins: " + this.toString();
+                s = "Terminal" +"min-imizing,opponent wins: " + this.toString();
                 util = depth*1000;
                 return util;
             }
             if(this.wins()){
-                s = "Gideon" +"min-imizing,wins: " + this.toString();
+                s = "Terminal" +"min-imizing,wins: " + this.toString();
                 util = depth* (-1000);
                 return util;
             }
         }else {
             //If MAXimizing
             if (this.opponentWon()) {
-                s = "Gideon" +"max-imizing,opponent wins: " + this.toString();
+                s = "Terminal" +"max-imizing,opponent wins: " + this.toString();
                 util = depth * (-1000);
                 return util;
             }
             if (this.wins()) {
-                s = "Gideon" +"max-imizing,wins: " + this.toString();
+                s = "Terminal" +"max-imizing,wins: " + this.toString();
                 util = depth * 1000;
                 return util;
             }

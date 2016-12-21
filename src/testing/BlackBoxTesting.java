@@ -1,9 +1,8 @@
 package testing;
 
 import com.company.BoardPiece;
-import com.company.Main;
+import com.company.Nonterminal;
 
-import java.util.*;
 /**
  * Created by gideonpotok on 11/26/16.
  */
@@ -21,8 +20,8 @@ public class BlackBoxTesting {
 
     }
 
-    com.company.Louis getComputer(int blue1, int blue2, int blue3, int blue4,
-                                  int gold1,int gold2,int gold3, int gold4){
+    Nonterminal getComputer(int blue1, int blue2, int blue3, int blue4,
+                            int gold1, int gold2, int gold3, int gold4){
         for(int i = 0; i < 109; i++){
             board[i] = BoardPiece.EMPTY;
         }
@@ -35,12 +34,12 @@ public class BlackBoxTesting {
         board[gold2] = BoardPiece.GOLD;
         board[gold3] = BoardPiece.GOLD;
         board[gold4] = BoardPiece.GOLD;
-        return new com.company.Louis(board, 100,
+        return new Nonterminal(board, 100,
                 BoardPiece.GOLD, BoardPiece.BLUE );
     }
     @org.junit.Test
     public void testUtility_WinsOneMoveAway(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,53);
+        Nonterminal computer = getComputer(100,109,0,30,  15,25,35,53);
         computer.decideTurn();
         int util = computer.alphaBetaPruning(10,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
         org.junit.Assert.assertEquals(9000, util);
@@ -51,7 +50,7 @@ public class BlackBoxTesting {
     public void testChoiceFrom_WinsOneMoveAway(){
         //note: this has to be changed once it returns multiple answers
         //will be like for all latest turns if [0] is 53 all after are 53 too right?
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,53);
+        Nonterminal computer = getComputer(100,109,0,30,  15,25,35,53);
         computer.decideTurn();
         Integer[]  latestTurn  = computer.getTurn();
         org.junit.Assert.assertEquals(new Integer(53), latestTurn[0]);
@@ -60,14 +59,14 @@ public class BlackBoxTesting {
     public void testChoiceTo_WinsOneMoveAway(){
         //note: this has to be changed once it returns multiple answers
         //will be like for all latest turns if [0] is 53 all after are 53 too right?
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,53);
+        Nonterminal computer = getComputer(100,109,0,30,  15,25,35,53);
         computer.decideTurn();
         Integer[]  latestTurn  = computer.getTurn();
         org.junit.Assert.assertEquals(new Integer(55), latestTurn[1]);
     }
     /*@org.junit.Test
     public void testChoice_LosesOneMoveAwayTwoRecourse() {
-        com.company.Louis computer = getComputer(5, 15, 95, 107, 43, 9, 100, 0);
+        com.company.Nonterminal computer = getComputer(5, 15, 95, 107, 43, 9, 100, 0);
         computer.decideTurn();
         //computer.alphaBetaPruning(10,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
         //TODO: this is for single value decide turn, after that, test get turn, once original change is a43 -> 45 or 43-> 25 test
@@ -81,7 +80,7 @@ public class BlackBoxTesting {
 
     @org.junit.Test
     public void testChoice_LosesOneMoveAwayOneRecourse() {
-        com.company.Louis computer = getComputer(5, 25, 95, 107, 43, 9, 100, 0);
+        Nonterminal computer = getComputer(5, 25, 95, 107, 43, 9, 100, 0);
         computer.decideTurn();
 
         //TODO: this is for single value decide turn, after that, test get turn, once original change is a43 -> 45 or 43-> 25 test
@@ -94,7 +93,7 @@ public class BlackBoxTesting {
      * The test will check that the brick is actually move to one of those to locations. */
     @org.junit.Test
     public void testUtility_WinsOneMoveAwayTwoOptions(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,54);
+        Nonterminal computer = getComputer(100,109,0,30,  15,25,35,54);
         computer.decideTurn();
         int util = computer.alphaBetaPruning(10,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
         org.junit.Assert.assertEquals(9000, util);
@@ -103,14 +102,14 @@ public class BlackBoxTesting {
     }
     @org.junit.Test
     public void testChoiceFrom_WinsOneMoveAwayTwoOptions(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,54);
+        Nonterminal computer = getComputer(100,109,0,30,  15,25,35,54);
         //computer.decideTurn();
         Integer[]  latestTurn  = computer.getTurn();
         org.junit.Assert.assertEquals(new Integer(54), latestTurn[0]);
     }
     @org.junit.Test
     public void testChoiceTo_WinsOneMoveAwayTwoOptions(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,54);
+        Nonterminal computer = getComputer(100,109,0,30,  15,25,35,54);
         //computer.decideTurn();
         Integer[]  latestTurn  = computer.getTurn();
         if (latestTurn[1]==45) {
@@ -121,7 +120,7 @@ public class BlackBoxTesting {
     }
     @org.junit.Test
     public void testChoice_1AwayWin(){
-        com.company.Louis computer = getComputer(24,64,46,95,  16,27,36,45);
+        Nonterminal computer = getComputer(24,64,46,95,  16,27,36,45);
         //computer.decideTurn();
         Integer[]  latestTurn  = computer.getTurn();
         org.junit.Assert.assertEquals(new Integer(16), latestTurn[0]);
@@ -135,7 +134,7 @@ public class BlackBoxTesting {
      * The test will check that the brick is actually move to one of those to locations. */
     /*@org.junit.Test
     public void testUtility_WinsTwoMovesAwayOneOption(){
-        com.company.Louis computer = getComputer(100,109,0,30,  15,25,35,51);
+        com.company.Nonterminal computer = getComputer(100,109,0,30,  15,25,35,51);
         computer.decideTurn();
         int util = computer.alphaBetaPruning(10,Integer.MIN_VALUE,Integer.MAX_VALUE,true);
         org.junit.Assert.assertEquals(9000, util);

@@ -4,23 +4,23 @@ import java.util.*;
 
 /**
  * @Author Anu Challa (achalla@terpmail.umd.edu)
- * @Author Gideon Potok (gideon.potok@gmail.com)
+ * @Author Terminal Potok (gideon.potok@gmail.com)
  * @Author Marc Storm Larsen (mslarsen1992@gmail.com)
  *
  * I pledge on my honor that I have not given or received any unauthorized assistance on this project.
  */
-public class Louis extends Computer {
+public class Nonterminal extends Computer {
 
-    public Louis(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery) {
+    public Nonterminal(BoardPiece[] board, Integer numTurns, BoardPiece me, BoardPiece adversery) {
         super(board,numTurns,me,adversery);//System.out.println("Call to 3");//System.out.println("mypiece is " + me);
         this.originalChange=null;
         getPlacesToGo(computer); // POSSIBLE MOVES I MIGHT MAKE
         makeTree(Main.depth);//has to be ODD//System.out.println("\nTREE: " + this.toString());
     }
 
-    public Louis(BoardPiece me, BoardPiece adversery,
-                 AbstractMap.SimpleEntry<Integer, Integer> change,
-                 ArrayList<Integer> positionsMe, ArrayList<Integer> positionsAdversery) {
+    public Nonterminal(BoardPiece me, BoardPiece adversery,
+                       AbstractMap.SimpleEntry<Integer, Integer> change,
+                       ArrayList<Integer> positionsMe, ArrayList<Integer> positionsAdversery) {
         //System.out.println("Call to 2");
         //System.out.println("mypiece is " + me);
 
@@ -36,7 +36,7 @@ public class Louis extends Computer {
             human.add(i);
         }
         this.children = new ArrayList<Computer>();
-        //System.out.println("Louis");
+        //System.out.println("Nonterminal");
         //System.out.println(computer);
         //System.out.println("VS");
         //System.out.println("1"+positionsAdversery);
@@ -50,10 +50,10 @@ public class Louis extends Computer {
 
     }
 
-    public Louis(BoardPiece me, BoardPiece adversery,
-                 AbstractMap.SimpleEntry<Integer, Integer> change,
-                 ArrayList<Integer> positionsMe, ArrayList<Integer> positionsAdversery,
-                 AbstractMap.SimpleEntry<Integer, Integer> originalChange) {
+    public Nonterminal(BoardPiece me, BoardPiece adversery,
+                       AbstractMap.SimpleEntry<Integer, Integer> change,
+                       ArrayList<Integer> positionsMe, ArrayList<Integer> positionsAdversery,
+                       AbstractMap.SimpleEntry<Integer, Integer> originalChange) {
         this(me,adversery,change,positionsMe,positionsAdversery);
         //System.out.println("Call to 3");
         //System.out.println("mypiece is " + me);
@@ -106,10 +106,10 @@ public class Louis extends Computer {
                 if(this.originalChange == null){
                     heritage=each;
                 }
-                Computer l = new Louis(adversery ,me , each, human, computer, heritage); //notice THE SWITCH
+                Computer l = new Nonterminal(adversery ,me , each, human, computer, heritage); //notice THE SWITCH
 
                 if(l.opponentWon()){
-                    l = new Gideon(adversery,me,each,human,computer,heritage);
+                    l = new Terminal(adversery,me,each,human,computer,heritage);
                     children.clear();
                     children.add(l);
                     break;
@@ -129,7 +129,7 @@ public class Louis extends Computer {
                 if(this.originalChange == null){
                     heritage=local;
                 }
-                Gideon g = new Gideon(adversery ,me , local, human, computer, heritage); //notice THE SWITCH
+                Terminal g = new Terminal(adversery ,me , local, human, computer, heritage); //notice THE SWITCH
                 children.add(g);
             }
         }
@@ -148,24 +148,24 @@ public class Louis extends Computer {
         if(!maximizing){
             // if MINimizing
            if(this.opponentWon()){
-               s = "Louis: "+ "min-imizing,opponent wins: " + this.toString();
+               s = "Nonterminal: "+ "min-imizing,opponent wins: " + this.toString();
                util = depth*1000;
                return util;
            }
            if(this.wins()){
-               s = "Louis: "+ "min-imizing,wins: " + this.toString();
+               s = "Nonterminal: "+ "min-imizing,wins: " + this.toString();
                util = depth* (-1000);
                return util;
            }
         }else {
             //If MAXimizing
             if (this.opponentWon()) {
-                s = "Louis: "+ "max-imizing,opponent wins: " + this.toString();
+                s = "Nonterminal: "+ "max-imizing,opponent wins: " + this.toString();
                 util = depth * (-1000);
                 return util;
             }
             if (this.wins()) {
-                s ="Louis: "+  "max-imizing,wins: " + this.toString();
+                s ="Nonterminal: "+  "max-imizing,wins: " + this.toString();
                 util = depth * 1000;
                 return util;
             }

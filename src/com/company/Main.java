@@ -13,7 +13,7 @@ import java.util.Scanner;
  * The solutions are printed to STDOUT continuously until the application is terminated.
  *
  * @Author Anu Challa (achalla@terpmail.umd.edu)
- * @Author Gideon Potok (gideon.potok@gmail.com)
+ * @Author Terminal Potok (gideon.potok@gmail.com)
  * @Author Marc Storm Larsen (mslarsen1992@gmail.com)
  *
  * I pledge on my honor that I have not given or received any unauthorized assistance on this project.
@@ -22,7 +22,7 @@ public class Main {
     public static boolean lookAtTheirTurns = true;
 
     public static int counter = 1;
-    public static int depth = 3;
+    public static int depth = 2;
     public static int depthPlus = 2;
 
     public static void main(String[] args) {
@@ -58,7 +58,7 @@ public class Main {
     private static final boolean startBoardRandomPositions = false;
 
     static boolean  startingPositionIsGivenAsTextInput = false;
-    static boolean closeToWin = true;
+    static boolean closeToWin = false;
     static boolean blockTheirWin=false;
     static int fromWin=2;
     /*End Section 1*/
@@ -69,7 +69,7 @@ public class Main {
 
     /*Section 3: soon to be toggleable*/
     private static Computer computerGenerator() {
-        return new Louis
+        return new Nonterminal
                 (board,numTurns,
                         (currentTurn == BoardPiece.BLUE)? BoardPiece.BLUE: BoardPiece.GOLD,
                         (currentTurn == BoardPiece.BLUE)? BoardPiece.GOLD: BoardPiece.BLUE);
